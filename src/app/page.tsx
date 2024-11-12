@@ -5,8 +5,10 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 import MovieIcon from '@mui/icons-material/Movie';
 import MuseumIcon from '@mui/icons-material/Museum';
 import type { NextPage } from 'next';
-import Image from 'next/image';
-import { useRouter, AppRouterInstance } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import Header from '@/components/Header';
+
 
 const Home: NextPage = () => {
   const router: AppRouterInstance = useRouter()
@@ -22,19 +24,7 @@ const Home: NextPage = () => {
         marginTop: 5
       }}
     >
-      <Image
-        aria-hidden
-        src='/images/Date-finder.png'
-        alt='Date finder'
-        width={100}
-        height={100}
-      />
-      <Typography variant='h3' component='h1' gutterBottom>
-        DateFinder
-      </Typography>
-      <Typography variant='h5' component='h2' gutterBottom>
-        Planifier votre prochain date
-      </Typography>
+      <Header />
 
       <Grid2 container spacing={3} sx={{ marginTop: 3, alignItems: 'center', justifyContent: 'center' }}>
         <Grid2 size={5}>

@@ -36,6 +36,7 @@ yarn-error.log*
 next-env.d.ts
 .vscode
 /certificates/
+mkcert_development_CA_*
 
 # pwa
 sw.*

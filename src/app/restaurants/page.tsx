@@ -5,12 +5,13 @@ import { Restaurant } from '@/interfaces/Restaurant'
 import { Box, Grid2, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import { useRouter, AppRouterInstance } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import RestaurantCard from '@/components/Restaurant/RestaurantCard'
-import { useLocation } from '../context/LocationContext'
 import { Location } from '@/interfaces/Location'
 import RestaurantInputSearch from '@/components/Restaurant/RestaurantInputSearch'
 import RestaurantSkeleton from '@/components/Restaurant/Loader/RestaurantSkeleton'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import { useLocation } from '@/context/LocationContext'
 
 export default function Restaurants(): React.ReactElement
 {
@@ -60,7 +61,9 @@ export default function Restaurants(): React.ReactElement
         spacing={4}
         // columns={2}
       >
-        {skeleton ? <RestaurantSkeleton />: null}
+        {skeleton ? 
+          <><RestaurantSkeleton /><RestaurantSkeleton /><RestaurantSkeleton /></>
+          : null}
         {restaurants?.length > 0 ? restaurants.map((restaurant: Restaurant) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         )) : null}

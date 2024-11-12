@@ -1,19 +1,25 @@
-import { Restaurant } from '@/interfaces/Restaurant';
-import { Card, CardMedia, Grid2 } from '@mui/material';
-import RestaurantContentCard from './RestaurantContentCard';
-import React from 'react';
+import { Restaurant } from '@/interfaces/Restaurant'
+import { Card, CardMedia, Grid2 } from '@mui/material'
+import RestaurantContentCard from './RestaurantContentCard'
+import React from 'react'
+import ModalRequestActivity from '../Activity/ModalRequestActivity'
 
 type RestaurantCardProps = {
-  restaurant: Restaurant;
+  restaurant: Restaurant
 }
-export default function RestaurantCard({ restaurant }: RestaurantCardProps): React.ReactElement
+export default function RestaurantCard({ restaurant }: Readonly<RestaurantCardProps>): React.ReactElement
 {
+  const [openModal, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   return (
     <Grid2 
       key={restaurant.id}
-      size={12}
+      size={{ xs: 12, md: 4 }}
     >
-      <Card sx={{ height: '100%'}}>
+      <Card sx={{ height: '100%'}} onClick={handleClickOpen} >
         <CardMedia
           component='img'
           height='140'
@@ -22,6 +28,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps): Rea
         />
         <RestaurantContentCard restaurant={restaurant}/>
       </Card>
+      <ModalRequestActivity activity={restaurant} open={openModal} onClose={handleClose} />
     </Grid2>
   )
 }

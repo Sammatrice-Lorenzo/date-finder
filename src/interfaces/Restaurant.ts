@@ -1,4 +1,7 @@
-export interface Restaurant {
+import ActivityInterface from "./ActivityInterface";
+import LocationActivityInterface from "./LocationActivityInterface";
+
+export interface Restaurant extends ActivityInterface {
   id: string
   alias: string,
   name: string;
@@ -14,9 +17,5 @@ export interface Restaurant {
   phone: string,
   display_phone: string,
   business_hours: [],
-  location: {
-    address1: string,
-    city: string,
-    zip_code: string
-  }
+  location: LocationActivityInterface
 }
