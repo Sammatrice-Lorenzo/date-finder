@@ -39,6 +39,7 @@ const Home: NextPage = () => {
               bgcolor: '#d33252',
               textAlign: 'center',
               boxShadow: 2,
+              "&:hover": { cursor: "pointer" }
             }}
             onClick={() => router.push('/restaurants')}
           >
@@ -59,6 +60,7 @@ const Home: NextPage = () => {
               bgcolor: '#0aa4c5',
               textAlign: 'center',
               boxShadow: 2,
+              "&:hover": { cursor: "pointer" } 
             }}
           >
             <MovieIcon fontSize='large' />
@@ -78,6 +80,7 @@ const Home: NextPage = () => {
               bgcolor: '#40916c',
               textAlign: 'center',
               boxShadow: 2,
+              "&:hover": { cursor: "pointer" } 
             }}
           >
             <MuseumIcon fontSize='large' />
@@ -97,6 +100,7 @@ const Home: NextPage = () => {
               bgcolor: '#ff560b',
               textAlign: 'center',
               boxShadow: 2,
+              "&:hover": { cursor: "pointer" } 
             }}
           >
             <MapIcon fontSize='large' />

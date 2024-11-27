@@ -1,0 +1,11 @@
+{
+  "ERROR": {
+    "SERVER_ERROR": "Une erreur interne est survenue.",
+    "EMAIL_ERROR": "Une erreur est survenu lors de l'envoi d'e-mail.",
+    "LIMIT_RATING": "L'application a dépassé son quota de récupération des données sur les différents services."
+  },
+  "SUCCESS": {
+    "OK": "L'opération a été réalisée avec succès.",
+    "EMAIL": "Le mail a été envoyé !"
+  }
+}

@@ -1,7 +1,8 @@
-import { Restaurant } from "@/interfaces/Restaurant";
 import { NextResponse } from "next/server";
+import fr from '../../../../public/locales/fr/common.json';
+import { RestaurantResponseInterface } from "@/interfaces/RestaurantResponseInterface";
 
-export async function POST(request: Request): Promise<NextResponse<{response: Restaurant[]}>>
+export async function POST(request: Request): Promise<NextResponse<RestaurantResponseInterface>>
 {
   const apiKey: string | undefined = process.env.API_KEY_YELP
   const defaultsTerms: string = 'restaurants'
@@ -26,7 +27,22 @@ export async function POST(request: Request): Promise<NextResponse<{response: Re
       Authorization: `Bearer ${apiKey}`
     },
   })
-  const data = await response.json()
 
-  return NextResponse.json({response: data.businesses})
+  const status: number = response.status
+  if (response.ok) {
+    const data = await response.json()
+
+    return NextResponse.json({response: data.businesses, message: ''}, {status: status})
+  }
+
+  const nextResponse: RestaurantResponseInterface = {
+    response: [],
+    message: fr.ERROR.SERVER_ERROR
+  }
+
+  if (status === 429 || status === 400) {
+    nextResponse.message = fr.ERROR.LIMIT_RATING
+  }
+
+  return NextResponse.json(nextResponse, { status: status })
 }

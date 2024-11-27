@@ -13,7 +13,7 @@ export default function Header(): React.ReactElement
         width={100}
         height={100}
       />
-      <Typography variant='h3' component='h1' gutterBottom>
+      <Typography variant='h4' component='h1' gutterBottom>
         DateFinder
       </Typography><Typography variant='h5' component='h2' gutterBottom>
         Planifier votre prochain date

@@ -12,6 +12,8 @@ import RestaurantInputSearch from '@/components/Restaurant/RestaurantInputSearch
 import RestaurantSkeleton from '@/components/Restaurant/Loader/RestaurantSkeleton'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { useLocation } from '@/context/LocationContext'
+import { useAlert } from '@/hooks/useAlert'
+import { AlertEnum } from '@/enums/AlertEnum'
 
 export default function Restaurants(): React.ReactElement
 {
@@ -22,6 +24,8 @@ export default function Restaurants(): React.ReactElement
   const [searchCategory, setSearchCategory] = useState<string>('')
   const router: AppRouterInstance = useRouter()
   const userLocation: Location | null = useLocation()
+  const { showAlert } = useAlert()
+
 
   useEffect(() => {
     const fetchRestaurants = async (): Promise<void> => {
@@ -36,15 +40,19 @@ export default function Restaurants(): React.ReactElement
         })
       })
       const data = await response.json();
+      setSkeleton(false)
+      setRestaurants(data.response)
+      if (!response.ok) {
+        showAlert(data.message, AlertEnum.Error)
+      }
+
       console.log(data);
       console.log(data.response);
-      
-      setRestaurants(data.response)
-      setSkeleton(false)
+
     }
 
     fetchRestaurants()
-  }, [userLocation?.latitude, userLocation?.longitude, searchLocation, searchTerm, searchCategory])
+  }, [userLocation?.latitude, userLocation?.longitude, searchLocation, searchTerm, searchCategory, showAlert])
 
   console.log(restaurants);
 
@@ -57,9 +65,9 @@ export default function Restaurants(): React.ReactElement
 
       <RestaurantCategories setCategorySearch={setSearchCategory}/>
       <RestaurantInputSearch setLocationSearch={setSearchLocation} setTermSearch={setSearchTerm} />
-      <Grid2 container
+      <Grid2
+        container
         spacing={4}
-        // columns={2}
       >
         {skeleton ? 
           <><RestaurantSkeleton /><RestaurantSkeleton /><RestaurantSkeleton /></>

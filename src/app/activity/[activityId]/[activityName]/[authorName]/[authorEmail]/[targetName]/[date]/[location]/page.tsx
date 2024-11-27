@@ -11,6 +11,8 @@ export default function Activity({ params }: Readonly<{params: ActivityQueryProp
 
   const routerParameters: ActivityQueryProps = RequestActivityFormService.decodeParametersRouteRequestActivity(params)
 
+  console.log(routerParameters);
+  
   return (
     <Box
       sx={{
@@ -18,19 +20,14 @@ export default function Activity({ params }: Readonly<{params: ActivityQueryProp
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 2,
-        marginTop: 5
+        marginTop: 2
       }}
     >
       <Header />
   
       <InvitationActivity
         key={0}
-        activityName={routerParameters.activityName} 
-        authorName={routerParameters.authorName}
-        targetName={routerParameters.targetName}
-        date={routerParameters.date}
-        location={routerParameters.location}
+        activity={routerParameters}
       />
     </Box>
   )

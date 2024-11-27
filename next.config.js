@@ -4,8 +4,8 @@ export default withPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
-//   reactStrictMode: true,
-//   images: {
-//     domains: ['example.com'],
-//   },
+  // reactStrictMode: true,
+  // images: {
+  //   domains: ['example.com'],
+  // },
 });
