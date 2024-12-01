@@ -10,7 +10,6 @@ import { MailService } from '@/services/MailService'
 import ActivityInterface from '@/interfaces/ActivityInterface'
 import { InputRequestActivity } from './InputRequestActivity'
 import ModalTitle from '../ModalTitle'
-import { useAlert } from '@/hooks/useAlert'
 import ShareIcon from '@mui/icons-material/Share'
 
 
@@ -54,21 +53,26 @@ const handleShare = async (activity : ActivityInterface, formData: FormData): Pr
 }
 
 export default function ModalRequestActivity({ activity, open, onClose }: Readonly<ModalRequestActivityProps>): React.ReactElement {
-  const { showAlert } = useAlert()
+  const [error, setError] = React.useState<string | null>(null)
+
+  const handleClose = (): void => {
+    setError(null)
+    onClose()
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData: FormData = new FormData(event.currentTarget)
-    if (RequestActivityFormService.areFormFieldsValid(formData, showAlert)) {
+    if (RequestActivityFormService.areFormFieldsValid(formData, setError)) {
       handleShare(activity, formData)
-      onClose()
+      handleClose()
     }
-  } 
-  
+  }
+
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       PaperProps={{
         component: 'form',
         onSubmit: handleSubmit
@@ -76,12 +80,13 @@ export default function ModalRequestActivity({ activity, open, onClose }: Readon
     >
       <ModalTitle
         title='Planifier votre rendez-vous'
-        onCloseModal={onClose}
+        onCloseModal={handleClose}
       />
       <DialogContent sx={{ pt: 2, px: 3 }}>
         <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>
           Renseignez les informations pour créer une invitation que vous pourrez facilement partager.
         </DialogContentText>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
 
         {RequestActivityFormService.getValuesInputsModalRequestActivity().map(
           (input, index) => <InputRequestActivity

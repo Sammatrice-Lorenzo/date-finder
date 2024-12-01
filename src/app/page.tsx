@@ -1,17 +1,11 @@
-'use client';
-import { Box, Typography, Grid2 } from '@mui/material';
-import MapIcon from '@mui/icons-material/Map';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import MovieIcon from '@mui/icons-material/Movie';
-import MuseumIcon from '@mui/icons-material/Museum';
-import type { NextPage } from 'next';
-import { useRouter } from 'next/navigation';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
-import Header from '@/components/Header';
+'use client'
 
+import { Box, Grid2 } from '@mui/material'
+import type { NextPage } from 'next'
+import Header from '@/components/Header'
+import BoxActivity from '@/components/BoxActivity'
 
 const Home: NextPage = () => {
-  const router: AppRouterInstance = useRouter()
 
   return (
     <Box
@@ -28,88 +22,44 @@ const Home: NextPage = () => {
 
       <Grid2 container spacing={3} sx={{ marginTop: 3, alignItems: 'center', justifyContent: 'center' }}>
         <Grid2 size={5}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 2,
-              borderRadius: 2,
-              bgcolor: '#d33252',
-              textAlign: 'center',
-              boxShadow: 2,
-              "&:hover": { cursor: "pointer" }
-            }}
-            onClick={() => router.push('/restaurants')}
-          >
-            <RestaurantIcon fontSize='large'/>
-            <Typography variant='h6'>Restaurants</Typography>
-          </Box>
+          <BoxActivity
+            key='restaurant'
+            icon='restaurant'
+            title='Restaurants'
+            color='#d33252'
+            route='/restaurants'
+          />
         </Grid2>
 
         <Grid2 size={5}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 2,
-              borderRadius: 2,
-              bgcolor: '#0aa4c5',
-              textAlign: 'center',
-              boxShadow: 2,
-              "&:hover": { cursor: "pointer" } 
-            }}
-          >
-            <MovieIcon fontSize='large' />
-            <Typography variant='h6'>Films</Typography>
-          </Box>
+          <BoxActivity
+            key='movie'
+            icon='movie'
+            title='Films'
+            color='#0aa4c5'
+          />
         </Grid2>
 
         <Grid2 size={5}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 2,
-              borderRadius: 2,
-              bgcolor: '#40916c',
-              textAlign: 'center',
-              boxShadow: 2,
-              "&:hover": { cursor: "pointer" } 
-            }}
-          >
-            <MuseumIcon fontSize='large' />
-            <Typography variant='h6'>Musées</Typography>
-          </Box>
+          <BoxActivity
+            key='museum'
+            icon='museum'
+            title='Musées'
+            color='#40916c'
+          />
         </Grid2>
 
         <Grid2 size={5}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 2,
-              borderRadius: 2,
-              bgcolor: '#ff560b',
-              textAlign: 'center',
-              boxShadow: 2,
-              "&:hover": { cursor: "pointer" } 
-            }}
-          >
-            <MapIcon fontSize='large' />
-            <Typography variant='h6'>Explorer</Typography>
-          </Box>
+          <BoxActivity
+            key='map'
+            icon='map'
+            title='Explorer'
+            color='#ff560b'
+          />
         </Grid2>
       </Grid2>
     </Box>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

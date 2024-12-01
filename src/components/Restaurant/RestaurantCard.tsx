@@ -18,6 +18,9 @@ export default function RestaurantCard({ restaurant }: Readonly<RestaurantCardPr
     <Grid2 
       key={restaurant.id}
       size={{ xs: 12, md: 4 }}
+      sx={{
+        "&:hover": { cursor: "pointer" }
+      }}
     >
       <Card sx={{ height: '100%'}} onClick={handleClickOpen} >
         <CardMedia

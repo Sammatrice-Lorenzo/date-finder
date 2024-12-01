@@ -4,7 +4,7 @@ import { RestaurantCategories } from '@/components/Restaurant/RestaurantCategori
 import { Restaurant } from '@/interfaces/Restaurant'
 import { Box, Grid2, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import { useRouter } from 'next/navigation'
 import RestaurantCard from '@/components/Restaurant/RestaurantCard'
 import { Location } from '@/interfaces/Location'
@@ -29,7 +29,7 @@ export default function Restaurants(): React.ReactElement
 
   useEffect(() => {
     const fetchRestaurants = async (): Promise<void> => {
-      const response: Response  = await fetch('/api/restaurant/', {
+      const response: Response = await fetch('/api/restaurant/', {
         method: 'POST',
         body: JSON.stringify({
           location: searchLocation,
@@ -58,7 +58,7 @@ export default function Restaurants(): React.ReactElement
 
   return (
     <Box sx={{ padding: 4 }}>
-      <KeyboardReturnIcon onClick={() => router.push('/')}/>
+      <KeyboardReturnIcon onClick={() => router.push('/')} sx={{ "&:hover": { cursor: "pointer" } }}/>
       <Typography variant='h4' gutterBottom>
         Restaurants à proximité
       </Typography>

@@ -1,10 +1,9 @@
 'use client'
-import { AlertEnum } from "@/enums/AlertEnum";
 import { InputModalRequestActivity } from "@/interfaces/InputModalRequestActivity";
 
 export class RequestActivityFormService {
 
-  public static areFormFieldsValid(formData: FormData, showAlert: CallableFunction): boolean
+  public static areFormFieldsValid(formData: FormData, setError: CallableFunction): boolean
   {
     const propertiesForm: string[] = [
       'date',
@@ -21,12 +20,12 @@ export class RequestActivityFormService {
 
     for (const property of propertiesForm) {
       if (!formJson[property]) {
-        alert('Veuillez remplir tous les champs !')
+        setError('Veuillez remplir tous les champs !')
         return false
       }
 
       if (property === 'date' && new Date(formJson[property].toString()) < now) {
-        showAlert('La date doit être supérieure ou égale à la date actuelle !', AlertEnum.Error)
+        setError('La date doit être supérieure ou égale à la date actuelle !')
         return false
       }
     }
