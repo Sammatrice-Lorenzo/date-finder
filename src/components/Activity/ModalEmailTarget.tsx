@@ -1,11 +1,12 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material'
 import { InputRequestActivity } from './InputRequestActivity'
-import { AlertEnum } from '@/enums/AlertEnum';
-import { useAlert } from '@/hooks/useAlert';
-import React from 'react';
-import { v1 as uuidv1 } from 'uuid';
-import { ActivityQueryProps } from '@/types/ActivityQueryProps';
-import ModalTitle from '../ModalTitle';
+import { AlertEnum } from '@/enums/AlertEnum'
+import { useAlert } from '@/hooks/useAlert'
+import React from 'react'
+import { v1 as uuidv1 } from 'uuid'
+import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import ModalTitle from '../ModalTitle'
+import SendIcon from '@mui/icons-material/Send'
 
 export type ModalEmailTargetProps = {
   activity: ActivityQueryProps
@@ -73,6 +74,7 @@ export default function ModalEmailTarget({ activity, isOpen, onClose }: ModalEma
           variant='contained'
           color='primary'
         >
+          <SendIcon fontSize='small' sx={{ marginRight: 1 }}/>
           Envoyer
         </Button>
       </DialogActions>

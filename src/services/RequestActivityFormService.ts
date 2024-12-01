@@ -1,10 +1,6 @@
 'use client'
 import { AlertEnum } from "@/enums/AlertEnum";
-import LocationFormatter from "@/formatters/LocationFormatter";
-import ActivityInterface from "@/interfaces/ActivityInterface";
 import { InputModalRequestActivity } from "@/interfaces/InputModalRequestActivity";
-import { ShareDataInterface } from "@/interfaces/ShareDataInterface";
-import { ActivityQueryProps } from "@/types/ActivityQueryProps";
 
 export class RequestActivityFormService {
 
@@ -75,42 +71,5 @@ export class RequestActivityFormService {
         type: 'text'
       }
     ] 
-  }
-
-  public static generateParametersActivityForShare(activity: ActivityInterface, formData: FormData, baseUrl: string): ShareDataInterface
-  {
-    const formJson: {
-      [k: string]: FormDataEntryValue;
-    } = Object.fromEntries(formData.entries())
-
-    const dateFormatted: Date = new Date(formJson['date'].toString())
-    const route = {
-      activityId: encodeURIComponent(activity.id),
-      activityName: encodeURIComponent(activity.name),
-      authorName: encodeURIComponent(formJson['author-name'].toString()),
-      authorEmail: encodeURIComponent(formJson['author-email'].toString()),
-      targetName: encodeURIComponent(formJson['target-name'].toString()),
-      date: encodeURIComponent(`${dateFormatted.toLocaleDateString()} ${dateFormatted.toLocaleTimeString()}`),
-      location: encodeURIComponent(LocationFormatter.getAddressBusinessActivity(activity.location))
-    }
-
-    return {
-      title: 'Invitation pour une sortie',
-      text: 'Découvre notre prochaine activité ensemble!',
-      url: `${baseUrl}/activity/${route.activityId}/${route.activityName}/${route.authorName}/${route.authorEmail}/${route.targetName}/${route.date}/${route.location}`,
-    }
-  }
-
-  public static decodeParametersRouteRequestActivity(routerParameter: ActivityQueryProps): ActivityQueryProps
-  {
-    return {
-      activityId: decodeURIComponent(routerParameter.activityId),
-      activityName: decodeURIComponent(routerParameter.activityName),
-      authorName: decodeURIComponent(routerParameter.authorName),
-      authorEmail: decodeURIComponent(routerParameter.authorEmail),
-      targetName: decodeURIComponent(routerParameter.targetName),
-      date: decodeURIComponent(routerParameter.date),
-      location: decodeURIComponent(routerParameter.location)
-    }
   }
 }

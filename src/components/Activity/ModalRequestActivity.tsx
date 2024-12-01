@@ -11,6 +11,7 @@ import ActivityInterface from '@/interfaces/ActivityInterface'
 import { InputRequestActivity } from './InputRequestActivity'
 import ModalTitle from '../ModalTitle'
 import { useAlert } from '@/hooks/useAlert'
+import ShareIcon from '@mui/icons-material/Share'
 
 
 export type ModalRequestActivityProps = {
@@ -19,10 +20,26 @@ export type ModalRequestActivityProps = {
   onClose: () => void
 }
 
-const handleShare = async (activity : ActivityInterface, formData: FormData): Promise<void> => {
+async function generateUrl(activity: ActivityInterface, form: FormData): Promise<ShareDataInterface> {
   const baseUrl: string = window.location.origin
-  const shareData: ShareDataInterface = RequestActivityFormService.generateParametersActivityForShare(activity, formData, baseUrl)
-  alert(shareData.url)
+
+  const formObject: Record<string, string> = {};
+  form.forEach((value, key) => {
+    formObject[key] = value.toString()
+  })
+
+  const response: Response = await fetch('/api/generate-url', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ activity, baseUrl, form: formObject })
+  })
+  const data: { response: ShareDataInterface } = await response.json()
+
+  return data.response
+}
+
+const handleShare = async (activity : ActivityInterface, formData: FormData): Promise<void> => {
+  const shareData: ShareDataInterface = await generateUrl(activity, formData)
 
   if (navigator.share) {
     try {
@@ -84,6 +101,7 @@ export default function ModalRequestActivity({ activity, open, onClose }: Readon
           variant='contained'
           color='primary'
         >
+          <ShareIcon fontSize='small' sx={{ marginRight: 1}} />
           Partager
         </Button>
       </DialogActions>

@@ -7,5 +7,9 @@
   "SUCCESS": {
     "OK": "L'opération a été réalisée avec succès.",
     "EMAIL": "Le mail a été envoyé !"
+  },
+  "ACTIVITY": {
+    "TITLE_LINK_SHARED": "Invitation pour une sortie",
+    "DISCOVER_ACTIVITY": "Découvre notre prochaine activité ensemble!"
   }
 }

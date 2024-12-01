@@ -17,8 +17,8 @@ export default function ModalTitle({ title, onCloseModal}: ModalTitleProps): Rea
         onClick={onCloseModal} 
         sx={{
           position: 'absolute',
-          right: 16,
-          top: 10,
+          right: 14,
+          top: 6,
           cursor: 'pointer',
         }} 
       />

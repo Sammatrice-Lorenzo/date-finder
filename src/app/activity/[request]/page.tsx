@@ -1,18 +1,21 @@
-'use client'
+'use server'
 
 import InvitationActivity from '@/components/Activity/InvitationActivity'
 import Header from '@/components/Header'
-import { RequestActivityFormService } from '@/services/RequestActivityFormService'
+import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
 import { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import { Box } from '@mui/material'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
-export default function Activity({ params }: Readonly<{params: ActivityQueryProps}>): React.ReactElement {
-
-  const routerParameters: ActivityQueryProps = RequestActivityFormService.decodeParametersRouteRequestActivity(params)
-
-  console.log(routerParameters);
+export default async function Activity({ params }: Readonly<{params: {request: string}}>): Promise<React.ReactElement>
+{
+  const routerParameters: ActivityQueryProps | null = UrlActivityGeneratorService.decodeParametersRouteRequestActivity(params.request)
   
+  if (routerParameters === null) {
+    return notFound()
+  }
+
   return (
     <Box
       sx={{
@@ -24,7 +27,6 @@ export default function Activity({ params }: Readonly<{params: ActivityQueryProp
       }}
     >
       <Header />
-  
       <InvitationActivity
         key={0}
         activity={routerParameters}

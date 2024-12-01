@@ -1,12 +1,13 @@
 'use client'
 
-import { ActivityQueryProps } from "@/types/ActivityQueryProps";
-import { Box, Button } from "@mui/material";
-import React from "react";
-import ModalEmailTarget from "../ModalEmailTarget";
-import { AlertEnum } from "@/enums/AlertEnum";
-import { useAlert } from "@/hooks/useAlert";
-
+import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import { Box, Button } from '@mui/material'
+import React from 'react'
+import ModalEmailTarget from '../ModalEmailTarget'
+import { AlertEnum } from '@/enums/AlertEnum'
+import { useAlert } from '@/hooks/useAlert'
+import EventAvailableIcon from '@mui/icons-material/EventAvailable'
+import EventBusyIcon from '@mui/icons-material/EventBusy'
 interface BoxFooterCardRequestProps {
   activity: ActivityQueryProps
 }
@@ -31,11 +32,13 @@ const BoxFooterCardRequest = ({ activity }: BoxFooterCardRequestProps): React.Re
   }
 
   return (
-    <Box display="flex" justifyContent="space-around" mt={3}>
-      <Button variant="contained" color="primary" onClick={() => handleClickOpen()}>
+    <Box display='flex' justifyContent='space-around' mt={3}>
+      <Button variant='contained' sx={{ justifyContent: 'space-between'}}  color='primary' onClick={() => handleClickOpen()}>
+        <EventAvailableIcon fontSize='small' sx={{ marginRight: 1 }} />
         Accepter
       </Button>
-      <Button variant="outlined" color="secondary" onClick={() => handleSendInviteRefused()}>
+      <Button variant='outlined' color='secondary' onClick={() => handleSendInviteRefused()}>
+        <EventBusyIcon fontSize='small' sx={{ marginRight: 1 }} />
         Décliner
       </Button>
       <ModalEmailTarget
