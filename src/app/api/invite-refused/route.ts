@@ -1,10 +1,10 @@
-import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface';
-import sgMail from '@sendgrid/mail';
-import { MailData } from "@sendgrid/helpers/classes/mail";
-import { NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
-import fr from '../../../../public/locales/fr/common.json';
-import MailEventService from '@/services/MailEventService';
+import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface'
+import sgMail from '@sendgrid/mail'
+import { MailData, MailDataRequired } from "@sendgrid/helpers/classes/mail"
+import { NextApiResponse } from 'next'
+import { NextResponse } from 'next/server'
+import fr from '../../../../public/locales/fr/common.json'
+import MailEventService from '@/services/MailEventService'
 
 export async function POST(req: Request, res: NextApiResponse) {
   const body: ActivityEventCalendarInterface = await req.json()
@@ -17,11 +17,11 @@ export async function POST(req: Request, res: NextApiResponse) {
     sgMail.setApiKey(apiKey)
 
     const email: MailData = MailEventService.createEmailRefuseInvitation(body)
-    console.log(email);
+    console.log(email)
     
     let codeResponse: number = 202
-    const responseEmail = await sgMail.send(email)
-    console.log(responseEmail);
+    const responseEmail = await sgMail.send(email as MailDataRequired)
+    console.log(responseEmail)
 
     let message: string = fr.SUCCESS.EMAIL
     if (codeResponse !== 202) {
@@ -31,6 +31,7 @@ export async function POST(req: Request, res: NextApiResponse) {
     
     return NextResponse.json({ message: message }, { status: codeResponse })
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ message: fr.ERROR.SERVER_ERROR }, { status: 500 })
   }
 }

@@ -1,11 +1,11 @@
-import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface';
-import EventCalendarService from '@/services/EventCalendarService';
-import MailEventService from '@/services/MailEventService';
-import sgMail from '@sendgrid/mail';
-import { MailData } from "@sendgrid/helpers/classes/mail";
-import { NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
-import DateFormatter from '@/formatters/DateFormatter';
+import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface'
+import EventCalendarService from '@/services/EventCalendarService'
+import MailEventService from '@/services/MailEventService'
+import sgMail from '@sendgrid/mail'
+import { MailData, MailDataRequired } from "@sendgrid/helpers/classes/mail"
+import { NextApiResponse } from 'next'
+import { NextResponse } from 'next/server'
+import DateFormatter from '@/formatters/DateFormatter'
 
 export async function POST(req: Request, res: NextApiResponse) {
   const body: ActivityEventCalendarInterface = await req.json()
@@ -27,8 +27,8 @@ export async function POST(req: Request, res: NextApiResponse) {
 
     let codeResponse: number = 202
     for (const email of [emailAuthor, emailTarget]) {
-      console.log(email);
-      const responseEmail = await sgMail.send(email)
+      console.log(email)
+      const responseEmail = await sgMail.send(email as MailDataRequired)
       codeResponse = responseEmail[0].statusCode
     }
 
@@ -39,7 +39,7 @@ export async function POST(req: Request, res: NextApiResponse) {
 
     return NextResponse.json({ message: message }, { status: codeResponse })
   } catch (error) {
-    console.error(error);
+    console.error(error)
     return NextResponse.json({ message: 'Une erreur côté server est survenu' }, { status: 500 })
   }
 }

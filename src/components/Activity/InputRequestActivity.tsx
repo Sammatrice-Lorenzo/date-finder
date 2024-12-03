@@ -1,12 +1,12 @@
-import { SlotProps, TextField } from "@mui/material";
-import React from "react";
+import { SlotProps, StepContextType, TextField } from '@mui/material'
+import React, { ComponentState } from 'react'
 
 export type InputRequestActivityProps = {
   name: string,
   type: string,
   label: string,
-  props?: SlotProps,
-  margin?: "none" | "dense" | "normal"
+  props?: SlotProps<'div', ComponentState, StepContextType>,
+  margin?: 'none' | 'dense' | 'normal'
 }
 
 export function InputRequestActivity({ name, type, label, props, margin}: Readonly<InputRequestActivityProps> ): React.ReactElement
