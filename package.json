@@ -6,7 +6,9 @@
     "dev": "next dev --experimental-https --experimental-https-key ./certificates/key.pem --experimental-https-cert ./certificates/cert.pem",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test-server": "next dev --port=3000",
+    "tests": "playwright test"
   },
   "type": "module",
   "dependencies": {
@@ -28,6 +30,7 @@
     "uuid": "^11.0.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^18",

@@ -1,15 +1,23 @@
-import { NextResponse } from "next/server";
-import fr from '../../../../public/locales/fr/common.json';
-import { RestaurantResponseInterface } from "@/interfaces/RestaurantResponseInterface";
+import { NextResponse } from "next/server"
+import fr from '../../../../public/locales/fr/common.json'
+import { RestaurantResponseInterface } from "@/interfaces/RestaurantResponseInterface"
+import data from '../../../data/restaurant-test-data.json'
+import { Restaurant } from "@/interfaces/Restaurant"
+import { RestaurantQueryInterface } from "@/interfaces/RestaurantQueryInterface"
 
-export async function POST(request: Request): Promise<NextResponse<RestaurantResponseInterface>>
+function handleResponseRestaurantForEnvTest(): NextResponse<RestaurantResponseInterface>
 {
-  const apiKey: string | undefined = process.env.API_KEY_YELP
-  const defaultsTerms: string = 'restaurants'
-  if (apiKey === undefined) {
-    return new NextResponse('API_KEY_YELP is not defined', { status: 500})
+  const result: Restaurant | undefined = data[0]
+  const response: RestaurantResponseInterface = {
+    response: result ? [result] : [],
+    message: ''
   }
-  const requestParameters = await request.json()
+  return NextResponse.json(response)
+}
+
+function getUrlAPI(requestParameters: RestaurantQueryInterface): string
+{
+  const defaultsTerms: string = 'restaurants'
   const baseUrl: string = 'https://api.yelp.com/v3/businesses/search?'
     
   let url: string = `${baseUrl}location=Paris&term=${defaultsTerms}&categories=${requestParameters.category}&limit=30`
@@ -20,6 +28,27 @@ export async function POST(request: Request): Promise<NextResponse<RestaurantRes
     url = `${baseUrl}latitude=${requestParameters.latitude}&longitude=${requestParameters.longitude}&term=${defaultsTerms}&categories=${requestParameters.category}&limit=30`
   }
 
+  return url
+}
+
+export async function POST(request: Request): Promise<NextResponse<RestaurantResponseInterface>>
+{
+  if (process.env.NODE_ENV === 'test') {
+    return handleResponseRestaurantForEnvTest()
+  }
+
+  const nextResponse: RestaurantResponseInterface = {
+    response: [],
+    message: fr.ERROR.SERVER_ERROR
+  }
+
+  const apiKey: string | undefined = process.env.API_KEY_YELP
+  if (apiKey === undefined) {
+    nextResponse.message = 'API_KEY_YELP is not defined'
+    return NextResponse.json(nextResponse)
+  }
+  const requestParameters: RestaurantQueryInterface = await request.json()
+  const url: string = getUrlAPI(requestParameters)
   const response: Response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -33,11 +62,6 @@ export async function POST(request: Request): Promise<NextResponse<RestaurantRes
     const data = await response.json()
 
     return NextResponse.json({response: data.businesses, message: ''}, {status: status})
-  }
-
-  const nextResponse: RestaurantResponseInterface = {
-    response: [],
-    message: fr.ERROR.SERVER_ERROR
   }
 
   if (status === 429 || status === 400) {

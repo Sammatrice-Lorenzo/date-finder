@@ -13,7 +13,6 @@ export async function POST(req: Request, res: NextApiResponse) {
   const end: Date = new Date(new Date(start).getTime() + 60 * 60 * 1000)
 
   const icsContent: string = EventCalendarService.getCalendarFormatICS(body, start, end)
-  console.log(icsContent)
 
   try {
     const apiKey: string | undefined = process.env.API_KEY_SEND_GRID
@@ -27,7 +26,6 @@ export async function POST(req: Request, res: NextApiResponse) {
 
     let codeResponse: number = 202
     for (const email of [emailAuthor, emailTarget]) {
-      console.log(email)
       const responseEmail = await sgMail.send(email as MailDataRequired)
       codeResponse = responseEmail[0].statusCode
     }

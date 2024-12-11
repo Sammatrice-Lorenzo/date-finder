@@ -51,12 +51,7 @@ export default function InstallPrompt(): React.ReactElement | null {
 
     if (deferredPrompt) {
       deferredPrompt.prompt()
-      deferredPrompt.userChoice.then((choiceResult: ChoiceResultPrompt) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt')
-        } else {
-          console.log('User dismissed the install prompt')
-        }
+      deferredPrompt.userChoice.then(() => {
         setDeferredPrompt(null)
       })
     }

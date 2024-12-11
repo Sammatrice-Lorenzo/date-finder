@@ -17,11 +17,8 @@ export async function POST(req: Request, res: NextApiResponse) {
     sgMail.setApiKey(apiKey)
 
     const email: MailData = MailEventService.createEmailRefuseInvitation(body)
-    console.log(email)
-    
     let codeResponse: number = 202
     const responseEmail = await sgMail.send(email as MailDataRequired)
-    console.log(responseEmail)
 
     let message: string = fr.SUCCESS.EMAIL
     if (codeResponse !== 202) {

@@ -48,7 +48,7 @@ const handleShare = async (activity : ActivityInterface, formData: FormData): Pr
     }
   } else {
     MailService.sendMail(shareData)
-    console.log('L\'API de partage n\'est pas supportée sur ce navigateur')
+    console.error('L\'API de partage n\'est pas supportée sur ce navigateur')
   }
 }
 
@@ -86,7 +86,7 @@ export default function ModalRequestActivity({ activity, open, onClose }: Readon
         <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>
           Renseignez les informations pour créer une invitation que vous pourrez facilement partager.
         </DialogContentText>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
+        {error && <div id='request-activity-errors' style={{ color: 'red' }}>{error}</div>}
 
         {RequestActivityFormService.getValuesInputsModalRequestActivity().map(
           (input, index) => <InputRequestActivity

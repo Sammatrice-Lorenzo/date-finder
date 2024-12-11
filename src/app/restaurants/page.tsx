@@ -45,16 +45,10 @@ export default function Restaurants(): React.ReactElement
       if (!response.ok) {
         showAlert(data.message, AlertEnum.Error)
       }
-
-      console.log(data);
-      console.log(data.response);
-
     }
 
     fetchRestaurants()
   }, [userLocation?.latitude, userLocation?.longitude, searchLocation, searchTerm, searchCategory, showAlert])
-
-  console.log(restaurants);
 
   return (
     <Box sx={{ padding: 4 }}>

@@ -15,7 +15,8 @@ export default function RestaurantCard({ restaurant }: Readonly<RestaurantCardPr
   const handleClose = () => setOpen(false)
 
   return (
-    <Grid2 
+    <Grid2
+      className='restaurant-card' 
       key={restaurant.id}
       size={{ xs: 12, md: 4 }}
       sx={{

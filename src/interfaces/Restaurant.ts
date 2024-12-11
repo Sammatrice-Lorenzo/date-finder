@@ -7,15 +7,15 @@ export interface Restaurant extends ActivityInterface {
   name: string;
   image_url: string;
   rating: number;
-  price: string;
+  price?: string;
   distance: number;
   categories: { title: string }[];
-  is_closed: false,
+  is_closed: boolean,
   url: string,
   review_count: number,
-  transactions: [],
+  transactions: string[],
   phone: string,
   display_phone: string,
-  business_hours: [],
+  business_hours: unknown[],
   location: LocationActivityInterface
 }
