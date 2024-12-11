@@ -7,7 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
-    removeConsole: env !== 'development'
+    removeConsole: env === 'development' || env === 'test'
   }
 };
 

@@ -33,10 +33,9 @@ function getUrlAPI(requestParameters: RestaurantQueryInterface): string
 
 export async function POST(request: Request): Promise<NextResponse<RestaurantResponseInterface>>
 {
-  if (process.env.NODE_ENV === 'test') {
+  if (process.env.TEST_ENV === 'true') {
     return handleResponseRestaurantForEnvTest()
   }
-
   const nextResponse: RestaurantResponseInterface = {
     response: [],
     message: fr.ERROR.SERVER_ERROR
