@@ -20,7 +20,7 @@ jobs:
     - name: Check build before deploy in production
       run: yarn build
     - name: Run Playwright tests
-      run: yarn tests
+      run: yarn test:e2e
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
