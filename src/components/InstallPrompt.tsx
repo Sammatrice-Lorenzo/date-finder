@@ -6,10 +6,6 @@ import AddIcon from '@mui/icons-material/Add'
 import fr from '../../public/locales/fr/common.json'
 import { BeforeInstallPromptEventInterface } from '@/interfaces/BeforeInstallPromptEventInterface'
 
-type ChoiceResultPrompt = {
-  outcome: 'accepted' | 'dismissed'
-}
-
 export default function InstallPrompt(): React.ReactElement | null {
   const [isIOS, setIsIOS] = useState<boolean>(false)
   const [isStandalone, setIsStandalone] = useState<boolean>(false)
