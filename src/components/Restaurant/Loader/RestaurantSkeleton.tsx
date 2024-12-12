@@ -15,7 +15,7 @@ export default function RestaurantSkeleton(): React.ReactElement
   }
 
   return (
-    <Grid2 size={12}>
+    <Grid2 size={{ xs: 12, md: 4 }}>
       <SkeletonComponent />
       <SkeletonComponent />
       <SkeletonComponent />

@@ -36,7 +36,16 @@ yarn-error.log*
 next-env.d.ts
 .vscode
 /certificates/
+mkcert_development_CA_*
 
 # pwa
 sw.*
 workbox-*
+node_modules/
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests/.test-results/

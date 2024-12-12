@@ -4,13 +4,16 @@ import { RestaurantCategories } from '@/components/Restaurant/RestaurantCategori
 import { Restaurant } from '@/interfaces/Restaurant'
 import { Box, Grid2, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import { useRouter, AppRouterInstance } from 'next/navigation'
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
+import { useRouter } from 'next/navigation'
 import RestaurantCard from '@/components/Restaurant/RestaurantCard'
-import { useLocation } from '../context/LocationContext'
 import { Location } from '@/interfaces/Location'
 import RestaurantInputSearch from '@/components/Restaurant/RestaurantInputSearch'
 import RestaurantSkeleton from '@/components/Restaurant/Loader/RestaurantSkeleton'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import { useLocation } from '@/context/LocationContext'
+import { useAlert } from '@/hooks/useAlert'
+import { AlertEnum } from '@/enums/AlertEnum'
 
 export default function Restaurants(): React.ReactElement
 {
@@ -21,10 +24,12 @@ export default function Restaurants(): React.ReactElement
   const [searchCategory, setSearchCategory] = useState<string>('')
   const router: AppRouterInstance = useRouter()
   const userLocation: Location | null = useLocation()
+  const { showAlert } = useAlert()
+
 
   useEffect(() => {
     const fetchRestaurants = async (): Promise<void> => {
-      const response: Response  = await fetch('/api/restaurant/', {
+      const response: Response = await fetch('/api/restaurant/', {
         method: 'POST',
         body: JSON.stringify({
           location: searchLocation,
@@ -35,32 +40,32 @@ export default function Restaurants(): React.ReactElement
         })
       })
       const data = await response.json();
-      console.log(data);
-      console.log(data.response);
-      
-      setRestaurants(data.response)
       setSkeleton(false)
+      setRestaurants(data.response)
+      if (!response.ok) {
+        showAlert(data.message, AlertEnum.Error)
+      }
     }
 
     fetchRestaurants()
-  }, [userLocation?.latitude, userLocation?.longitude, searchLocation, searchTerm, searchCategory])
-
-  console.log(restaurants);
+  }, [userLocation?.latitude, userLocation?.longitude, searchLocation, searchTerm, searchCategory, showAlert])
 
   return (
     <Box sx={{ padding: 4 }}>
-      <KeyboardReturnIcon onClick={() => router.push('/')}/>
+      <KeyboardReturnIcon onClick={() => router.push('/')} sx={{ "&:hover": { cursor: "pointer" } }}/>
       <Typography variant='h4' gutterBottom>
         Restaurants à proximité
       </Typography>
 
       <RestaurantCategories setCategorySearch={setSearchCategory}/>
       <RestaurantInputSearch setLocationSearch={setSearchLocation} setTermSearch={setSearchTerm} />
-      <Grid2 container
+      <Grid2
+        container
         spacing={4}
-        // columns={2}
       >
-        {skeleton ? <RestaurantSkeleton />: null}
+        {skeleton ? 
+          <><RestaurantSkeleton /><RestaurantSkeleton /><RestaurantSkeleton /></>
+          : null}
         {restaurants?.length > 0 ? restaurants.map((restaurant: Restaurant) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         )) : null}

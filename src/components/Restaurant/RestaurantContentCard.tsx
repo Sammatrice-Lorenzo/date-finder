@@ -7,15 +7,15 @@ import StarIcon from '@mui/icons-material/Star';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PhoneIcon from '@mui/icons-material/Phone';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
+import LocationFormatter from '@/formatters/LocationFormatter';
 
 type RestaurantContentCardProps = {
   restaurant: Restaurant
 }
 
-export default function RestaurantContentCard({ restaurant }: RestaurantContentCardProps): React.ReactElement
+export default function RestaurantContentCard({ restaurant }: Readonly<RestaurantContentCardProps>): React.ReactElement
 {
-  const restaurantLocation = restaurant.location
-  const location: string = `${restaurantLocation.address1} ${restaurantLocation.city} ${restaurantLocation.zip_code}`
+  const location: string = LocationFormatter.getAddressBusinessActivity(restaurant.location)
   const distanceInKm: string = (restaurant.distance / 1000).toFixed(2)
 
   return (

@@ -1,0 +1,22 @@
+{
+  "ERROR": {
+    "SERVER_ERROR": "Une erreur interne est survenue.",
+    "EMAIL_ERROR": "Une erreur est survenu lors de l'envoi d'e-mail.",
+    "LIMIT_RATING": "L'application a dépassé son quota de récupération des données sur les différents services."
+  },
+  "SUCCESS": {
+    "OK": "L'opération a été réalisée avec succès.",
+    "EMAIL": "Le mail a été envoyé !"
+  },
+  "ACTIVITY": {
+    "TITLE_LINK_SHARED": "Invitation pour une sortie",
+    "DISCOVER_ACTIVITY": "Découvre notre prochaine activité ensemble!"
+  },
+  "PWA": {
+    "INSTALL": "Installer DateFinder",
+    "HOME": "Installer",
+    "IOS": "Pour installer cette application sur votre appareil IOS :",
+    "BUTTON_SHARE": "Appuyez sur le bouton de partage",
+    "AFTER_CLICKED": "puis sur 'Ajouter à l'écran d'accueil'."
+  }
+}

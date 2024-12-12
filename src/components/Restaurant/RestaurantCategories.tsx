@@ -1,6 +1,6 @@
 'use client'
 
-import { RestaurantCategoriesEnum } from '@/app/enums/RestaurantCategoriesEnum'
+import { RestaurantCategoriesEnum } from '@/enums/RestaurantCategoriesEnum'
 import { Chip, Grid2 } from '@mui/material'
 import React, { useState } from 'react'
 
@@ -8,7 +8,7 @@ export type RestaurantCategoriesProps = {
   setCategorySearch: (search: string) => void
 }
 
-export function RestaurantCategories({ setCategorySearch }: RestaurantCategoriesProps): React.ReactElement
+export function RestaurantCategories({ setCategorySearch }: Readonly<RestaurantCategoriesProps>): React.ReactElement
 {
   const restaurantsCategories: string[] = Object.values(RestaurantCategoriesEnum)
   const restaurantsCategoriesKeys: string[] = Object.keys(RestaurantCategoriesEnum)

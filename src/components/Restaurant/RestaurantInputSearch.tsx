@@ -27,7 +27,6 @@ export default function RestaurantInputSearch({ setLocationSearch, setTermSearch
   }
 
   return (
-    // <React.Suspense></React.Suspense>
     <>
       <Paper
         component='form'
@@ -36,7 +35,6 @@ export default function RestaurantInputSearch({ setLocationSearch, setTermSearch
           alignItems: 'center',
           width: '85%',
           margin: '0 auto',
-          // padding: '8px',
           marginBottom: '1.5%'
         }}
       >

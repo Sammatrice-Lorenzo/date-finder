@@ -27,7 +27,7 @@ export const LocationProvider = ({ children }: LocationContextProvider): React.R
             }
           )
         } else {
-          console.log("Can't get position using navigator.geolocation  ")
+          console.error("Can't get position using navigator.geolocation  ")
         }
       }
 

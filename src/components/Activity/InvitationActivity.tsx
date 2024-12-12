@@ -1,0 +1,33 @@
+import { Box, Typography, Divider, Paper } from '@mui/material'
+import CardRequestActivity from './Card/CardRequestActivity'
+import BoxFooterCardRequest from './Card/BoxFooterCardRequest'
+import BoxHeaderRequest from './Card/BoxHeaderRequest'
+import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+
+export type InvitationActivityProps = {
+  activity: ActivityQueryProps
+}
+
+export default function InvitationActivity({ activity }: Readonly<InvitationActivityProps>) {
+
+  return (
+    <Box alignItems="center" justifyContent="center" minHeight="80vh" sx={{ p: 3 }}>
+      <Paper elevation={3} sx={{ maxWidth: 500, width: '100%', p: 3, borderRadius: 2 }}>
+        <BoxHeaderRequest targetName={activity.targetName} />
+        <Divider />
+
+        <Typography variant="h5" sx={{ ml: 2, marginTop: '3%' }}>
+          {activity.authorName} demande un date avec vous !
+        </Typography>
+
+        <CardRequestActivity
+          key={0}
+          activity={activity}
+        />
+        <Divider />
+
+        <BoxFooterCardRequest activity={activity} />
+      </Paper>
+    </Box>
+  )
+}

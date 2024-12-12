@@ -1,0 +1,124 @@
+[
+  {
+    "id": "burger-paris-123",
+    "alias": "burger",
+    "name": "Le Burger",
+    "image_url": "https://localhost:3000",
+    "is_closed": false,
+    "url": "",
+    "review_count": 1,
+    "categories": [
+      {
+        "title": "restaurant"
+      } 
+    ],
+    "rating": 5,
+    "coordinates": {
+      "latitude": 54.102148,
+      "longitude": 5.546587
+    },
+    "transactions": [],
+    "price": "€€",
+    "location": {
+      "address1": "19 Rue Paris",
+      "address2": null,
+      "address3": null,
+      "city": "Paris",
+      "zip_code": "75001",
+      "country": "FR",
+      "state": "75",
+      "display_address": []
+    },
+    "phone": "+33123456778",
+    "display_phone": "+33 1 23 45 67 78",
+    "distance": 1000.8101014030736,
+    "business_hours": [],
+    "attributes": {
+      "business_temp_closed": null,
+      "menu_url": null,
+      "open24_hours": null,
+      "waitlist_reservation": null
+    }
+  },
+  {
+    "id": "bistort-paris-123",
+    "alias": "Bistrot-Paris",
+    "name": "Bistrot Paris",
+    "image_url": "https://localhost:3000",
+    "is_closed": false,
+    "url": "https://localhost:3000",
+    "review_count": 1,
+    "categories": [
+      {
+        "title": "restaurant"
+      } 
+    ],
+    "rating": 4,
+    "coordinates": {
+      "latitude": 220.242841,
+      "longitude": 69.62891
+    },
+    "transactions": [],
+    "location": {
+      "address1": "58 Rue Paris",
+      "address2": null,
+      "address3": null,
+      "city": "Paris",
+      "zip_code": "75001",
+      "country": "FR",
+      "state": "75",
+      "display_address": []
+    },
+    "phone": "",
+    "display_phone": "",
+    "distance": 817.0587273278805,
+    "business_hours": [],
+    "attributes": {
+      "business_temp_closed": null,
+      "menu_url": null,
+      "open24_hours": null,
+      "waitlist_reservation": null
+    }
+  },
+  {
+    "id": "KFC-PARIS-123",
+    "alias": "KFC Paris",
+    "name": "KFC Paris",
+    "image_url": "",
+    "is_closed": false,
+    "url": "https://localhost:3000",
+    "review_count": 2,
+    "categories": [
+      {
+        "title": "restaurant"
+      } 
+    ],
+    "rating": 3,
+    "coordinates": {
+      "latitude": 48.9445524,
+      "longitude": 2.6809261
+    },
+    "transactions": [],
+    "price": "€€",
+    "location": {
+      "address1": "80 Rue Paris",
+      "address2": null,
+      "address3": null,
+      "city": "Paris",
+      "zip_code": "75001",
+      "country": "FR",
+      "state": "75",
+      "display_address": []
+    },
+    "phone": "+33123456778",
+    "display_phone": "+33 1 23 45 67 78",
+    "distance": 402.92534334017836,
+    "business_hours": [],
+    "attributes": {
+      "business_temp_closed": null,
+      "menu_url": null,
+      "open24_hours": null,
+      "waitlist_reservation": null
+    }
+  }
+]
