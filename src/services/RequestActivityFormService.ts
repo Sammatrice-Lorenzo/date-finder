@@ -1,5 +1,9 @@
 'use client'
-import { InputModalRequestActivity } from "@/interfaces/InputModalRequestActivity";
+
+import { InputModalRequestActivity } from '@/interfaces/InputModalRequestActivity'
+import DateValidatorService from './validator/DateValidatorService'
+import RequiredFieldFormService from './validator/RequiredFieldFormService'
+import FormValidatorService from './validator/FormValidatorService'
 
 export class RequestActivityFormService {
 
@@ -12,25 +16,13 @@ export class RequestActivityFormService {
       'target-name'
     ]
 
-    const now: Date = new Date()
+    const formValidator = [
+      new RequiredFieldFormService(propertiesForm),
+      new DateValidatorService()
+    ]
+    const formServiceValidator = new FormValidatorService(formValidator)
 
-    const formJson: {
-      [k: string]: FormDataEntryValue;
-    } = Object.fromEntries(formData.entries())
-
-    for (const property of propertiesForm) {
-      if (!formJson[property]) {
-        setError('Veuillez remplir tous les champs !')
-        return false
-      }
-
-      if (property === 'date' && new Date(formJson[property].toString()) < now) {
-        setError('La date doit être supérieure ou égale à la date actuelle !')
-        return false
-      }
-    }
-
-    return true
+    return formServiceValidator.validate(formData, setError)
   }
 
   public static getValuesInputsModalRequestActivity(): InputModalRequestActivity[]

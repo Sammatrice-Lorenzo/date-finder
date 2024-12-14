@@ -1,6 +1,6 @@
-import DateFormatter from "@/formatters/DateFormatter";
-import ActivityEventCalendarInterface from "@/interfaces/ActivityEventCalendarInterface";
-import { MailData } from "@sendgrid/helpers/classes/mail";
+import DateFormatter from '@/formatters/DateFormatter'
+import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface'
+import { MailData } from '@sendgrid/helpers/classes/mail'
 
 const SUBJECT: string = 'DateFinder notre prochaine activité'
 
@@ -52,7 +52,7 @@ export default class MailEventService
       dynamicTemplateData: {
         event_date: start,
         event_location: body.activity.location,
-        author_name: body.activity.authorName
+        author_name: body.activity.author
       }
     }
   }

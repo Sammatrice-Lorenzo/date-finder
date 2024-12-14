@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import fr from '../../../../public/locales/fr/common.json'
+import fr from '../../../locales/fr/common.json'
 import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
 import ActivityInterface from '@/interfaces/ActivityInterface'
 import { ShareDataInterface } from '@/interfaces/ShareDataInterface'

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import ShareIcon from '@mui/icons-material/Share'
 import AddIcon from '@mui/icons-material/Add'
-import fr from '../../public/locales/fr/common.json'
+import fr from '../locales/fr/common.json'
 import { BeforeInstallPromptEventInterface } from '@/interfaces/BeforeInstallPromptEventInterface'
 
 export default function InstallPrompt(): React.ReactElement | null {

@@ -3,7 +3,7 @@ import sgMail from '@sendgrid/mail'
 import { MailData, MailDataRequired } from "@sendgrid/helpers/classes/mail"
 import { NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
-import fr from '../../../../public/locales/fr/common.json'
+import fr from '../../../locales/fr/common.json'
 import MailEventService from '@/services/MailEventService'
 
 export async function POST(req: Request, res: NextApiResponse) {

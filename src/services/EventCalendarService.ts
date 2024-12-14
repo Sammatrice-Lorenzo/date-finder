@@ -18,12 +18,12 @@ export default class EventCalendarService {
       DTSTAMP:${timeStamp}Z
       DTSTART:${startIcs}
       DTEND:${endIcs}
-      SUMMARY:Date ${body.activity.activityName}
+      SUMMARY:Date ${body.activity.activity}
       DESCRIPTION:Faire une activité ensemble
       LOCATION:${body.activity.location}
       STATUS:CONFIRMED
-      ORGANIZER;CN=${body.activity.authorName}:mailto:${body.activity.authorEmail}
-      ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=${body.activity.targetName}:mailto:${body.targetEmail}
+      ORGANIZER;CN=${body.activity.author}:mailto:${body.activity.authorEmail}
+      ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=${body.activity.target}:mailto:${body.targetEmail}
       BEGIN:VALARM
       TRIGGER:-PT15M
       ACTION:DISPLAY
