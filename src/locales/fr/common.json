@@ -2,7 +2,12 @@
   "ERROR": {
     "SERVER_ERROR": "Une erreur interne est survenue.",
     "EMAIL_ERROR": "Une erreur est survenu lors de l'envoi d'e-mail.",
-    "LIMIT_RATING": "L'application a dépassé son quota de récupération des données sur les différents services."
+    "LIMIT_RATING": "L'application a dépassé son quota de récupération des données sur les différents services.",
+    "FORM_REQUEST_ACTIVITY": {
+      "MISSING_DATE": "Le champ date est requis !",
+      "INVALID_DATE": "Veuillez saisir une date valide !",
+      "FUTURE_DATE_REQUIREMENT": "La date doit être supérieure à la date actuelle !"
+    }
   },
   "SUCCESS": {
     "OK": "L'opération a été réalisée avec succès.",

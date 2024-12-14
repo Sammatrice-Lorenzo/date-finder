@@ -3,12 +3,35 @@ import jwt from 'jsonwebtoken'
 
 const ERROR_JWT: string = 'JWT_KEY is not defined'
 
+export type Payload = {
+  a: string,
+  auth: string,
+  e: string,
+  t: string,
+  d: string,
+  l: string
+}
+
 export default class JWTService {
+
+  private static replaceToken(token: string, searchValue: string, replaceValue: string): string
+  {
+    return token.replace(searchValue, replaceValue)
+  }
+
   public static generateToken(payload: ActivityQueryProps): string
   {
     const options: jwt.SignOptions = {
-      expiresIn: '1h',
-      issuer: 'date-finder',
+      expiresIn: '24h',
+    }
+
+    const compressedPayload: Payload = {
+      'a': payload.activity,
+      'auth': payload.author,
+      'e': payload.authorEmail,
+      't': payload.target,
+      'd': payload.date,
+      'l': payload.location
     }
 
     const secretKey: string | undefined = process.env.JWT_KEY
@@ -16,7 +39,7 @@ export default class JWTService {
       throw new Error(ERROR_JWT)
     }
 
-    return jwt.sign(payload, secretKey, options)
+    return this.replaceToken(jwt.sign(compressedPayload, secretKey, options), '.', '_')
   }
 
   public static isValidToken(token: string): boolean
@@ -26,8 +49,10 @@ export default class JWTService {
       throw new Error(ERROR_JWT)
     }
 
+    const tokenReplaced: string = this.replaceToken(token, '_', '.')
+
     try {
-      jwt.verify(token, secretKey)
+      jwt.verify(tokenReplaced, secretKey)
       return true
     } catch (error) {
       console.error('Invalid or expired token:', (error as Error).message)
@@ -36,7 +61,7 @@ export default class JWTService {
     return false
   }
 
-  public static getDecodedToken(token: string): ActivityQueryProps | null
+  public static getDecodedToken(token: string): Payload | null
   {
     const secretKey: string | undefined = process.env.JWT_KEY
     if (!secretKey) {
@@ -44,7 +69,8 @@ export default class JWTService {
     }
 
     if (!this.isValidToken(token)) return null
-
-    return jwt.verify(token, secretKey) as unknown as ActivityQueryProps
+    const tokenReplaced: string = this.replaceToken(token, '_', '.')
+    
+    return jwt.verify(tokenReplaced, secretKey) as unknown as Payload
   }
 }

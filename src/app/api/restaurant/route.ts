@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import fr from '../../../../public/locales/fr/common.json'
+import fr from '../../../locales/fr/common.json'
 import { RestaurantResponseInterface } from "@/interfaces/RestaurantResponseInterface"
 import data from '../../../data/restaurant-test-data.json'
 import { Restaurant } from "@/interfaces/Restaurant"

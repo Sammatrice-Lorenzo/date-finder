@@ -1,20 +1,22 @@
-import LocationFormatter from "@/formatters/LocationFormatter"
-import ActivityInterface from "@/interfaces/ActivityInterface"
-import JWTService from "./JWTServices"
-import { ActivityQueryProps } from "@/types/ActivityQueryProps"
+import LocationFormatter from '@/formatters/LocationFormatter'
+import ActivityInterface from '@/interfaces/ActivityInterface'
+import JWTService, { Payload } from './JWTServices'
+import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import DateFormatter from '@/formatters/DateFormatter'
 
 export class UrlActivityGeneratorService {
 
   public static generateParametersActivityForShare(activity: ActivityInterface, formJson: Record<string, string>): string
   {
     const dateFormatted: Date = new Date(formJson['date'].toString())
+    const dateEuropean: string = DateFormatter.getDateEuropeanFormat(dateFormatted)
+
     const route: ActivityQueryProps = {
-      activityId: encodeURIComponent(activity.id),
-      activityName: encodeURIComponent(activity.name),
-      authorName: encodeURIComponent(formJson['author-name'].toString()),
+      activity: encodeURIComponent(activity.name),
+      author: encodeURIComponent(formJson['author-name'].toString()),
       authorEmail: encodeURIComponent(formJson['author-email'].toString()),
-      targetName: encodeURIComponent(formJson['target-name'].toString()),
-      date: encodeURIComponent(`${dateFormatted.toLocaleDateString()} ${dateFormatted.toLocaleTimeString()}`),
+      target: encodeURIComponent(formJson['target-name'].toString()),
+      date: encodeURIComponent(`${dateEuropean}`),
       location: encodeURIComponent(LocationFormatter.getAddressBusinessActivity(activity.location))
     }
 
@@ -23,19 +25,18 @@ export class UrlActivityGeneratorService {
 
   public static decodeParametersRouteRequestActivity(token: string): ActivityQueryProps | null
   {
-    const routerParameters: ActivityQueryProps | null = JWTService.getDecodedToken(token)
+    const routerParameters: Payload | null = JWTService.getDecodedToken(token)
     if (!routerParameters) {
       return null
     }
 
     return {
-      activityId: decodeURIComponent(routerParameters.activityId),
-      activityName: decodeURIComponent(routerParameters.activityName),
-      authorName: decodeURIComponent(routerParameters.authorName),
-      authorEmail: decodeURIComponent(routerParameters.authorEmail),
-      targetName: decodeURIComponent(routerParameters.targetName),
-      date: decodeURIComponent(routerParameters.date),
-      location: decodeURIComponent(routerParameters.location)
+      activity: decodeURIComponent(routerParameters.a),
+      author: decodeURIComponent(routerParameters.auth),
+      authorEmail: decodeURIComponent(routerParameters.e),
+      target: decodeURIComponent(routerParameters.t),
+      date: decodeURIComponent(routerParameters.d),
+      location: decodeURIComponent(routerParameters.l)
     }
   }
 }

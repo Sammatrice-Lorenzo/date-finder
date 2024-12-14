@@ -1,9 +1,8 @@
 export type ActivityQueryProps = {
-  activityId: string
-  activityName: string,
-  authorName: string,
+  activity: string,
+  author: string,
   authorEmail: string,
-  targetName: string,
+  target: string,
   date: string
   location: string
 }

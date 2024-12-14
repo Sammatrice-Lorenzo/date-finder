@@ -13,11 +13,11 @@ export default function InvitationActivity({ activity }: Readonly<InvitationActi
   return (
     <Box alignItems="center" justifyContent="center" minHeight="80vh" sx={{ p: 3 }}>
       <Paper elevation={3} sx={{ maxWidth: 500, width: '100%', p: 3, borderRadius: 2 }}>
-        <BoxHeaderRequest targetName={activity.targetName} />
+        <BoxHeaderRequest targetName={activity.target} />
         <Divider />
 
         <Typography variant="h5" sx={{ ml: 2, marginTop: '3%' }}>
-          {activity.authorName} demande un date avec vous !
+          {activity.author} demande un date avec vous !
         </Typography>
 
         <CardRequestActivity

@@ -12,10 +12,10 @@ export default function CardRequestActivity({ activity }: Readonly<CardRequestAc
   return (
     <Card sx={{ my: 3, p: 2 }}>
       <CardContent>
-        <Typography variant='h6' color='primary' gutterBottom>{activity.activityName}</Typography>
+        <Typography variant='h6' color='primary' gutterBottom>{activity.activity}</Typography>
         <BoxCardRequest text={activity.date} iconBox='event' />
         <BoxCardRequest text={activity.location} iconBox='map' />
-        <BoxCardRequest text={activity.authorName} iconBox='person' />
+        <BoxCardRequest text={activity.author} iconBox='person' />
       </CardContent>
     </Card>
   )
