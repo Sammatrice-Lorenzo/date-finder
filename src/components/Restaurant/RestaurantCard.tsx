@@ -1,13 +1,13 @@
-import { Restaurant } from '@/interfaces/Restaurant'
 import { Card, CardMedia, Grid2 } from '@mui/material'
 import RestaurantContentCard from './RestaurantContentCard'
 import React from 'react'
 import ModalRequestActivity from '../Activity/ModalRequestActivity'
+import PlaceInterface from '@/interfaces/PlaceInterface'
 
 type RestaurantCardProps = {
-  restaurant: Restaurant
+  place: PlaceInterface
 }
-export default function RestaurantCard({ restaurant }: Readonly<RestaurantCardProps>): React.ReactElement
+export default function RestaurantCard({ place }: Readonly<RestaurantCardProps>): React.ReactElement
 {
   const [openModal, setOpen] = React.useState(false);
 
@@ -17,7 +17,7 @@ export default function RestaurantCard({ restaurant }: Readonly<RestaurantCardPr
   return (
     <Grid2
       className='restaurant-card' 
-      key={restaurant.id}
+      key={place.id}
       size={{ xs: 12, md: 4 }}
       sx={{
         "&:hover": { cursor: "pointer" }
@@ -27,12 +27,12 @@ export default function RestaurantCard({ restaurant }: Readonly<RestaurantCardPr
         <CardMedia
           component='img'
           height='140'
-          image={restaurant.image_url ? restaurant.image_url : '/images/Image-not-found.png' }
-          alt={restaurant.name}
+          image={place.image_url ? place.image_url : '/images/Image-not-found.png' }
+          alt={place.name}
         />
-        <RestaurantContentCard restaurant={restaurant}/>
+        <RestaurantContentCard place={place}/>
       </Card>
-      <ModalRequestActivity activity={restaurant} open={openModal} onClose={handleClose} />
+      <ModalRequestActivity activity={place} open={openModal} onClose={handleClose} />
     </Grid2>
   )
 }

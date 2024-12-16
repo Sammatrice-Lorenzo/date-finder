@@ -1,4 +1,3 @@
-import LocationFormatter from '@/formatters/LocationFormatter'
 import ActivityInterface from '@/interfaces/ActivityInterface'
 import JWTService, { Payload } from './JWTServices'
 import { ActivityQueryProps } from '@/types/ActivityQueryProps'
@@ -17,7 +16,7 @@ export class UrlActivityGeneratorService {
       authorEmail: encodeURIComponent(formJson['author-email'].toString()),
       target: encodeURIComponent(formJson['target-name'].toString()),
       date: encodeURIComponent(`${dateEuropean}`),
-      location: encodeURIComponent(LocationFormatter.getAddressBusinessActivity(activity.location))
+      location: encodeURIComponent(activity.location)
     }
 
     return JWTService.generateToken(route)

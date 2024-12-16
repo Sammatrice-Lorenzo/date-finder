@@ -1,7 +1,6 @@
 'use client'
 
 import { RestaurantCategories } from '@/components/Restaurant/RestaurantCategories'
-import { Restaurant } from '@/interfaces/Restaurant'
 import { Box, Grid2, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
@@ -14,10 +13,11 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { useLocation } from '@/context/LocationContext'
 import { useAlert } from '@/hooks/useAlert'
 import { AlertEnum } from '@/enums/AlertEnum'
+import PlaceInterface from '@/interfaces/PlaceInterface'
 
 export default function Restaurants(): React.ReactElement
 {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([])
+  const [restaurants, setRestaurants] = useState<PlaceInterface[]>([])
   const [skeleton, setSkeleton] = useState<boolean>(true)
   const [searchLocation, setSearchLocation] = useState<string>('')
   const [searchTerm, setSearchTerm] = useState<string>('')
@@ -66,8 +66,8 @@ export default function Restaurants(): React.ReactElement
         {skeleton ? 
           <><RestaurantSkeleton /><RestaurantSkeleton /><RestaurantSkeleton /></>
           : null}
-        {restaurants?.length > 0 ? restaurants.map((restaurant: Restaurant) => (
-          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+        {restaurants?.length > 0 ? restaurants.map((restaurant: PlaceInterface) => (
+          <RestaurantCard key={restaurant.id} place={restaurant} />
         )) : null}
       </Grid2>
     </Box>

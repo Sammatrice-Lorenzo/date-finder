@@ -1,66 +1,76 @@
 import { NextResponse } from "next/server"
 import fr from '../../../locales/fr/common.json'
-import { RestaurantResponseInterface } from "@/interfaces/RestaurantResponseInterface"
+import { PlaceResponseInterface } from "@/interfaces/PlaceResponseInterface"
 import data from '../../../data/restaurant-test-data.json'
-import { Restaurant } from "@/interfaces/Restaurant"
-import { RestaurantQueryInterface } from "@/interfaces/RestaurantQueryInterface"
+import { PlaceQueryInterface } from "@/interfaces/PlaceQueryInterface"
+import PlaceAPIInterface from "@/interfaces/PlaceAPIInterface"
+import PlaceInterface from "@/interfaces/PlaceInterface"
+import { Location } from "@/interfaces/Location"
+import PlaceFormatter from "@/formatters/PlaceFormatter"
+import PlaceUrlService from "@/services/place/PlaceUrlService"
 
-function handleResponseRestaurantForEnvTest(): NextResponse<RestaurantResponseInterface>
+function handleResponseRestaurantForEnvTest(): NextResponse<PlaceResponseInterface>
 {
-  const result: Restaurant | undefined = data[0]
-  const response: RestaurantResponseInterface = {
+  const result: PlaceInterface | undefined = data[0]
+  const response: PlaceResponseInterface = {
     response: result ? [result] : [],
     message: ''
   }
   return NextResponse.json(response)
 }
 
-function getUrlAPI(requestParameters: RestaurantQueryInterface): string
+async function convertData(place: PlaceAPIInterface, apiKey: string, locationUser: Location): Promise<PlaceInterface>
 {
-  const defaultsTerms: string = 'restaurants'
-  const baseUrl: string = 'https://api.yelp.com/v3/businesses/search?'
-    
-  let url: string = `${baseUrl}location=Paris&term=${defaultsTerms}&categories=${requestParameters.category}&limit=30`
-  if (requestParameters.location !== '') {
-    const term: string = requestParameters.term !== '' ? requestParameters.term : defaultsTerms
-    url = `${baseUrl}location=${requestParameters.location}&term=${term}&categories=${requestParameters.category}&limit=30`
-  } else if (requestParameters.latitude) {
-    url = `${baseUrl}latitude=${requestParameters.latitude}&longitude=${requestParameters.longitude}&term=${defaultsTerms}&categories=${requestParameters.category}&limit=30`
+  const urlAPI: string | undefined = process.env.GOOGLE_PLACE_API
+  const detailsUrl: string = `${urlAPI}details/json?place_id=${place.place_id}&fields=formatted_phone_number,photos&key=${apiKey}`
+  const detailsResponse = await fetch(detailsUrl)
+  const details = await detailsResponse.json()
+
+  if (details.status !== 'OK') {
+    throw new Error(`Failed to get details for place: ${place.place_id}`)
   }
 
-  return url
+  return PlaceFormatter.convertDataFromAPIToPlace(place, details.result, locationUser)
 }
 
-export async function POST(request: Request): Promise<NextResponse<RestaurantResponseInterface>>
+export async function POST(request: Request): Promise<NextResponse<PlaceResponseInterface>>
 {
   if (process.env.TEST_ENV === 'true') {
     return handleResponseRestaurantForEnvTest()
   }
-  const nextResponse: RestaurantResponseInterface = {
+  const nextResponse: PlaceResponseInterface = {
     response: [],
     message: fr.ERROR.SERVER_ERROR
   }
 
-  const apiKey: string | undefined = process.env.API_KEY_YELP
+  const apiKey: string | undefined = process.env.GOOGLE_PLACES_API_KEY
   if (apiKey === undefined) {
     nextResponse.message = 'API_KEY_YELP is not defined'
     return NextResponse.json(nextResponse)
   }
-  const requestParameters: RestaurantQueryInterface = await request.json()
-  const url: string = getUrlAPI(requestParameters)
-  const response: Response = await fetch(url, {
+  const requestParameters: PlaceQueryInterface = await request.json()
+  const userLocation: Location =  { longitude: Number(requestParameters.longitude), latitude: Number(requestParameters.latitude)}
+  const url: string = await PlaceUrlService.getPlacesUrl(requestParameters)
+  const response = await fetch(url, {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${apiKey}`
+      Authorization: `Bearer ${apiKey}`,
     },
   })
 
   const status: number = response.status
   if (response.ok) {
     const data = await response.json()
+    const results: PlaceAPIInterface[] = data.results
 
-    return NextResponse.json({response: data.businesses, message: ''}, {status: status})
+    const convertedResults: PlaceInterface[] = []
+    for (const result of results) {
+      const place: PlaceInterface = await convertData(result, apiKey, userLocation)
+      convertedResults.push(place)
+    }
+
+    return NextResponse.json({response: convertedResults, message: ''}, {status: status})
   }
 
   if (status === 429 || status === 400) {
