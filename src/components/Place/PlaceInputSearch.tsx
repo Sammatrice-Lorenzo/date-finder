@@ -1,10 +1,11 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import RestaurantLocationSearch from './RestaurantLocationSearch';
-import RestaurantTermSearch from './RestaurantTermSearch';
-import { Button, Grid2 } from '@mui/material';
+import * as React from 'react'
+import Paper from '@mui/material/Paper'
+import PlaceLocationSearch from './PlaceLocationSearch'
+import PlaceNameSearch from './PlaceNameSearch'
+import { Button, Grid2 } from '@mui/material'
 
-export type RestaurantInputSearchProps = {
+export type PlaceInputSearchProps = {
+  typePlace: string,
   setLocationSearch: (search: string) => void
   setTermSearch: (search: string) => void
 }
@@ -16,13 +17,13 @@ const getValueInput = (element: React.MouseEvent<HTMLButtonElement>, inputSelect
   return input ? input?.value : ''
 }
 
-export default function RestaurantInputSearch({ setLocationSearch, setTermSearch }: Readonly<RestaurantInputSearchProps>): React.ReactElement
+export default function PlaceInputSearch({ typePlace, setLocationSearch, setTermSearch }: Readonly<PlaceInputSearchProps>): React.ReactElement
 {
-  const handleSearchRestaurants = (element: React.MouseEvent<HTMLButtonElement>): void => {
-    const valueRestaurant: string = getValueInput(element, 'input-restaurant')
+  const handleSearchPlaces = (element: React.MouseEvent<HTMLButtonElement>): void => {
+    const valuePlace: string = getValueInput(element, 'input-place')
     const valueLocation: string = getValueInput(element, 'input-location')
 
-    setTermSearch(valueRestaurant)
+    setTermSearch(valuePlace)
     setLocationSearch(valueLocation)
   }
 
@@ -38,7 +39,7 @@ export default function RestaurantInputSearch({ setLocationSearch, setTermSearch
           marginBottom: '1.5%'
         }}
       >
-        <RestaurantLocationSearch/>
+        <PlaceLocationSearch/>
       </Paper>
       <Paper
         component='form'
@@ -50,13 +51,13 @@ export default function RestaurantInputSearch({ setLocationSearch, setTermSearch
           marginBottom: '3%'
         }}
       >
-        <RestaurantTermSearch />
+        <PlaceNameSearch typePlace={typePlace} />
       </Paper>
       <Grid2 sx={{ alignItems: 'center', display: 'flex', marginBottom: '5%' }}>
         <Button
           variant='outlined'
           sx={{ borderColor: '#d33252', color: 'white', margin: '0 auto'}}
-          onClick={handleSearchRestaurants}
+          onClick={handleSearchPlaces}
         >
           Rechercher
         </Button>

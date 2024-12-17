@@ -36,8 +36,8 @@ async function fillModalActivity(page: Page): Promise<void>
 
 async function assertHandleShareRequestActivity(page: Page): Promise<void>
 {
-  await page.waitForSelector('.restaurant-card')
-  const restaurantCard: Locator = page.locator('.restaurant-card').first()
+  await page.waitForSelector('.place-card')
+  const restaurantCard: Locator = page.locator('.place-card').first()
   await restaurantCard.click()
 
   const dialog: Locator = page.locator('role=dialog')

@@ -9,7 +9,7 @@ import { Location } from "@/interfaces/Location"
 import PlaceFormatter from "@/formatters/PlaceFormatter"
 import PlaceUrlService from "@/services/place/PlaceUrlService"
 
-function handleResponseRestaurantForEnvTest(): NextResponse<PlaceResponseInterface>
+function handleResponsePlacesForEnvTest(): NextResponse<PlaceResponseInterface>
 {
   const result: PlaceInterface | undefined = data[0]
   const response: PlaceResponseInterface = {
@@ -36,7 +36,7 @@ async function convertData(place: PlaceAPIInterface, apiKey: string, locationUse
 export async function POST(request: Request): Promise<NextResponse<PlaceResponseInterface>>
 {
   if (process.env.TEST_ENV === 'true') {
-    return handleResponseRestaurantForEnvTest()
+    return handleResponsePlacesForEnvTest()
   }
   const nextResponse: PlaceResponseInterface = {
     response: [],

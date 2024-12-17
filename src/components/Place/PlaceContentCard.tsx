@@ -1,18 +1,18 @@
 'use client'
-import { Box, CardContent, Typography } from '@mui/material';
 
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import StarIcon from '@mui/icons-material/Star';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import PhoneIcon from '@mui/icons-material/Phone';
-import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
-import PlaceInterface from '@/interfaces/PlaceInterface';
+import { Box, CardContent, Typography } from '@mui/material'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import StarIcon from '@mui/icons-material/Star'
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import PhoneIcon from '@mui/icons-material/Phone'
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
+import PlaceInterface from '@/interfaces/PlaceInterface'
 
-type RestaurantContentCardProps = {
+type PlaceContentCardProps = {
   place: PlaceInterface
 }
 
-export default function RestaurantContentCard({ place }: Readonly<RestaurantContentCardProps>): React.ReactElement
+export default function PlaceContentCard({ place }: Readonly<PlaceContentCardProps>): React.ReactElement
 {
   const location: string = place.location
   const distanceInKm: string = place.distance?.toFixed(2)

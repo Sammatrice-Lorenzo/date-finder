@@ -1,9 +1,13 @@
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-import PlaceIcon from '@mui/icons-material/Place';
-import React from 'react';
+import InputBase from '@mui/material/InputBase'
+import IconButton from '@mui/material/IconButton'
+import SearchIcon from '@mui/icons-material/Search'
+import React from 'react'
 
-export default function RestaurantLocationSearch(): React.ReactElement
+export type PlaceNameSearch = {
+  typePlace: string
+}
+
+export default function PlaceNameSearch({ typePlace }: PlaceNameSearch ): React.ReactElement
 {
   const [colorIcon, setColorIcon] = React.useState<'default' | 'primary' | 'secondary'>('default')
   const handleSearchIconUpdateColor = (element: React.ChangeEvent<HTMLInputElement>): void => {
@@ -21,15 +25,15 @@ export default function RestaurantLocationSearch(): React.ReactElement
         aria-label='search'
         sx={{ color: colorIcon === 'primary' ? '#d33252' : 'inherit' }}
       >
-        <PlaceIcon />
+        <SearchIcon />
       </IconButton>
       <InputBase
-        id='input-location'
+        id='input-place'
         sx={{
           ml: 1,
           flex: 1,
         }}
-        placeholder='Ville'
+        placeholder={typePlace}
         inputProps={{ 'aria-label': 'Recherche' }}
         onChange={handleSearchIconUpdateColor}
       />

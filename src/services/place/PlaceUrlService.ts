@@ -9,9 +9,9 @@ export default class PlaceUrlService {
     return new URLSearchParams({
       location: `${requestParameters.latitude},${requestParameters.longitude}`,
       radius: requestParameters.radius?.toString() ?? '5000',
-      type: requestParameters.category || 'restaurant',
+      type: requestParameters.category,
       key: apiKey,
-      keyword: 'restaurant'
+      keyword: requestParameters.category
       // rankby: 'prominence'
     })
   }
@@ -22,7 +22,7 @@ export default class PlaceUrlService {
     if (!apiKey) {
       throw new Error('Google Places API key is missing')
     }
-  
+
     if (!requestParameters.latitude || requestParameters.location) {
       const locationCity: Location = await PlaceLocationService.getLatitudeLongitudeByLocation(requestParameters.location, apiKey)
       requestParameters.latitude = locationCity.latitude.toString()
