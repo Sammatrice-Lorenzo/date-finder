@@ -1,7 +1,7 @@
 import DetailsPlaceAPIInterface from "@/interfaces/api/DetailsPlaceAPIInterface"
 import { Location } from "@/interfaces/Location"
-import PlaceAPIInterface from "@/interfaces/PlaceAPIInterface"
-import PlaceInterface from "@/interfaces/PlaceInterface"
+import PlaceAPIInterface from "@/interfaces/place/PlaceAPIInterface"
+import PlaceInterface from "@/interfaces/place/PlaceInterface"
 import haversine from 'haversine'
 
 export default class PlaceFormatter {

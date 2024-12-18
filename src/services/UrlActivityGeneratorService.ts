@@ -1,7 +1,8 @@
-import ActivityInterface from '@/interfaces/ActivityInterface'
-import JWTService, { Payload } from './JWTServices'
+import ActivityInterface from '@/interfaces/activity/ActivityInterface'
+import JWTService from './JWTServices'
 import { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import DateFormatter from '@/formatters/DateFormatter'
+import { Payload } from '@/types/Payload'
 
 export class UrlActivityGeneratorService {
 

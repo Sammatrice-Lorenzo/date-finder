@@ -1,18 +1,16 @@
 'use client'
 
-import { Box, Grid2, Typography } from '@mui/material'
+import { Box, Grid2 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
-import { useRouter } from 'next/navigation'
 import PlaceCard from '@/components/Place/PlaceCard'
 import { Location } from '@/interfaces/Location'
 import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
 import PlaceSkeleton from '@/components/Place/Loader/PlaceSkeleton'
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { useLocation } from '@/context/LocationContext'
 import { useAlert } from '@/hooks/useAlert'
 import { AlertEnum } from '@/enums/AlertEnum'
-import PlaceInterface from '@/interfaces/PlaceInterface'
+import HeaderPlace from './HeaderPlace'
+import PlaceInterface from '@/interfaces/place/PlaceInterface'
 
 export type PlacesProps = {
   typePlace: string,
@@ -25,13 +23,12 @@ export default function Places({ typePlace, category }: PlacesProps): React.Reac
   const [skeleton, setSkeleton] = useState<boolean>(true)
   const [searchLocation, setSearchLocation] = useState<string>('')
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const router: AppRouterInstance = useRouter()
   const userLocation: Location | null = useLocation()
   const { showAlert } = useAlert()
 
   useEffect(() => {
     const fetchPlaces = async (): Promise<void> => {
-      const response: Response = await fetch('/api/restaurant/', {
+      const response: Response = await fetch('/api/places/', {
         method: 'POST',
         body: JSON.stringify({
           location: searchLocation,
@@ -54,11 +51,7 @@ export default function Places({ typePlace, category }: PlacesProps): React.Reac
 
   return (
     <Box sx={{ padding: 4 }}>
-      <KeyboardReturnIcon onClick={() => router.push('/')} sx={{ "&:hover": { cursor: "pointer" } }}/>
-      <Typography variant='h4' gutterBottom>
-        {typePlace} à proximité
-      </Typography>
-
+      <HeaderPlace typePlace={typePlace} />
       <PlaceInputSearch
         typePlace={typePlace}
         setLocationSearch={setSearchLocation}

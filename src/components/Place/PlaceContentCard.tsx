@@ -6,7 +6,7 @@ import StarIcon from '@mui/icons-material/Star'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import PhoneIcon from '@mui/icons-material/Phone'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
-import PlaceInterface from '@/interfaces/PlaceInterface'
+import PlaceInterface from '@/interfaces/place/PlaceInterface'
 
 type PlaceContentCardProps = {
   place: PlaceInterface

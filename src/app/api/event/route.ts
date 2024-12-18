@@ -1,4 +1,4 @@
-import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface'
+import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
 import EventCalendarService from '@/services/EventCalendarService'
 import MailEventService from '@/services/MailEventService'
 import sgMail from '@sendgrid/mail'

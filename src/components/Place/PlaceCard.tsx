@@ -2,7 +2,7 @@ import { Card, CardMedia, Grid2 } from '@mui/material'
 import PlaceContentCard from './PlaceContentCard'
 import React from 'react'
 import ModalRequestActivity from '../Activity/ModalRequestActivity'
-import PlaceInterface from '@/interfaces/PlaceInterface'
+import PlaceInterface from '@/interfaces/place/PlaceInterface'
 
 type PlaceCardProps = {
   place: PlaceInterface
@@ -21,7 +21,7 @@ export default function PlaceCard({ place }: Readonly<PlaceCardProps>): React.Re
       key={place.id}
       size={{ xs: 12, md: 4 }}
       sx={{
-        "&:hover": { cursor: "pointer" }
+        '&:hover': { cursor: 'pointer' }
       }}
     >
       <Card sx={{ height: '100%'}} onClick={handleClickOpen} >

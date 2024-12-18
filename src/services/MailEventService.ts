@@ -1,5 +1,5 @@
 import DateFormatter from '@/formatters/DateFormatter'
-import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface'
+import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
 import { MailData } from '@sendgrid/helpers/classes/mail'
 
 const SUBJECT: string = 'DateFinder notre prochaine activité'

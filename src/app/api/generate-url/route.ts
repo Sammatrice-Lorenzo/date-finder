@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import fr from '../../../locales/fr/common.json'
 import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
-import ActivityInterface from '@/interfaces/ActivityInterface'
+import ActivityInterface from '@/interfaces/activity/ActivityInterface'
 import { ShareDataInterface } from '@/interfaces/ShareDataInterface'
 
 interface UrlActivityParameters {

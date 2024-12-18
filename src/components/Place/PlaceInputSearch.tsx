@@ -1,8 +1,7 @@
 import * as React from 'react'
 import Paper from '@mui/material/Paper'
-import PlaceLocationSearch from './PlaceLocationSearch'
-import PlaceNameSearch from './PlaceNameSearch'
 import { Button, Grid2 } from '@mui/material'
+import PlaceSearch from './PlaceSearch'
 
 export type PlaceInputSearchProps = {
   typePlace: string,
@@ -39,7 +38,11 @@ export default function PlaceInputSearch({ typePlace, setLocationSearch, setTerm
           marginBottom: '1.5%'
         }}
       >
-        <PlaceLocationSearch/>
+        <PlaceSearch 
+          idInput='input-location'
+          placeholder='Ville'
+          setSearch={setLocationSearch}
+        />
       </Paper>
       <Paper
         component='form'
@@ -51,7 +54,11 @@ export default function PlaceInputSearch({ typePlace, setLocationSearch, setTerm
           marginBottom: '3%'
         }}
       >
-        <PlaceNameSearch typePlace={typePlace} />
+         <PlaceSearch
+          idInput='input-place'
+          placeholder={typePlace}
+          setSearch={setTermSearch}
+        />
       </Paper>
       <Grid2 sx={{ alignItems: 'center', display: 'flex', marginBottom: '5%' }}>
         <Button

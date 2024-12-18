@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server"
 import fr from '../../../locales/fr/common.json'
-import { PlaceResponseInterface } from "@/interfaces/PlaceResponseInterface"
+import { PlaceResponseInterface } from "@/interfaces/place/PlaceResponseInterface"
 import data from '../../../data/restaurant-test-data.json'
 import { PlaceQueryInterface } from "@/interfaces/PlaceQueryInterface"
-import PlaceAPIInterface from "@/interfaces/PlaceAPIInterface"
-import PlaceInterface from "@/interfaces/PlaceInterface"
+import PlaceAPIInterface from "@/interfaces/place/PlaceAPIInterface"
 import { Location } from "@/interfaces/Location"
 import PlaceFormatter from "@/formatters/PlaceFormatter"
 import PlaceUrlService from "@/services/place/PlaceUrlService"
+import PlaceInterface from "@/interfaces/place/PlaceInterface"
 
 function handleResponsePlacesForEnvTest(): NextResponse<PlaceResponseInterface>
 {
