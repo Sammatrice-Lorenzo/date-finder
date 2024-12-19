@@ -1,6 +1,7 @@
 'use client'
 
-import { Box, Grid2 } from '@mui/material'
+import fr from '../../locales/fr/common.json'
+import { Box, Grid2, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import PlaceCard from '@/components/Place/PlaceCard'
 import { Location } from '@/interfaces/Location'
@@ -66,7 +67,7 @@ export default function Places({ typePlace, category }: PlacesProps): React.Reac
           : null}
         {places?.length > 0 ? places.map((place: PlaceInterface) => (
           <PlaceCard key={place.id} place={place} />
-        )) : null}
+        )) : <Typography>{fr.PLACE.NOT_FOUND}</Typography> }
       </Grid2>
     </Box>
   )

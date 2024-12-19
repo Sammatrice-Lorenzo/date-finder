@@ -17,6 +17,9 @@
     "TITLE_LINK_SHARED": "Invitation pour une sortie",
     "DISCOVER_ACTIVITY": "Découvre notre prochaine activité ensemble!"
   },
+  "PLACE": {
+    "NOT_FOUND": "Aucun element a été trouvé. Veuillez modifier votre recherches."
+  },
   "PWA": {
     "INSTALL": "Installer DateFinder",
     "HOME": "Installer",
