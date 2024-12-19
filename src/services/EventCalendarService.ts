@@ -1,5 +1,5 @@
 import DateFormatter from "@/formatters/DateFormatter"
-import ActivityEventCalendarInterface from "@/interfaces/ActivityEventCalendarInterface"
+import ActivityEventCalendarInterface from "@/interfaces/activity/ActivityEventCalendarInterface"
 
 export default class EventCalendarService {
   

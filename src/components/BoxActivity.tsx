@@ -1,23 +1,23 @@
-import { Box, Typography } from "@mui/material"
-import React from "react"
-import MapIcon from '@mui/icons-material/Map'
+import { Box, Typography } from '@mui/material'
+import React from 'react'
 import RestaurantIcon from '@mui/icons-material/Restaurant'
 import MovieIcon from '@mui/icons-material/Movie'
 import MuseumIcon from '@mui/icons-material/Museum'
 import { useRouter } from 'next/navigation'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import LocalBarIcon from '@mui/icons-material/LocalBar'
 
 type IconsActivities = {
-  map: React.ReactElement,
+  bar: React.ReactElement,
   movie: React.ReactElement,
   restaurant: React.ReactElement,
   museum: React.ReactElement
 }
-  
+
 const iconsActivities: IconsActivities = {
-  restaurant: <RestaurantIcon  fontSize='large' />,
-  movie: <MovieIcon color="action"  fontSize='large' />,
-  map: <MapIcon fontSize='large' />,
+  restaurant: <RestaurantIcon fontSize='large' />,
+  movie: <MovieIcon color='action' fontSize='large' />,
+  bar: <LocalBarIcon fontSize='large' />,
   museum: <MuseumIcon fontSize='large' />,
 }
 
@@ -46,7 +46,7 @@ export default function BoxActivity({ title, icon, color, route}: BoxActivityPro
         bgcolor: color,
         textAlign: 'center',
         boxShadow: 2,
-        "&:hover": { cursor: "pointer" } 
+        '&:hover': { cursor: 'pointer' } 
       }}
       onClick={() => router.push(route ?? '/')}
     >

@@ -18,16 +18,16 @@ export default function ModalEmailTarget({ activity, isOpen, onClose }: ModalEma
 {
   const { showAlert } = useAlert()
   
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     const formData: FormData = new FormData(event.currentTarget)
     const email: string | undefined = formData.get('target-email') as string
     if (email !== undefined) {
-      handleSendInviteAccepted(email)
+      await handleSendInviteAccepted(email)
     }
   }
 
-  const handleSendInviteAccepted = async (targetEmail: string) => {
+  const handleSendInviteAccepted = async (targetEmail: string): Promise<void> => {
     onClose()
     const response = await fetch('/api/event/', {
       method: 'POST',

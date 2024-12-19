@@ -1,4 +1,4 @@
-import ActivityEventCalendarInterface from '@/interfaces/ActivityEventCalendarInterface'
+import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
 import sgMail from '@sendgrid/mail'
 import { MailData, MailDataRequired } from "@sendgrid/helpers/classes/mail"
 import { NextApiResponse } from 'next'

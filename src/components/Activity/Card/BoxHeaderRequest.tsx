@@ -10,7 +10,7 @@ const BoxHeaderRequest = ({ targetName }: BoxHeaderRequestProps): React.ReactEle
 
   return (
     <Box display="flex" mb={3}>
-      <Avatar sx={{ bgcolor: '#ff6f61', width: 30, height: 30 }}>
+      <Avatar sx={{ bgcolor: '#d33252', width: 30, height: 30 }}>
         <PersonIcon fontSize="medium" />
       </Avatar>
       <Typography variant="h5" sx={{ ml: 2, fontWeight: 'bold' }}>

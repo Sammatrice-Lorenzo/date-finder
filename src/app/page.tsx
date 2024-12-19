@@ -49,15 +49,17 @@ const Home: NextPage = () => {
               icon='museum'
               title='Musées'
               color='#40916c'
+              route='/museums'
             />
           </Grid2>
 
           <Grid2 size={5}>
             <BoxActivity
-              key='map'
-              icon='map'
-              title='Explorer'
+              key='bar'
+              icon='bar'
+              title='Bars'
               color='#ff560b'
+              route='/bars'
             />
           </Grid2>
         </Grid2>

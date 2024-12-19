@@ -1,16 +1,8 @@
 import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import { Payload } from '@/types/Payload'
 import jwt from 'jsonwebtoken'
 
 const ERROR_JWT: string = 'JWT_KEY is not defined'
-
-export type Payload = {
-  a: string,
-  auth: string,
-  e: string,
-  t: string,
-  d: string,
-  l: string
-}
 
 export default class JWTService {
 
