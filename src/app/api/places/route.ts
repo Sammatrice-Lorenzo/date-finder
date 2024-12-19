@@ -1,13 +1,17 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from 'next/server'
 import fr from '../../../locales/fr/common.json'
-import { PlaceResponseInterface } from "@/interfaces/place/PlaceResponseInterface"
+import { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterface'
 import data from '../../../data/restaurant-test-data.json'
-import { PlaceQueryInterface } from "@/interfaces/PlaceQueryInterface"
-import PlaceAPIInterface from "@/interfaces/place/PlaceAPIInterface"
-import { Location } from "@/interfaces/Location"
-import PlaceFormatter from "@/formatters/PlaceFormatter"
-import PlaceUrlService from "@/services/place/PlaceUrlService"
-import PlaceInterface from "@/interfaces/place/PlaceInterface"
+import { PlaceQueryInterface } from '@/interfaces/PlaceQueryInterface'
+import PlaceAPIInterface from '@/interfaces/place/PlaceAPIInterface'
+import { Location } from '@/interfaces/Location'
+import PlaceUrlService from '@/services/place/PlaceUrlService'
+import PlaceInterface from '@/interfaces/place/PlaceInterface'
+import PlaceAPIService from '@/services/place/PlaceAPIService'
+import CachePlaceInterface from '@/interfaces/CacheInterface'
+import PlaceCacheService from '@/services/place/PlaceCacheService'
+
+const cacheResponse: CachePlaceInterface = {}
 
 function handleResponsePlacesForEnvTest(): NextResponse<PlaceResponseInterface>
 {
@@ -19,18 +23,48 @@ function handleResponsePlacesForEnvTest(): NextResponse<PlaceResponseInterface>
   return NextResponse.json(response)
 }
 
-async function convertData(place: PlaceAPIInterface, apiKey: string, locationUser: Location): Promise<PlaceInterface>
-{
-  const urlAPI: string | undefined = process.env.GOOGLE_PLACE_API
-  const detailsUrl: string = `${urlAPI}details/json?place_id=${place.place_id}&fields=formatted_phone_number,photos&key=${apiKey}`
-  const detailsResponse = await fetch(detailsUrl)
-  const details = await detailsResponse.json()
+async function fetchPlaces(apiKey: string, requestParameters: PlaceQueryInterface): Promise<Response> {
+  const url: string = await PlaceUrlService.getPlacesUrl(requestParameters)
+  return await fetch(url, {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
+  })
+}
 
-  if (details.status !== 'OK') {
-    throw new Error(`Failed to get details for place: ${place.place_id}`)
+async function handleRequestParameters(request: Request): Promise<{ userLocation: Location, requestParameters: PlaceQueryInterface }> {
+  const requestParameters: PlaceQueryInterface = await request.json()
+  const userLocation: Location = {
+    longitude: Number(requestParameters.longitude),
+    latitude: Number(requestParameters.latitude)
+  }
+  return { userLocation, requestParameters }
+}
+
+async function handleApiResponse(
+  response: Response,
+  userLocation: Location,
+  nextResponse: PlaceResponseInterface,
+  cacheKey: string
+): Promise<NextResponse<PlaceResponseInterface>> {
+  const status: number = response.status
+
+  if (response.ok) {
+    const data = await response.json()
+    const results: PlaceAPIInterface[] = data.results
+    const { convertedResults, cache } = await PlaceAPIService.getDataAPI(results, userLocation)
+    cacheResponse[cacheKey] = cache
+
+    return NextResponse.json({ response: convertedResults, message: '' }, { status: status })
   }
 
-  return PlaceFormatter.convertDataFromAPIToPlace(place, details.result, locationUser)
+  if (status === 429 || status === 400) {
+    nextResponse.message = fr.ERROR.LIMIT_RATING
+  }
+
+  return NextResponse.json(nextResponse, { status: status })
 }
 
 export async function POST(request: Request): Promise<NextResponse<PlaceResponseInterface>>
@@ -45,37 +79,19 @@ export async function POST(request: Request): Promise<NextResponse<PlaceResponse
 
   const apiKey: string | undefined = process.env.GOOGLE_PLACES_API_KEY
   if (apiKey === undefined) {
-    nextResponse.message = 'API_KEY_YELP is not defined'
+    nextResponse.message = 'API GOOGLE is not defined'
     return NextResponse.json(nextResponse)
   }
-  const requestParameters: PlaceQueryInterface = await request.json()
-  const userLocation: Location =  { longitude: Number(requestParameters.longitude), latitude: Number(requestParameters.latitude)}
-  const url: string = await PlaceUrlService.getPlacesUrl(requestParameters)
-  const response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    },
-  })
+  const { userLocation, requestParameters } = await handleRequestParameters(request)
 
-  const status: number = response.status
-  if (response.ok) {
-    const data = await response.json()
-    const results: PlaceAPIInterface[] = data.results
+  const cacheKey: string = PlaceCacheService.getCacheKey(requestParameters, userLocation)
+  if (PlaceCacheService.checkCache(cacheResponse, cacheKey)) {
+    nextResponse.response = cacheResponse[cacheKey].data
 
-    const convertedResults: PlaceInterface[] = []
-    for (const result of results) {
-      const place: PlaceInterface = await convertData(result, apiKey, userLocation)
-      convertedResults.push(place)
-    }
-
-    return NextResponse.json({response: convertedResults, message: ''}, {status: status})
+    return NextResponse.json({response: cacheResponse[cacheKey].data, message: ''}, {status: 200})
   }
 
-  if (status === 429 || status === 400) {
-    nextResponse.message = fr.ERROR.LIMIT_RATING
-  }
+  const response: Response = await fetchPlaces(apiKey, requestParameters)
 
-  return NextResponse.json(nextResponse, { status: status })
+  return handleApiResponse(response, userLocation, nextResponse, cacheKey)
 }

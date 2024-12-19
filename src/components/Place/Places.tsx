@@ -47,7 +47,7 @@ export default function Places({ typePlace, category }: PlacesProps): React.Reac
     }
 
     fetchPlaces()
-  }, [userLocation?.latitude, userLocation?.longitude, searchLocation, searchTerm, showAlert])
+  }, [userLocation?.latitude, userLocation?.longitude, searchLocation, searchTerm, showAlert, category])
 
   return (
     <Box sx={{ padding: 4 }}>
