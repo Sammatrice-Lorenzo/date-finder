@@ -1,0 +1,19 @@
+.boxHome {
+  display: 'flex';
+  flex-direction: 'column';
+  align-items: 'center';
+  justify-content: 'center';
+  padding: 2;
+  margin-top: 5;
+}
+
+.containerGridHome {
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1.5%;
+  max-width: 800px;
+}
+
+.gridItem {
+  width: 38%;
+}
