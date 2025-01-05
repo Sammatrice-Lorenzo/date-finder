@@ -5,66 +5,34 @@ import type { NextPage } from 'next'
 import Header from '@/components/Header'
 import BoxActivity from '@/components/BoxActivity'
 import InstallPrompt from '@/components/InstallPrompt'
+import styles from '@/styles/home.module.css'
+import ACTIVITIES_DATA, { HomeActivitiesData } from '@/data/activitiesData'
 
 const Home: NextPage = () => {
 
   return (
     <>
       <InstallPrompt />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 2,
-          marginTop: 5
-        }}
-      >
+      <Box className={styles.boxHome} >
         <Header />
 
-        <Grid2 container spacing={3} sx={{ marginTop: 3, alignItems: 'center', justifyContent: 'center' }}>
-          <Grid2 size={5}>
-            <BoxActivity
-              key='restaurant'
-              icon='restaurant'
-              title='Restaurants'
-              color='#d33252'
-              route='/restaurants'
-            />
-          </Grid2>
-
-          <Grid2 size={5}>
-            <BoxActivity
-              key='movie'
-              icon='movie'
-              title='Films'
-              color='#0aa4c5'
-            />
-          </Grid2>
-
-          <Grid2 size={5}>
-            <BoxActivity
-              key='museum'
-              icon='museum'
-              title='Musées'
-              color='#40916c'
-              route='/museums'
-            />
-          </Grid2>
-
-          <Grid2 size={5}>
-            <BoxActivity
-              key='bar'
-              icon='bar'
-              title='Bars'
-              color='#ff560b'
-              route='/bars'
-            />
-          </Grid2>
+        <Grid2 container spacing={3} className={styles.containerGridHome}>
+          {ACTIVITIES_DATA.map((activity: HomeActivitiesData) => {
+            return (
+              <Grid2 className={styles.gridItem} key={`${activity.key}grid`}>
+                <BoxActivity
+                  key={activity.key}
+                  icon={activity.icon}
+                  title={activity.title}
+                  color={activity.color}
+                  route={activity.route}
+                />
+            </Grid2>
+            )
+          })}
         </Grid2>
-    </Box>
-  </>
+      </Box>
+    </>
   )
 }
 

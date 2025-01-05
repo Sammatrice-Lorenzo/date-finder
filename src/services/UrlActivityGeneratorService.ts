@@ -32,7 +32,7 @@ export class UrlActivityGeneratorService {
 
     return {
       activity: decodeURIComponent(routerParameters.a),
-      author: decodeURIComponent(routerParameters.auth),
+      author: decodeURIComponent(routerParameters.o),
       authorEmail: decodeURIComponent(routerParameters.e),
       target: decodeURIComponent(routerParameters.t),
       date: decodeURIComponent(routerParameters.d),

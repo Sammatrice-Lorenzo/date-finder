@@ -19,7 +19,7 @@ export default class JWTService {
 
     const compressedPayload: Payload = {
       'a': payload.activity,
-      'auth': payload.author,
+      'o': payload.author,
       'e': payload.authorEmail,
       't': payload.target,
       'd': payload.date,

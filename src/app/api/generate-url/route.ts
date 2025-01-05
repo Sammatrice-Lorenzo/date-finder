@@ -18,7 +18,6 @@ export async function POST(req: Request): Promise<NextResponse<{
 
   const shareData: ShareDataInterface = {
     title: fr.ACTIVITY.TITLE_LINK_SHARED,
-    text: fr.ACTIVITY.DISCOVER_ACTIVITY,
     url: `${body.baseUrl}/activity/${urlToken}`,
   }
 
