@@ -33,7 +33,7 @@ export default function PlaceInputSearch({ typePlace, setLocationSearch, setTerm
         sx={{
           display: 'flex',
           alignItems: 'center',
-          width: '85%',
+          width: { xs: '85%', md: '40%' },
           margin: '0 auto',
           marginBottom: '1.5%'
         }}
@@ -49,7 +49,7 @@ export default function PlaceInputSearch({ typePlace, setLocationSearch, setTerm
         sx={{
           display: 'flex',
           alignItems: 'center',
-          width: '85%',
+          width: { xs: '85%', md: '40%' },
           margin: '0 auto',
           marginBottom: '3%'
         }}
