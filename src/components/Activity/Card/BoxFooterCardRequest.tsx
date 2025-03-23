@@ -9,7 +9,8 @@ import { useAlert } from '@/hooks/useAlert'
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 import EventBusyIcon from '@mui/icons-material/EventBusy'
 import ConfirmDialog from '@/components/ConfirmDialog'
-interface BoxFooterCardRequestProps {
+
+type BoxFooterCardRequestProps = {
   activity: ActivityQueryProps
 }
 

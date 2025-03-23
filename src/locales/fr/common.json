@@ -6,7 +6,11 @@
     "FORM_REQUEST_ACTIVITY": {
       "MISSING_DATE": "Le champ date est requis !",
       "INVALID_DATE": "Veuillez saisir une date valide !",
-      "FUTURE_DATE_REQUIREMENT": "La date doit être supérieure à la date actuelle !"
+      "FUTURE_DATE_REQUIREMENT": "La date doit être supérieure à la date actuelle !",
+      "MISSING_AUTHOR_NAME": "Le champ nom est requis",
+      "MISSING_TARGET_NAME": "Le champ du nom de la personne invitée est requis",
+      "MISSING_EMAIL": "Le champ email est requis",
+      "INVALID_EMAIL": "L'email saisie est invalide"
     }
   },
   "SUCCESS": {
@@ -15,7 +19,17 @@
   },
   "ACTIVITY": {
     "TITLE_LINK_SHARED": "Invitation pour une sortie",
-    "DISCOVER_ACTIVITY": "Découvre notre prochaine activité ensemble!"
+    "DISCOVER_ACTIVITY": "Découvre notre prochaine activité ensemble!",
+    "MODAL": {
+      "TITLE": "Planifier votre rendez-vous",
+      "CONTENT": "Renseignez les informations pour créer une invitation que vous pourrez facilement partager."
+    },
+    "FORM": {
+      "YOUR_NAME": "Votre nom",
+      "YOUR_EMAIL": "Votre email",
+      "NAME_TARGET": "Nom de la personne invitée",
+      "SHARE": "Partager"
+    }
   },
   "PLACE": {
     "NOT_FOUND": "Aucun element a été trouvé. Veuillez modifier votre recherches."

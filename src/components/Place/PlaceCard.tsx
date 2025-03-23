@@ -10,7 +10,7 @@ type PlaceCardProps = {
 
 export default function PlaceCard({ place }: Readonly<PlaceCardProps>): React.ReactElement
 {
-  const [openModal, setOpen] = React.useState(false);
+  const [openModal, setOpen] = React.useState(false)
 
   const handleClickOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
