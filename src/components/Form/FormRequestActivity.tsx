@@ -4,7 +4,7 @@ import { RequestActivityFormService } from '@/services/RequestActivityFormServic
 import ShareIcon from '@mui/icons-material/Share'
 import FormControlRequestActivity from './FormControlRequestActivity'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { useForm, UseFormReturn } from 'react-hook-form'
 import { z } from 'zod'
 import fr from '../../locales/fr/common.json'
 import ActivityInterface from '@/interfaces/activity/ActivityInterface'
@@ -34,7 +34,7 @@ export type FormRequestActivityProps = {
 }
 
 export const FormRequestActivity = ({ activity, handleClose }: FormRequestActivityProps) => {
-  const form = useForm({
+  const form: UseFormReturn<FormRequestActivityInterface> = useForm({
     resolver: zodResolver(formSchema),
     mode: 'onChange',
     shouldUnregister: false,

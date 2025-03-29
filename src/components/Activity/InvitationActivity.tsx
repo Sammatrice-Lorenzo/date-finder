@@ -3,6 +3,7 @@ import CardRequestActivity from './Card/CardRequestActivity'
 import BoxFooterCardRequest from './Card/BoxFooterCardRequest'
 import BoxHeaderRequest from './Card/BoxHeaderRequest'
 import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import fr from '../../locales/fr/common.json'
 
 export type InvitationActivityProps = {
   activity: ActivityQueryProps
@@ -17,7 +18,7 @@ export default function InvitationActivity({ activity }: Readonly<InvitationActi
         <Divider />
 
         <Typography variant="h5" sx={{ ml: 2, marginTop: '3%' }}>
-          {activity.author} demande un date avec vous !
+          {activity.author} {fr.ACTIVITY.INVITATION.TITLE}
         </Typography>
 
         <CardRequestActivity
@@ -26,7 +27,7 @@ export default function InvitationActivity({ activity }: Readonly<InvitationActi
         />
         <Divider />
 
-        <BoxFooterCardRequest activity={activity} />
+        <BoxFooterCardRequest activityQuery={activity} />
       </Paper>
     </Box>
   )

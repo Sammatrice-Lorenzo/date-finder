@@ -1,14 +1,18 @@
 import { FormControl, FormHelperText, TextField } from '@mui/material'
-import { Controller, FieldError, FieldValues, FormState, UseFormReturn } from 'react-hook-form'
+import { Controller, FieldError, FieldValues, FormState, Path, UseFormReturn } from 'react-hook-form'
 import { InputModalRequestActivity } from '@/interfaces/InputModalRequestActivity'
 import { FormRequestActivityInterface } from '@/interfaces/activity/FormRequestActivityInterface'
+import FormTargetSendEmailInterface from '@/interfaces/activity/FormTargetSendEmailInterface'
 
-type FormControlRequestActivityProps = {
-  form: UseFormReturn<FormRequestActivityInterface>,
+type FormControlRequestActivityProps<T extends FormRequestActivityInterface | FormTargetSendEmailInterface> = {
+  form: UseFormReturn<T>,
   input: InputModalRequestActivity
 }
 
-const FormControlRequestActivity = ({ input, form, }: FormControlRequestActivityProps): React.ReactElement => {
+const FormControlRequestActivity = <T extends FormRequestActivityInterface | FormTargetSendEmailInterface>({
+  input,
+  form,
+}: FormControlRequestActivityProps<T>): React.ReactElement => {
 
   const formState: FormState<FieldValues> = form.formState
   const errorInput = formState.errors[input.name]  
@@ -16,7 +20,7 @@ const FormControlRequestActivity = ({ input, form, }: FormControlRequestActivity
   return (
     <FormControl fullWidth margin='dense' error={!!errorInput}>
       <Controller
-        name={input.name}
+        name={input.name as Path<T>}
         control={form.control}
         render={({ field }) => (
           <TextField {...field}

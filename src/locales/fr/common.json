@@ -13,6 +13,11 @@
       "INVALID_EMAIL": "L'email saisie est invalide"
     }
   },
+  "CONFIRM_DIALOG": {
+    "CANCELED": "Annuler",
+    "DECLINE_INVITATION": "Voulez-vous vraiment décliner cette invitation ?",
+    "TITLE_CONFIRM_DECLINE": "Confirmer la déclinaison"
+  },
   "SUCCESS": {
     "OK": "L'opération a été réalisée avec succès.",
     "EMAIL": "Le mail a été envoyé !"
@@ -20,15 +25,25 @@
   "ACTIVITY": {
     "TITLE_LINK_SHARED": "Invitation pour une sortie",
     "DISCOVER_ACTIVITY": "Découvre notre prochaine activité ensemble!",
+    "INVITATION": {
+      "TITLE": "demande un date avec vous !",
+      "ACCEPT": "Accepter",
+      "REFUSED": "Décliner"
+    },
     "MODAL": {
       "TITLE": "Planifier votre rendez-vous",
       "CONTENT": "Renseignez les informations pour créer une invitation que vous pourrez facilement partager."
+    },
+    "MODAL_EMAIL_TARGET": {
+      "TITLE": "Accepter l'invitation",
+      "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez a vérifier vos spams." 
     },
     "FORM": {
       "YOUR_NAME": "Votre nom",
       "YOUR_EMAIL": "Votre email",
       "NAME_TARGET": "Nom de la personne invitée",
-      "SHARE": "Partager"
+      "SHARE": "Partager",
+      "SEND": "Envoyer"
     }
   },
   "PLACE": {

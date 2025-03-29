@@ -1,83 +1,36 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material'
-import { InputRequestActivity } from './InputRequestActivity'
-import { AlertEnum } from '@/enums/AlertEnum'
-import { useAlert } from '@/hooks/useAlert'
+import { Dialog, DialogContent, DialogContentText } from '@mui/material'
 import React from 'react'
-import { v1 as uuidv1 } from 'uuid'
 import { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import ModalTitle from '../ModalTitle'
-import SendIcon from '@mui/icons-material/Send'
+import { FormEmailTarget } from '../Form/FormEmailTarget'
+import fr from '../../locales/fr/common.json'
 
 export type ModalEmailTargetProps = {
-  activity: ActivityQueryProps
+  activityQuery: ActivityQueryProps
   isOpen: boolean
   onClose: () => void
 }
 
-export default function ModalEmailTarget({ activity, isOpen, onClose }: ModalEmailTargetProps): React.ReactElement
+export default function ModalEmailTarget({ activityQuery, isOpen, onClose }: ModalEmailTargetProps): React.ReactElement
 {
-  const { showAlert } = useAlert()
-  
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    event.preventDefault()
-    const formData: FormData = new FormData(event.currentTarget)
-    const email: string | undefined = formData.get('target-email') as string
-    if (email !== undefined) {
-      await handleSendInviteAccepted(email)
-    }
-  }
-
-  const handleSendInviteAccepted = async (targetEmail: string): Promise<void> => {
-    onClose()
-    const response = await fetch('/api/event/', {
-      method: 'POST',
-      body: JSON.stringify({
-        uid: uuidv1(),
-        activity: activity,
-        targetEmail: targetEmail,
-      })
-    })
-
-    const data = await response.json()
-    const alert: AlertEnum = response.ok ? AlertEnum.Success : AlertEnum.Error
-    showAlert(data.message, alert)
-  }
-
   return (
     <Dialog
       open={isOpen}
       onClose={onClose}
-      PaperProps={{
-        component: 'form',
-        onSubmit: handleSubmit,
-      }}
     >
       <ModalTitle
-        title='Accepter l&apos;invitation'
+        title={fr.ACTIVITY.MODAL_EMAIL_TARGET.TITLE}
         onCloseModal={onClose}
       />
       <DialogContent sx={{ pt: 2, px: 3 }}>
         <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>
-          Veuillez saisir votre e-mail pour recevoir l&apos;invitation à ajouter à votre calendrier.
-          Pensez a vérifier vos spams.
+          {fr.ACTIVITY.MODAL_EMAIL_TARGET.CONTENT}
         </DialogContentText>
-        <InputRequestActivity
-          label='Votre email'
-          type='email'
-          name='target-email'
+        <FormEmailTarget
+          activityQuery={activityQuery}
+          handleClose={onClose}
         />
       </DialogContent>
-
-      <DialogActions sx={{ justifyContent: 'center', pb: '2' }}>
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-        >
-          <SendIcon fontSize='small' sx={{ marginRight: 1 }}/>
-          Envoyer
-        </Button>
-      </DialogActions>
     </Dialog>
   )
 }

@@ -4,59 +4,45 @@ import { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import { Box, Button } from '@mui/material'
 import React from 'react'
 import ModalEmailTarget from '../ModalEmailTarget'
-import { AlertEnum } from '@/enums/AlertEnum'
 import { useAlert } from '@/hooks/useAlert'
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 import EventBusyIcon from '@mui/icons-material/EventBusy'
 import ConfirmDialog from '@/components/ConfirmDialog'
+import fr from '../../../locales/fr/common.json'
+import SendEmailService from '@/services/SendEmailService'
 
 type BoxFooterCardRequestProps = {
-  activity: ActivityQueryProps
+  activityQuery: ActivityQueryProps
 }
 
-const BoxFooterCardRequest = ({ activity }: BoxFooterCardRequestProps): React.ReactElement => {
+const BoxFooterCardRequest = ({ activityQuery }: BoxFooterCardRequestProps): React.ReactElement => {
   const [openModal, setOpen] = React.useState(false)
   const [openDialog, setOpenDialog] = React.useState(false)
-  const handleClickOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-  const handleRefused = () => setOpenDialog(true)
-  const handleCloseDialog = () => setOpenDialog(false)
   const { showAlert } = useAlert()
 
-  const handleSendInviteRefused = async () => {
-    const response = await fetch('/api/invite-refused', {
-      method: 'POST',
-      body: JSON.stringify({
-        activity: activity,
-      })
-    })
-
-    const data = await response.json()
-    const alert: AlertEnum = response.ok ? AlertEnum.Success : AlertEnum.Error
-    showAlert(data.message, alert)
-  }
+  const sendEmailService: SendEmailService = new SendEmailService()
 
   return (
     <Box display='flex' justifyContent='space-around' mt={3}>
-      <Button variant='contained' sx={{ justifyContent: 'space-between'}} color='secondary' onClick={() => handleClickOpen()}>
+      <Button variant='contained' sx={{ justifyContent: 'space-between'}} color='secondary' onClick={() => setOpen(true)}>
         <EventAvailableIcon fontSize='small' sx={{ marginRight: 1 }} />
-        Accepter
+        {fr.ACTIVITY.INVITATION.ACCEPT}
       </Button>
-      <Button variant='outlined' color='error' onClick={() => handleRefused()}>
+      <Button variant='outlined' color='error' onClick={() => setOpenDialog(true)}>
         <EventBusyIcon fontSize='small' sx={{ marginRight: 1 }} />
-        Décliner
+        {fr.ACTIVITY.INVITATION.REFUSED}
       </Button>
       <ConfirmDialog
         open={openDialog}
-        onClose={handleCloseDialog}
-        title='Confirmer la déclinaison'
-        message='Voulez-vous vraiment décliner cette invitation ?'
-        onConfirm={handleSendInviteRefused}
+        onClose={() => setOpenDialog(false)}
+        title={fr.CONFIRM_DIALOG.TITLE_CONFIRM_DECLINE}
+        message={fr.CONFIRM_DIALOG.DECLINE_INVITATION}
+        onConfirm={() => sendEmailService.handleSendInviteRefused(activityQuery, showAlert)}
       />
       <ModalEmailTarget
-        activity={activity}
+        activityQuery={activityQuery}
         isOpen={openModal}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
       />
     </Box>
   )

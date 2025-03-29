@@ -3,4 +3,5 @@ export enum RequestActivityNameEnum {
   AUTHOR_NAME = 'author-name',
   AUTHOR_EMAIL = 'author-email',
   TARGET_NAME = 'target-name',
+  TARGET_EMAIL = 'target-email',
 }
