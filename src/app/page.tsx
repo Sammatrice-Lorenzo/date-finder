@@ -7,8 +7,11 @@ import BoxActivity from '@/components/BoxActivity'
 import InstallPrompt from '@/components/InstallPrompt'
 import styles from '@/styles/home.module.css'
 import ACTIVITIES_DATA, { HomeActivitiesData } from '@/data/activitiesData'
+import { useCurrentLocation } from '@/hooks/useCurrentLocation'
 
 const Home: NextPage = () => {
+
+  useCurrentLocation()
 
   return (
     <>

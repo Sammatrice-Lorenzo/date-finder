@@ -7,13 +7,12 @@ import PlaceCard from '@/components/Place/PlaceCard'
 import { Location } from '@/interfaces/Location'
 import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
 import PlaceSkeleton from '@/components/Place/Loader/PlaceSkeleton'
-import { useLocation } from '@/context/LocationContext'
-import { useAlert } from '@/hooks/useAlert'
-import { AlertEnum } from '@/enums/AlertEnum'
 import HeaderPlace from './HeaderPlace'
 import PlaceInterface from '@/interfaces/place/PlaceInterface'
 import useApi from '@/hooks/useApi'
 import { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterface'
+import LocationStoreService from '@/services/Store/LocationStoreService'
+import LocationStoreInterface from '@/interfaces/LocationStoreInterface'
 
 export type PlacesProps = {
   typePlace: string,
@@ -24,8 +23,7 @@ export default function Places({ typePlace, category }: Readonly<PlacesProps>): 
 {
   const [searchLocation, setSearchLocation] = useState<string>('')
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const userLocation: Location | null = useLocation()
-  const { showAlert } = useAlert()
+  const userLocation: Location | null = LocationStoreService.useStore((store: LocationStoreInterface) => store.location)
 
   const body: string = JSON.stringify({
     location: searchLocation,
@@ -34,17 +32,12 @@ export default function Places({ typePlace, category }: Readonly<PlacesProps>): 
     latitude: userLocation?.latitude,
     category: category
   })
-  
-  const { data, error, isLoading } = useApi({
+
+  const { data, isLoading } = useApi({
     url: '/api/places/',
     method: 'POST',
     body
   })
-
-  if (error) {
-    const errorMessage: string = error.props
-    showAlert(errorMessage, AlertEnum.Error)
-  }
 
   const response: PlaceInterface[] = (data as PlaceResponseInterface)?.response ?? [];
 

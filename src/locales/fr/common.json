@@ -28,7 +28,13 @@
     "INVITATION": {
       "TITLE": "demande un date avec vous !",
       "ACCEPT": "Accepter",
-      "REFUSED": "Décliner"
+      "REFUSED": "Décliner",
+      "GOOD_MORNING": "Bonjour",
+      "GOOD_EVENING": "Bonsoir"
+    },
+    "EMAIL": {
+      "SUBJECT": "DateFinder notre prochaine activité",
+      "EVENT_DESCRIPTION": "Faire une activité ensemble"
     },
     "MODAL": {
       "TITLE": "Planifier votre rendez-vous",
@@ -39,6 +45,7 @@
       "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez a vérifier vos spams." 
     },
     "FORM": {
+      "DATE": "Date",
       "YOUR_NAME": "Votre nom",
       "YOUR_EMAIL": "Votre email",
       "NAME_TARGET": "Nom de la personne invitée",

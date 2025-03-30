@@ -1,5 +1,6 @@
-import DateFormatter from "@/formatters/DateFormatter"
-import ActivityEventCalendarInterface from "@/interfaces/activity/ActivityEventCalendarInterface"
+import DateFormatter from '@/formatters/DateFormatter'
+import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
+import translation from '@/locales/fr/common.json'
 
 export default class EventCalendarService {
   
@@ -19,7 +20,7 @@ export default class EventCalendarService {
       DTSTART:${startIcs}
       DTEND:${endIcs}
       SUMMARY:Date ${body.activity.activity}
-      DESCRIPTION:Faire une activité ensemble
+      DESCRIPTION:${translation.ACTIVITY.EMAIL.EVENT_DESCRIPTION}
       LOCATION:${body.activity.location}
       STATUS:CONFIRMED
       ORGANIZER;CN=${body.activity.author}:mailto:${body.activity.authorEmail}

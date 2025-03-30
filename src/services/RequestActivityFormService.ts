@@ -10,7 +10,7 @@ export class RequestActivityFormService {
       {
         id: 'date-input',
         name: RequestActivityNameEnum.DATE,
-        label: 'Date',
+        label: fr.ACTIVITY.FORM.DATE,
         type: 'datetime-local',
         margin: 'none',
         props: {

@@ -6,6 +6,7 @@ import { MailData, MailDataRequired } from "@sendgrid/helpers/classes/mail"
 import { NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 import DateFormatter from '@/formatters/DateFormatter'
+import fr from '@/locales/fr/common.json'
 
 export async function POST(req: Request, res: NextApiResponse) {
   const body: ActivityEventCalendarInterface = await req.json()
@@ -30,14 +31,14 @@ export async function POST(req: Request, res: NextApiResponse) {
       codeResponse = responseEmail[0].statusCode
     }
 
-    let message: string = 'Le mail a été envoyé !'
+    let message: string = fr.SUCCESS.EMAIL
     if (codeResponse !== 202) {
-      message = 'Une erreur est survenu lors de l\'envoi d\'e-mail'
+      message = fr.ERROR.EMAIL_ERROR
     }
 
     return NextResponse.json({ message: message }, { status: codeResponse })
   } catch (error) {
     console.error(error)
-    return NextResponse.json({ message: 'Une erreur côté server est survenu' }, { status: 500 })
+    return NextResponse.json({ message: fr.ERROR.SERVER_ERROR }, { status: 500 })
   }
 }

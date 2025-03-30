@@ -1,8 +1,7 @@
 import DateFormatter from '@/formatters/DateFormatter'
 import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
 import { MailData } from '@sendgrid/helpers/classes/mail'
-
-const SUBJECT: string = 'DateFinder notre prochaine activité'
+import translation from '@/locales/fr/common.json'
 
 export default class MailEventService
 {
@@ -18,7 +17,7 @@ export default class MailEventService
     return {
       to: emailUser,
       from: mailUsername,
-      subject: SUBJECT,
+      subject: translation.ACTIVITY.EMAIL.SUBJECT,
       templateId: process.env.SEND_GRID_TEMPLATE_ID,
       dynamicTemplateData: {
         event_date: start,
@@ -47,7 +46,7 @@ export default class MailEventService
     return {
       to: body.activity.authorEmail,
       from: mailUsername,
-      subject: SUBJECT,
+      subject: translation.ACTIVITY.EMAIL.SUBJECT,
       templateId: process.env.SEND_GRID_TEMPLATE_REFUSED_ID,
       dynamicTemplateData: {
         event_date: start,
