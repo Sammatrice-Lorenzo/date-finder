@@ -6,13 +6,14 @@ import React, { useState } from 'react'
 import PlaceCard from '@/components/Place/PlaceCard'
 import { Location } from '@/interfaces/Location'
 import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
-import PlaceSkeleton from '@/components/Place/Loader/PlaceSkeleton'
+import CardSkeleton from '@/components/Loader/CardSkeleton'
 import HeaderPlace from './HeaderPlace'
 import PlaceInterface from '@/interfaces/place/PlaceInterface'
 import useApi from '@/hooks/useApi'
 import { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterface'
 import LocationStoreService from '@/services/Store/LocationStoreService'
 import LocationStoreInterface from '@/interfaces/LocationStoreInterface'
+import translate from '@/locales/fr/common.json'
 
 export type PlacesProps = {
   typePlace: string,
@@ -43,7 +44,7 @@ export default function Places({ typePlace, category }: Readonly<PlacesProps>): 
 
   return (
     <Box sx={{ padding: 4 }}>
-      <HeaderPlace typePlace={typePlace} />
+      <HeaderPlace title={`${typePlace} ${translate.PLACE.PROXIMITY}`} />
       <PlaceInputSearch
         typePlace={typePlace}
         setLocationSearch={setSearchLocation}
@@ -54,7 +55,7 @@ export default function Places({ typePlace, category }: Readonly<PlacesProps>): 
         spacing={4}
       >
         {isLoading ? 
-          <><PlaceSkeleton /><PlaceSkeleton /><PlaceSkeleton /></>
+          <><CardSkeleton /><CardSkeleton /><CardSkeleton /></>
           : null}
         {response.length > 0 ? response.map((place: PlaceInterface) => (
           <PlaceCard key={place.id} place={place} />

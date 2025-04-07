@@ -2,31 +2,42 @@ import InputBase from '@mui/material/InputBase'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent } from 'react'
 
-export type PlaceNameSearchProps = {
+export type InputSearchProps = {
   placeholder: string,
   idInput: string,
-  setSearch: (input: string) => void
+  refSearch: React.RefObject<HTMLInputElement>
+  setSearch?: (input: string) => void,
+  onUpdateInput?: () => void
 }
 
-const PlaceSearch = ({ idInput, placeholder, setSearch, }: PlaceNameSearchProps ): React.ReactElement => {
+const InputSearch = ({ idInput, placeholder, refSearch, onUpdateInput, setSearch }: InputSearchProps ): React.ReactElement => {
   const [colorIcon, setColorIcon] = React.useState<'default' | 'primary' | 'secondary'>('default')
   const handleSearchIconUpdateColor = (element: React.ChangeEvent<HTMLInputElement>): void => {
     const isNotEmptyValue: boolean = element.target.value.trim() !== ''
     setColorIcon(isNotEmptyValue ? 'primary' : 'default')
   }
 
-  const [inputValue, setInputValue] = useState<string>('');
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setInputValue(event.target.value)
     handleSearchIconUpdateColor(event)
+    if (onUpdateInput) {
+      onUpdateInput()
+    }
   }
 
   const clearInput = (): void => {
-    setInputValue('')
-    setSearch('')
+    if (setSearch) {
+      setSearch('')
+    }
     setColorIcon('default')
+    if (refSearch.current) {
+      refSearch.current.value = ''
+    }
+
+    if (onUpdateInput) {
+      onUpdateInput()
+    }
   }
 
   return (
@@ -40,7 +51,6 @@ const PlaceSearch = ({ idInput, placeholder, setSearch, }: PlaceNameSearchProps 
       </IconButton>
       <InputBase
         id={idInput}
-        value={inputValue}
         sx={{
           ml: 1,
           flex: 1,
@@ -48,6 +58,7 @@ const PlaceSearch = ({ idInput, placeholder, setSearch, }: PlaceNameSearchProps 
         placeholder={placeholder}
         inputProps={{ 'aria-label': 'Recherche' }}
         onChange={handleChange}
+        inputRef={refSearch}
       />
       <IconButton
         onClick={clearInput}
@@ -61,4 +72,4 @@ const PlaceSearch = ({ idInput, placeholder, setSearch, }: PlaceNameSearchProps 
   )
 }
 
-export default PlaceSearch
+export default InputSearch

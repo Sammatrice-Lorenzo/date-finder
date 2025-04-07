@@ -10,7 +10,7 @@ export interface HomeActivitiesData {
 
 const ACTIVITIES_DATA: HomeActivitiesData[] = [
   { key: 'restaurant', icon: 'restaurant', title: 'Restaurants', color: '#d33252', route: '/restaurants' },
-  { key: 'movie', icon: 'movie', title: 'Films', color: '#0aa4c5', route: '' },
+  { key: 'movie', icon: 'movie', title: 'Films', color: '#0aa4c5', route: '/movies' },
   { key: 'bar', icon: 'bar', title: 'Bars', color: '#ff560b', route: '/bars' },
   { key: 'cinema', icon: 'cinema', title: 'Cinémas', color: '#ffc046', route: '/cinemas' },
   { key: 'museum', icon: 'museum', title: 'Musées', color: '#9b7858', route: '/museums' },

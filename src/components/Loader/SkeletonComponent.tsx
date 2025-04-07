@@ -1,6 +1,4 @@
-'use client'
-
-import { Grid2, Skeleton } from '@mui/material'
+import { Skeleton } from '@mui/material'
 
 const SkeletonComponent = (): React.ReactElement => {
   return (
@@ -12,13 +10,4 @@ const SkeletonComponent = (): React.ReactElement => {
   )
 }
 
-export default function PlaceSkeleton(): React.ReactElement
-{
-  return (
-    <Grid2 size={{ xs: 12, md: 4 }}>
-      <SkeletonComponent />
-      <SkeletonComponent />
-      <SkeletonComponent />
-    </Grid2>
-  )
-}
+export default SkeletonComponent
