@@ -1,24 +1,26 @@
-import { Grid2 } from "@mui/material"
-import InfiniteScroll from "react-infinite-scroll-component"
-import MovieCard from "./MovieCard"
-import React, { ReactElement, useCallback, useEffect } from "react"
-import { MovieStoreService } from "@/services/Store/MovieStoreService"
-import { MovieFormatter } from "@/formatters/MovieFormatter"
-import { MoviesProps } from "./Movies"
-import useApi from "@/hooks/useApi"
-import ResponseMoviesInterface from "@/interfaces/movie/ResponseMoviesInterface"
-import MovieAPIInterface from "@/interfaces/movie/MovieAPInterface"
-import CardSkeleton from "../Loader/CardSkeleton"
+import { Grid2 } from '@mui/material'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import MovieCard from './MovieCard'
+import React, { ReactElement, useCallback } from 'react'
+import { MovieStoreService } from '@/services/Store/MovieStoreService'
+import { MoviesProps } from './Movies'
+import useApi from '@/hooks/useApi'
+import ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
+import MovieAPIInterface from '@/interfaces/movie/MovieAPInterface'
+import MovieInterface from '@/interfaces/movie/MovieInterface'
+import useFormattedMovies from '@/hooks/movie/useFormattedMovies'
+import MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
+import SpinnerLoader from '../Loader/SpinnerLoader'
 
-const InfiniteScrollMovies = ({ initialMovies, genres} :MoviesProps): ReactElement => {
+
+const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
+  const useMovieStore: MovieStoreInterface = MovieStoreService.useMovieStore()
 
   const {
     page,
     setPage,
-    addMovies,
-    movies,
-    queryParams
-  } = MovieStoreService.useMovieStore()
+    queryParams,
+  } = useMovieStore
 
   const { data, isLoading } = useApi({
     url: `/api/movies?${queryParams().toString()}`,
@@ -34,12 +36,8 @@ const InfiniteScrollMovies = ({ initialMovies, genres} :MoviesProps): ReactEleme
   const moviesData: ResponseMoviesInterface = data as ResponseMoviesInterface
   const moviesResponse: MovieAPIInterface[] = moviesData.results ?? []
 
-  useEffect(() => {
-    if (moviesResponse) {
-      const moviesFormatted = MovieFormatter.getMoviesFormatted(moviesResponse, genres)
-      addMovies(moviesFormatted)
-    }
-  }, [moviesResponse, genres])
+  useFormattedMovies(moviesResponse, genres, language)
+
   const hasMore = moviesData.page < moviesData.total_pages
   const loadMore = useCallback(() => {
     if (hasMore) {
@@ -49,10 +47,10 @@ const InfiniteScrollMovies = ({ initialMovies, genres} :MoviesProps): ReactEleme
 
   return (
     <InfiniteScroll
-      dataLength={movies.length}
+      dataLength={useMovieStore.movies.length}
       next={loadMore}
       hasMore={hasMore}
-      loader={<><CardSkeleton /><CardSkeleton /><CardSkeleton /></>}
+      loader={<SpinnerLoader />}
       scrollThreshold={0.9}
       style={{
         display: 'flex',
@@ -61,9 +59,9 @@ const InfiniteScrollMovies = ({ initialMovies, genres} :MoviesProps): ReactEleme
         width: '100%',
       }}
     >
-      {movies.map((movie) => (
-          <Grid2 item spacing={1} sx={{ marginBottom: 3 }} size={{ xs: 12, sm: 6, md: 4, lg: 3 }} >
-            <MovieCard movie={movie} />
+      {useMovieStore.movies.map((movie: MovieInterface, index: number) => (
+          <Grid2 id={`grid-${movie.id}-${index}`} spacing={1} sx={{ marginBottom: 3 }} size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={`grid-${movie.id}-${index}`} >
+            <MovieCard movie={movie} key={`movie-card-${movie.id}`} />
           </Grid2>
       ))}
     </InfiniteScroll>

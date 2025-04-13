@@ -13,9 +13,9 @@ import MovieInputSearch from './MovieInputSearch'
 export type MoviesProps = {
   initialMovies: ResponseMoviesInterface,
   genres: MovieGenresInterface[],
+  language: string,
 }
-
-export default function Movies({ initialMovies, genres }: MoviesProps): React.ReactElement
+export default function Movies({ initialMovies, genres, language }: MoviesProps): React.ReactElement
 {
   return (
     <Box sx={{ padding: 4 }}>
@@ -33,6 +33,7 @@ export default function Movies({ initialMovies, genres }: MoviesProps): React.Re
         <InfiniteScrollMovies
           genres={genres}
           initialMovies={initialMovies}
+          language={language}
         />
       </Grid2>
     </Box>

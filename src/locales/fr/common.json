@@ -34,7 +34,8 @@
     },
     "EMAIL": {
       "SUBJECT": "DateFinder notre prochaine activité",
-      "EVENT_DESCRIPTION": "Faire une activité ensemble"
+      "EVENT_DESCRIPTION": "Faire une activité ensemble",
+      "REQUEST_ACTIVITY": "Voici l'invitation :"
     },
     "MODAL": {
       "TITLE": "Planifier votre rendez-vous",
@@ -59,7 +60,8 @@
     "GENRES": "Genres :",
     "HOME_MOVIES": "Soirée Cinéma (Films à voir chez soi)",
     "INVALID_DATE": "Pas de date renseigné",
-    "SEARCH_MOVIE": "Rechercher un film"
+    "SEARCH_MOVIE": "Rechercher un film",
+    "PROVIDERS": "Plateformes :"
   },
   "PLACE": {
     "PROXIMITY": "à proximité",

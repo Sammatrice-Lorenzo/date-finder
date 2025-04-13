@@ -3,7 +3,7 @@ import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventC
 import translation from '@/locales/fr/common.json'
 
 export default class EventCalendarService {
-  
+
   public static getCalendarFormatICS(body: ActivityEventCalendarInterface, start: Date, end: Date): string
   {
     const timeStamp: string = DateFormatter.getTimeStampOnDate(new Date())

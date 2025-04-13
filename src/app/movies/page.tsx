@@ -28,15 +28,16 @@ export default async function MoviesPage(): Promise<React.ReactElement> {
     throw Error('API KEY is not defined.')
   }
 
+  const language: string = 'fr-FR'
   const searchParameter: URLSearchParams = new URLSearchParams({
     'api_key': apiKey,
-    'language': 'fr-FR',
+    'language': language,
   })
 
   const genres: MovieGenresInterface[] = await getGendersMovies(apiTmdb, searchParameter)
   const moviesResponse: ResponseMoviesInterface = await getMovies(apiTmdb, searchParameter)
 
   return (
-    <Movies initialMovies={moviesResponse} genres={genres} />
+    <Movies initialMovies={moviesResponse} genres={genres} language={language} />
   )
 }

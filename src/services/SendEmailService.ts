@@ -19,7 +19,6 @@ export default class SendEmailService {
     showAlert(data.message, alert)
   }
 
-  
   public async handleSendInviteRefused(activityQuery: ActivityQueryProps, showAlert: CallableFunction): Promise<void> {
     const response: Response = await fetch('/api/invite-refused', {
       method: 'POST',

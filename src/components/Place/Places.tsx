@@ -6,7 +6,6 @@ import React, { useState } from 'react'
 import PlaceCard from '@/components/Place/PlaceCard'
 import { Location } from '@/interfaces/Location'
 import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
-import CardSkeleton from '@/components/Loader/CardSkeleton'
 import HeaderPlace from './HeaderPlace'
 import PlaceInterface from '@/interfaces/place/PlaceInterface'
 import useApi from '@/hooks/useApi'
@@ -14,6 +13,7 @@ import { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterfac
 import LocationStoreService from '@/services/Store/LocationStoreService'
 import LocationStoreInterface from '@/interfaces/LocationStoreInterface'
 import translate from '@/locales/fr/common.json'
+import { CardsSkeletons } from '../Loader/CardsSkeletons'
 
 export type PlacesProps = {
   typePlace: string,
@@ -55,7 +55,7 @@ export default function Places({ typePlace, category }: Readonly<PlacesProps>): 
         spacing={4}
       >
         {isLoading ? 
-          <><CardSkeleton /><CardSkeleton /><CardSkeleton /></>
+          <CardsSkeletons />
           : null}
         {response.length > 0 ? response.map((place: PlaceInterface) => (
           <PlaceCard key={place.id} place={place} />

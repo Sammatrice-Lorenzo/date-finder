@@ -31,4 +31,16 @@ export default class MovieUrlService {
 
     return endpoint
   }
+
+  public static getDefaultParametersApi(language: string): URLSearchParams {
+    const apiKey: string | undefined = process.env.TMDB_API_KEY
+    if (!apiKey) {
+      throw Error('API KEY is not defined.')
+    }
+
+    return new URLSearchParams({
+      'api_key': apiKey,
+      'language': language,
+    })
+  }
 }

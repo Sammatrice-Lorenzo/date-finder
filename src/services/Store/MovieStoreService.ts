@@ -14,6 +14,8 @@ export class MovieStoreService {
     setSearchName: (name) => {
       set({ searchName: name, page: 1 })
     },
+    language: 'fr-FR',
+    setLanguage: (newLanguage: string) => set({ language: newLanguage }),
     movies: [],
     addMovies: (newMovies: MovieInterface[]) => set((state: MovieStoreInterface) => ({
       movies: [...state.movies, ...newMovies]
@@ -23,7 +25,7 @@ export class MovieStoreService {
       page: get().page.toString(),
       genre: get().selectedGenre.toString(),
       searchName: get().searchName,
-      language: 'fr-FR'
+      language: get().language
     })
   }))
 }

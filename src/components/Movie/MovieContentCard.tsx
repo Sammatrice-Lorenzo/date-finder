@@ -11,7 +11,7 @@ interface MovieContentCardProps {
 }
 
 export default function MovieContentCard({ movie }: Readonly<MovieContentCardProps>): React.ReactElement {
-  
+
   const vote: string = movie.vote_average.toFixed(1)
   const release: string = movie.release_date ? new Date(movie.release_date).toLocaleDateString() : translate.MOVIE.INVALID_DATE
 
@@ -34,6 +34,12 @@ export default function MovieContentCard({ movie }: Readonly<MovieContentCardPro
       {movie.genres && movie.genres.length > 0 && (
         <BoxContentCard
          text={`${translate.MOVIE.GENRES} ${movie.genres.join(', ')}`}
+        />
+      )}
+
+      {movie.providers.length > 0 && (
+        <BoxContentCard
+         text={`${translate.MOVIE.PROVIDERS} ${movie.providers.join(', ')}`}
         />
       )}
 

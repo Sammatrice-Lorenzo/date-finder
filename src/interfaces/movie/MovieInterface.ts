@@ -7,4 +7,5 @@ export default interface MovieInterface extends ActivityInterface {
   vote_average: number;
   genres: string[];
   release_date: string | undefined;
+  providers: string[]
 }
