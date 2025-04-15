@@ -1,7 +1,7 @@
 import { MovieFormatter } from '@/formatters/MovieFormatter'
-import MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
-import MovieAPIInterface from '@/interfaces/movie/MovieAPInterface'
-import MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
+import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
+import type MovieAPIInterface from '@/interfaces/movie/MovieAPInterface'
+import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { MovieStoreService } from '@/services/Store/MovieStoreService'
 import { useMemo } from 'react'
 import useSWR from 'swr'
@@ -13,7 +13,8 @@ const useFormattedMovies = (moviesResponse: MovieAPIInterface[], genres: MovieGe
     return moviesResponse && genres.length > 0 ? ['formatted-movies', moviesResponse, genres] : null
   }, [moviesResponse, genres])
 
-  const { data: formattedMovies } = useSWR(
+  // biome-ignore lint/correctness/noEmptyPattern: <explanation>
+  const { } = useSWR(
     swrKey,
     async () => {
       useMovieStore.setLanguage(language)

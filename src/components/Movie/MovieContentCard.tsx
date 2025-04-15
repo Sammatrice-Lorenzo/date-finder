@@ -1,8 +1,8 @@
 import { CardContent, Typography } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
-import MovieInterface from '@/interfaces/movie/MovieInterface'
-import React from 'react'
+import type MovieInterface from '@/interfaces/movie/MovieInterface'
+import type React from 'react'
 import BoxContentCard from '../BoxContentCard'
 import translate from '@/locales/fr/common.json'
 
@@ -44,7 +44,7 @@ export default function MovieContentCard({ movie }: Readonly<MovieContentCardPro
       )}
 
       <Typography variant='body2' color='text.secondary' sx={{ mt: 1 }}>
-        {movie.overview.length > 150 ? movie.overview.substring(0, 150) + '...' : movie.overview}
+        {movie.overview.length > 150 ? `${movie.overview.substring(0, 150)}...` : movie.overview}
       </Typography>
     </CardContent>
   )

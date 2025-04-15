@@ -1,4 +1,4 @@
-import ActivityInterface from '../activity/ActivityInterface'
+import type ActivityInterface from '../activity/ActivityInterface'
 
 export default interface MovieInterface extends ActivityInterface {
   poster_path?: string;

@@ -1,4 +1,4 @@
-import InformationProviderInterface from './InformationProviderInterface'
+import type InformationProviderInterface from './InformationProviderInterface'
 
 export default interface MovieCountryInformationInterface {
   link: string;

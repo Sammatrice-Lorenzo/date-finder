@@ -1,4 +1,4 @@
-import MovieAPIInterface from './MovieAPInterface'
+import type MovieAPIInterface from './MovieAPInterface'
 
 export default interface ResponseMoviesInterface {
   page: number;

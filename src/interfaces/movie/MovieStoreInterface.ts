@@ -1,4 +1,4 @@
-import MovieInterface from './MovieInterface'
+import type MovieInterface from './MovieInterface'
 
 export default interface MovieStoreInterface {
   page: number;

@@ -1,15 +1,15 @@
 import { Grid2 } from '@mui/material'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import MovieCard from './MovieCard'
-import React, { ReactElement, useCallback } from 'react'
+import React, { type ReactElement, useCallback } from 'react'
 import { MovieStoreService } from '@/services/Store/MovieStoreService'
-import { MoviesProps } from './Movies'
+import type { MoviesProps } from './Movies'
 import useApi from '@/hooks/useApi'
-import ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
-import MovieAPIInterface from '@/interfaces/movie/MovieAPInterface'
-import MovieInterface from '@/interfaces/movie/MovieInterface'
+import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
+import type MovieAPIInterface from '@/interfaces/movie/MovieAPInterface'
+import type MovieInterface from '@/interfaces/movie/MovieInterface'
 import useFormattedMovies from '@/hooks/movie/useFormattedMovies'
-import MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
+import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import SpinnerLoader from '../Loader/SpinnerLoader'
 
 
@@ -22,7 +22,7 @@ const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps):
     queryParams,
   } = useMovieStore
 
-  const { data, isLoading } = useApi({
+  const { data } = useApi({
     url: `/api/movies?${queryParams().toString()}`,
     method: 'GET',
     optionsSWR: { keepPreviousData: true,
@@ -60,7 +60,13 @@ const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps):
       }}
     >
       {useMovieStore.movies.map((movie: MovieInterface, index: number) => (
-          <Grid2 id={`grid-${movie.id}-${index}`} spacing={1} sx={{ marginBottom: 3 }} size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={`grid-${movie.id}-${index}`} >
+          <Grid2
+            id={`grid-${movie.id}-${index}`}
+            className='grid-movies'
+            spacing={1} sx={{ marginBottom: 3 }}
+            size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
+            key={`grid-${movie.id}-${index}`}
+          >
             <MovieCard movie={movie} key={`movie-card-${movie.id}`} />
           </Grid2>
       ))}

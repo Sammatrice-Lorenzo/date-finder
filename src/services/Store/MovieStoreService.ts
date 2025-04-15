@@ -1,5 +1,5 @@
-import MovieInterface from '@/interfaces/movie/MovieInterface'
-import MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
+import type MovieInterface from '@/interfaces/movie/MovieInterface'
+import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { create } from 'zustand'
 
 export class MovieStoreService {

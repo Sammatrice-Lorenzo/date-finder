@@ -1,9 +1,8 @@
-import { ReactElement } from "react"
+import type { ReactElement } from "react"
 import CardSkeleton from "./CardSkeleton"
 
 const getNumberInArray = (number: number): number[] => {
-  let numbers = []
-
+  const numbers: number[] = []
   for (let i = 1; i <= number; i++) {
     numbers.push(i)
   }
@@ -18,8 +17,8 @@ export type CardsSkeletonsProps = {
 export const CardsSkeletons = ({ totalCardSkeletons = 3 }: CardsSkeletonsProps): ReactElement => {
   return (
     <>
-      {getNumberInArray(totalCardSkeletons).map((_, index) => (
-        <CardSkeleton key={index} />
+      {getNumberInArray(totalCardSkeletons).map((value: number) => (
+        <CardSkeleton key={`cad-skeleton-${value}`} />
       ))}
     </>
   )
