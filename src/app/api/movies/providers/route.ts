@@ -3,7 +3,7 @@ import MovieProviderService from '@/services/movie/MovieProviderService'
 import MovieUrlService from '@/services/movie/MovieUrlService'
 import { NextResponse } from 'next/server'
 
-export async function GET(req: Request) {
+export async function GET(req: Request): Promise<NextResponse<string[]>> {
   const baseUrl: string = `${process.env.TMDB_API}`
   const searchParams: URLSearchParams = new URL(req.url).searchParams
 
@@ -14,5 +14,7 @@ export async function GET(req: Request) {
   const res = await fetch(`${baseUrl}movie/${movieId}/watch/providers?${defaultParameters.toString()}`)
   const data: MovieProviderResponseInterface = await res.json()
 
-  return NextResponse.json(MovieProviderService.getProvidersName(data, language))
+  const movieProviderService: MovieProviderService = new MovieProviderService()
+
+  return NextResponse.json(movieProviderService.getProvidersName(data, language))
 }

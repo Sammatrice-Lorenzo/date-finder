@@ -1,7 +1,7 @@
 import { Card, CardMedia, Grid2 } from '@mui/material'
 import React from 'react'
 import ModalRequestActivity from '../Activity/ModalRequestActivity'
-import MovieInterface from '@/interfaces/movie/MovieInterface'
+import type MovieInterface from '@/interfaces/movie/MovieInterface'
 import MovieContentCard from './MovieContentCard'
 
 type MovieCardProps = {

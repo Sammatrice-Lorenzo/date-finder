@@ -15,6 +15,10 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: yarn
+    - uses: cschleiden/replace-tokens@v1
+      env:
+        TMBD_API: ${{ secrets.TMBD_API }}
+        TMBD_API_KEY: ${{ secrets.TMBD_API_KEY }}
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
     - name: Check build before deploy in production

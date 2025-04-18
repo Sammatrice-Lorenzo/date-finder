@@ -1,12 +1,12 @@
 'use client'
 
 import { Box, Grid2 } from '@mui/material'
-import React from 'react'
+import type React from 'react'
 import HeaderPlace from '../Place/HeaderPlace'
 import translate from '@/locales/fr/common.json'
-import MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
+import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
 import GenresMovies from './GenresMovies'
-import ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
+import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
 import InfiniteScrollMovies from './InfiniteScrollMovies'
 import MovieInputSearch from './MovieInputSearch'
 

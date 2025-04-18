@@ -1,5 +1,5 @@
-import MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
-import MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
+import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
+import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { MovieStoreService } from '@/services/Store/MovieStoreService'
 import { Chip, Stack } from '@mui/material'
 import { mutate } from 'swr'

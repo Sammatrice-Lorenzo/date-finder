@@ -9,12 +9,14 @@ dotenv.config({ path: "./.env.test", override: false });
 const PORT = process.env.PORT || 3000;
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-  const baseURL = `http://localhost:${PORT}`;
+const baseURL: string = `http://localhost:${PORT}`;
 
 // Reference: https://playwright.dev/docs/test-configuration
 export default defineConfig({
   // Test directory
   testDir: './tests/',
+
+  fullyParallel: true,
   // If a test fails, retry it an additional 2 times
   retries: 2,
   // Artifacts folder where screenshots, videos, and traces are stored.

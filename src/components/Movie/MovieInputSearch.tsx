@@ -2,7 +2,7 @@ import * as React from 'react'
 import Paper from '@mui/material/Paper'
 import InputSearch from '../InputSearch'
 import { MovieStoreService } from '@/services/Store/MovieStoreService'
-import MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
+import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { mutate } from 'swr'
 import translate from '@/locales/fr/common.json'
 

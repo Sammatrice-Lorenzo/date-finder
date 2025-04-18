@@ -1,8 +1,8 @@
-import MovieQueryInterface from '@/interfaces/movie/MovieQueryInterface'
+import type MovieQueryInterface from '@/interfaces/movie/MovieQueryInterface'
 
 export default class MovieUrlService {
   
-  private static getParameters(requestParameters: MovieQueryInterface, apiKey: string): URLSearchParams
+  private getParameters(requestParameters: MovieQueryInterface, apiKey: string): URLSearchParams
   {
     return new URLSearchParams({
       api_key: apiKey,
@@ -12,14 +12,15 @@ export default class MovieUrlService {
     })
   }
 
-  public static async getMoviesUrl(requestParameters: MovieQueryInterface): Promise<string> {
+  public async getMoviesUrl(requestParameters: MovieQueryInterface): Promise<string> {
     const baseUrl: string = `${process.env.TMDB_API}`
     const apiKey = process.env.TMDB_API_KEY
     if (!apiKey) {
       throw new Error('TMBD API key is missing')
     }
-    const queryParams: URLSearchParams = MovieUrlService['getParameters'](requestParameters, apiKey)
-    let endpoint: string = ''
+
+    const queryParams: URLSearchParams = this.getParameters(requestParameters, apiKey)
+    let endpoint = ''
     
     if (requestParameters.searchName !== '') {
       endpoint = `${baseUrl}search/movie?${queryParams}&query=${requestParameters.searchName}`
