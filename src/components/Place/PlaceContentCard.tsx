@@ -6,8 +6,8 @@ import StarIcon from '@mui/icons-material/Star'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import PhoneIcon from '@mui/icons-material/Phone'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
-import PlaceInterface from '@/interfaces/place/PlaceInterface'
-import BoxContentCard, { BoxContentCardProps } from '../BoxContentCard'
+import type PlaceInterface from '@/interfaces/place/PlaceInterface'
+import BoxContentCard, { type BoxContentCardProps } from '../BoxContentCard'
 import translation from '@/locales/fr/common.json'
 
 type PlaceContentCardProps = {
@@ -50,8 +50,8 @@ export default function PlaceContentCard({ place }: Readonly<PlaceContentCardPro
         {place.name}
       </Typography>
 
-      {getContentBox(place).map((content: BoxContentCardProps, index) => (
-        <BoxContentCard key={index + content.text} text={content.text} icon={content.icon} />
+      {getContentBox(place).map((content: BoxContentCardProps) => (
+        <BoxContentCard key={content.text} text={content.text} icon={content.icon} />
       ))}
     </CardContent>
   )

@@ -1,5 +1,5 @@
 import { AlertEnum } from "@/enums/AlertEnum"
-import { ActivityQueryProps } from "@/types/ActivityQueryProps"
+import type { ActivityQueryProps } from "@/types/ActivityQueryProps"
 import { v1 as uuidv1 } from 'uuid'
 
 export default class SendEmailService {

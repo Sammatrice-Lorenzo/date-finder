@@ -9,7 +9,7 @@ import translate from '@/locales/fr/common.json'
 export default function MovieInputSearch(): React.ReactElement
 {
   const refSearchMovie = React.useRef<HTMLInputElement>(null)
-  const movieStore: MovieStoreInterface = MovieStoreService.useMovieStore()
+  const movieStore: MovieStoreInterface = new MovieStoreService().useMovieStore()
 
   const handleUpdateSearch = () => {
     movieStore.setSearchName(refSearchMovie.current ? refSearchMovie.current.value : '')

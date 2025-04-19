@@ -2,7 +2,7 @@ import InputBase from '@mui/material/InputBase'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
-import React, { ChangeEvent } from 'react'
+import React, { type ChangeEvent } from 'react'
 
 export type InputSearchProps = {
   placeholder: string,

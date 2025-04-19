@@ -1,0 +1,21 @@
+name: Setup env vars for API
+
+inputs:
+  TMDB_API:
+    required: true
+  TMDB_API_KEY:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Replace vars in .env and .env.test
+      shell: bash
+      env:
+        TMDB_API: ${{ inputs.TMDB_API }}
+        TMDB_API_KEY: ${{ inputs.TMDB_API_KEY }}
+      run: |
+        echo "TMDB_API=${TMDB_API}" > .env.test
+        echo "TMDB_API_KEY=${TMDB_API_KEY}" >> .env.test
+        echo "TMDB_API=${TMDB_API}" > .env
+        echo "TMDB_API_KEY=${TMDB_API_KEY}" >> .env

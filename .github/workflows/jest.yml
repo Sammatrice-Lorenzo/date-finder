@@ -9,6 +9,7 @@ on:
 jobs:
   test-jest:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,10 +17,10 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: yarn
-      - uses: cschleiden/replace-tokens@v1
-        env:
-          TMBD_API: ${{ secrets.TMBD_API }}
-          TMBD_API_KEY: ${{ secrets.TMBD_API_KEY }}
+      - uses: ./.github/actions/set-env-vars
+        with:
+          TMDB_API: ${{ secrets.TMDB_API }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
       - name: Run jest tests
         run: yarn test:jest
       - uses: actions/upload-artifact@v4

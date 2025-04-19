@@ -1,7 +1,7 @@
-import React from 'react'
+import type React from 'react'
 import Movies from '@/components/Movie/Movies'
-import MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
-import ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
+import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
+import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
 
 type ResponseMoviesGenres = {
   genres: MovieGenresInterface[]

@@ -1,7 +1,7 @@
-import ActivityInterface from "@/interfaces/activity/ActivityInterface"
-import { ShareDataInterface } from "@/interfaces/ShareDataInterface"
+import type ActivityInterface from "@/interfaces/activity/ActivityInterface"
+import type { ShareDataInterface } from "@/interfaces/ShareDataInterface"
 import { MailService } from "./MailService"
-import { FormRequestActivityInterface } from "@/interfaces/activity/FormRequestActivityInterface"
+import type { FormRequestActivityInterface } from "@/interfaces/activity/FormRequestActivityInterface"
 
 export default class ShareActivityService {
 
@@ -28,7 +28,7 @@ export default class ShareActivityService {
         console.error('Error to share:', err)
       }
     } else {
-      MailService.sendMail(shareData)
+      new MailService().sendMail(shareData)
       console.error('The api to share a link is not supported')
     }
   }

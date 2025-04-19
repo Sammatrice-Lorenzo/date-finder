@@ -9,7 +9,7 @@ export type GenresMoviesProps = {
 }
 
 const GenresMovies = ({ genres }: GenresMoviesProps) => {
-  const movieStore: MovieStoreInterface = MovieStoreService.useMovieStore()
+  const movieStore: MovieStoreInterface = new MovieStoreService().useMovieStore()
 
   const handleUpdateGenre = (genre: MovieGenresInterface): void => {
     movieStore.setSelectedGenre(movieStore.selectedGenre !== genre.id ? genre.id : 0)

@@ -3,7 +3,7 @@ import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { create } from 'zustand'
 
 export class MovieStoreService {
-  public static useMovieStore = create<MovieStoreInterface>((set, get) => ({
+  public useMovieStore = create<MovieStoreInterface>((set, get) => ({
     page: 1,
     setPage: (page) => set({ page }),
     selectedGenre: 0,

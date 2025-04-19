@@ -14,7 +14,7 @@ import SpinnerLoader from '../Loader/SpinnerLoader'
 
 
 const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
-  const useMovieStore: MovieStoreInterface = MovieStoreService.useMovieStore()
+  const useMovieStore: MovieStoreInterface = new MovieStoreService().useMovieStore()
 
   const {
     page,
