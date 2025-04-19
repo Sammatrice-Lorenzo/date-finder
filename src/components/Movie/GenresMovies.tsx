@@ -1,6 +1,6 @@
 import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
-import { MovieStoreService } from '@/services/Store/MovieStoreService'
+import useMovieStore from '@/services/Store/MovieStoreService'
 import { Chip, Stack } from '@mui/material'
 import { mutate } from 'swr'
 
@@ -9,7 +9,7 @@ export type GenresMoviesProps = {
 }
 
 const GenresMovies = ({ genres }: GenresMoviesProps) => {
-  const movieStore: MovieStoreInterface = new MovieStoreService().useMovieStore()
+  const movieStore: MovieStoreInterface = useMovieStore()
 
   const handleUpdateGenre = (genre: MovieGenresInterface): void => {
     movieStore.setSelectedGenre(movieStore.selectedGenre !== genre.id ? genre.id : 0)

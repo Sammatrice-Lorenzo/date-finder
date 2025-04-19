@@ -2,7 +2,6 @@ import { Grid2 } from '@mui/material'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import MovieCard from './MovieCard'
 import React, { type ReactElement, useCallback } from 'react'
-import { MovieStoreService } from '@/services/Store/MovieStoreService'
 import type { MoviesProps } from './Movies'
 import useApi from '@/hooks/useApi'
 import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
@@ -11,16 +10,17 @@ import type MovieInterface from '@/interfaces/movie/MovieInterface'
 import useFormattedMovies from '@/hooks/movie/useFormattedMovies'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import SpinnerLoader from '../Loader/SpinnerLoader'
+import useMovieStore from '@/services/Store/MovieStoreService'
 
 
 const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
-  const useMovieStore: MovieStoreInterface = new MovieStoreService().useMovieStore()
+  const movieStore: MovieStoreInterface = useMovieStore()
 
   const {
     page,
     setPage,
     queryParams,
-  } = useMovieStore
+  } = movieStore
 
   const { data } = useApi({
     url: `/api/movies?${queryParams().toString()}`,
@@ -47,7 +47,7 @@ const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps):
 
   return (
     <InfiniteScroll
-      dataLength={useMovieStore.movies.length}
+      dataLength={movieStore.movies.length}
       next={loadMore}
       hasMore={hasMore}
       loader={<SpinnerLoader />}
@@ -59,7 +59,7 @@ const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps):
         width: '100%',
       }}
     >
-      {useMovieStore.movies.map((movie: MovieInterface, index: number) => (
+      {movieStore.movies.map((movie: MovieInterface, index: number) => (
           <Grid2
             id={`grid-${movie.id}-${index}`}
             className='grid-movies'
