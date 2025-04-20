@@ -5,12 +5,10 @@ import { CountryEnum } from '@/enums/CountryEnum'
 import type MovieCountryInformationInterface from '@/interfaces/movie/MovieCountryInformationInterface'
 
 export default class MovieProviderService {
-
   private getProviderInCountry(
     movieProvidersResults: CountryInformationMap,
     countryValue: keyof typeof CountryEnum
-  ): MovieCountryInformationInterface | null
-  {
+  ): MovieCountryInformationInterface | null {
     let movieProvidersCountry: MovieCountryInformationInterface | null = null
 
     if (movieProvidersResults.hasOwnProperty(countryValue)) {
@@ -29,7 +27,10 @@ export default class MovieProviderService {
     let informationsProviders: InformationProviderInterface[] = []
 
     if (!movieProvidersResults) return []
-    const movieProvidersCountry: MovieCountryInformationInterface | null = this.getProviderInCountry(movieProvidersResults, countryValue)
+    const movieProvidersCountry: MovieCountryInformationInterface | null = this.getProviderInCountry(
+      movieProvidersResults,
+      countryValue
+    )
 
     if (!movieProvidersCountry) return []
 
@@ -42,7 +43,9 @@ export default class MovieProviderService {
     }
 
     return informationsProviders.length > 0
-      ? informationsProviders.map((informationProvider: InformationProviderInterface) => informationProvider.provider_name)
+      ? informationsProviders.map(
+          (informationProvider: InformationProviderInterface) => informationProvider.provider_name
+        )
       : []
   }
 }

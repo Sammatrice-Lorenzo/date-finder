@@ -1,9 +1,7 @@
 import type MovieQueryInterface from '@/interfaces/movie/MovieQueryInterface'
 
 export default class MovieUrlService {
-  
-  private getParameters(requestParameters: MovieQueryInterface, apiKey: string): URLSearchParams
-  {
+  private getParameters(requestParameters: MovieQueryInterface, apiKey: string): URLSearchParams {
     return new URLSearchParams({
       api_key: apiKey,
       language: requestParameters.language,
@@ -21,7 +19,7 @@ export default class MovieUrlService {
 
     const queryParams: URLSearchParams = this.getParameters(requestParameters, apiKey)
     let endpoint = ''
-    
+
     if (requestParameters.searchName !== '') {
       endpoint = `${baseUrl}search/movie?${queryParams}&query=${requestParameters.searchName}`
     } else if (requestParameters.genre !== 0) {
@@ -40,8 +38,8 @@ export default class MovieUrlService {
     }
 
     return new URLSearchParams({
-      'api_key': apiKey,
-      'language': language,
+      api_key: apiKey,
+      language: language,
     })
   }
 }

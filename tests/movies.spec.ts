@@ -1,5 +1,5 @@
-import type { Locator, Page } from '@playwright/test';
-import { test, expect } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test'
+import { test, expect } from '@playwright/test'
 
 test('Movies cards', async ({ page, baseURL }) => {
   await page.goto(`${baseURL}`)
@@ -7,12 +7,12 @@ test('Movies cards', async ({ page, baseURL }) => {
   const textMovies: Locator = page.getByText('Films')
   await textMovies.click()
   page.getByText('Soirée Cinéma (Films à voir chez soi)')
-  
+
   await page.waitForURL(`${baseURL}/movies`, { timeout: 30000 })
-  await expect(page).toHaveURL(`${baseURL}/movies`, {timeout: 30000})
+  await expect(page).toHaveURL(`${baseURL}/movies`, { timeout: 30000 })
 
   await assertMovies(page)
-  
+
   await page.getByRole('button', { name: 'Animation' }).click()
   await assertMovies(page)
 
@@ -20,15 +20,13 @@ test('Movies cards', async ({ page, baseURL }) => {
 
   await page.getByRole('button', { name: 'Animation' }).click()
 
-  // await page.getByPlaceholder('Rechercher un film').click()
   await page.getByPlaceholder('Rechercher un film').fill('fast &')
 
   await assertMovies(page)
   await expect(page.getByRole('img', { name: 'Fast & Furious X' })).toBeVisible()
 })
 
-async function assertMovies(page: Page): Promise<void>
-{
+async function assertMovies(page: Page): Promise<void> {
   await page.waitForSelector('.grid-movies', { timeout: 30000 })
 
   const movies: Locator = page.locator('.grid-movies')

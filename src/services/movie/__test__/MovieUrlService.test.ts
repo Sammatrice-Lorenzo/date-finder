@@ -1,5 +1,5 @@
-import type MovieQueryInterface from "@/interfaces/movie/MovieQueryInterface"
-import MovieUrlService from "../MovieUrlService"
+import type MovieQueryInterface from '@/interfaces/movie/MovieQueryInterface'
+import MovieUrlService from '../MovieUrlService'
 
 describe('MovieUrlService', () => {
   let service: MovieUrlService
@@ -12,7 +12,7 @@ describe('MovieUrlService', () => {
     genre: 0,
     language: 'fr-FR',
     page: 1,
-    searchName: ''
+    searchName: '',
   }
   const baseUrl: string = process.env.TMDB_API ?? ''
 
