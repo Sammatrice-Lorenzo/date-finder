@@ -21,7 +21,7 @@ const fetcher = async (apiRequest: ApiRequestInterface): Promise<unknown> => {
 }
 
 const useApi = (apiRequest: ApiRequestInterface)  => {
-  const { data, error, isLoading } = useSWR(apiRequest.url, () => fetcher(apiRequest))
+  const { data, error, isLoading } = useSWR(apiRequest.url, () => fetcher(apiRequest), apiRequest.optionsSWR)
   const { showAlert } = useAlert()
 
   if (error) {

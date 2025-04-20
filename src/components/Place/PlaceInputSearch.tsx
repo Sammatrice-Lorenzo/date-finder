@@ -1,7 +1,8 @@
 import * as React from 'react'
 import Paper from '@mui/material/Paper'
 import { Button, Grid2 } from '@mui/material'
-import PlaceSearch from './PlaceSearch'
+import InputSearch from '../InputSearch'
+import translate from '@/locales/fr/common.json'
 
 export type PlaceInputSearchProps = {
   typePlace: string,
@@ -9,21 +10,19 @@ export type PlaceInputSearchProps = {
   setTermSearch: (search: string) => void
 }
 
-const getValueInput = (element: React.MouseEvent<HTMLButtonElement>, inputSelector: string): string => {
-  const parentElement: HTMLElement | null | undefined = element.currentTarget.parentElement?.parentElement
-  const input: HTMLInputElement | null | undefined = parentElement?.querySelector<HTMLInputElement>(`#${inputSelector}`)
-
-  return input ? input?.value : ''
-}
-
 export default function PlaceInputSearch({ typePlace, setLocationSearch, setTermSearch }: Readonly<PlaceInputSearchProps>): React.ReactElement
 {
-  const handleSearchPlaces = (element: React.MouseEvent<HTMLButtonElement>): void => {
-    const valuePlace: string = getValueInput(element, 'input-place')
-    const valueLocation: string = getValueInput(element, 'input-location')
+  const refSearchLocation = React.useRef<HTMLInputElement>(null)
+  const refSearchTerm = React.useRef<HTMLInputElement>(null)
 
-    setTermSearch(valuePlace)
-    setLocationSearch(valueLocation)
+  const handleSearchPlaces = (): void => {
+    if (refSearchLocation.current) {
+      setLocationSearch(refSearchLocation.current.value)
+    }
+
+    if (refSearchTerm.current) {
+      setTermSearch(refSearchTerm.current.value)
+    }
   }
 
   return (
@@ -38,10 +37,11 @@ export default function PlaceInputSearch({ typePlace, setLocationSearch, setTerm
           marginBottom: '1.5%'
         }}
       >
-        <PlaceSearch 
+        <InputSearch 
           idInput='input-location'
-          placeholder='Ville'
+          placeholder={translate.PLACE.CITY}
           setSearch={setLocationSearch}
+          refSearch={refSearchLocation}
         />
       </Paper>
       <Paper
@@ -54,10 +54,11 @@ export default function PlaceInputSearch({ typePlace, setLocationSearch, setTerm
           marginBottom: '3%'
         }}
       >
-         <PlaceSearch
+         <InputSearch
           idInput='input-place'
           placeholder={typePlace}
           setSearch={setTermSearch}
+          refSearch={refSearchTerm}
         />
       </Paper>
       <Grid2 sx={{ alignItems: 'center', display: 'flex', marginBottom: '5%' }}>
@@ -66,7 +67,7 @@ export default function PlaceInputSearch({ typePlace, setLocationSearch, setTerm
           sx={{ borderColor: '#d33252', color: 'white', margin: '0 auto'}}
           onClick={handleSearchPlaces}
         >
-          Rechercher
+          {translate.PLACE.SEARCH}
         </Button>
       </Grid2>
     </>

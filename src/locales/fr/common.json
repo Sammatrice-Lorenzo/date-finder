@@ -34,7 +34,8 @@
     },
     "EMAIL": {
       "SUBJECT": "DateFinder notre prochaine activité",
-      "EVENT_DESCRIPTION": "Faire une activité ensemble"
+      "EVENT_DESCRIPTION": "Faire une activité ensemble",
+      "REQUEST_ACTIVITY": "Voici l'invitation :"
     },
     "MODAL": {
       "TITLE": "Planifier votre rendez-vous",
@@ -53,8 +54,25 @@
       "SEND": "Envoyer"
     }
   },
+  "MOVIE": {
+    "NOT_FOUND": "Aucun films a été trouvé. Veuillez modifier votre recherches.",
+    "RELEASE": "Sortie :",
+    "GENRES": "Genres :",
+    "HOME_MOVIES": "Soirée Cinéma (Films à voir chez soi)",
+    "INVALID_DATE": "Pas de date renseigné",
+    "SEARCH_MOVIE": "Rechercher un film",
+    "PROVIDERS": "Plateformes :"
+  },
   "PLACE": {
-    "NOT_FOUND": "Aucun element a été trouvé. Veuillez modifier votre recherches."
+    "PROXIMITY": "à proximité",
+    "PHONE": "Numéro de téléphone :",
+    "RATING": "Note :",
+    "PRICE": "Prix :",
+    "DISTANCE": "Distance :",
+    "NOT_FOUND": "Aucun element a été trouvé. Veuillez modifier votre recherches.",
+    "NOT_DEFINED": "Non spécifié",
+    "CITY": "Ville",
+    "SEARCH": "Rechercher"
   },
   "PWA": {
     "INSTALL": "Installer DateFinder",
