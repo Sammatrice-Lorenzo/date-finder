@@ -11,39 +11,30 @@ interface MovieContentCardProps {
 }
 
 export default function MovieContentCard({ movie }: Readonly<MovieContentCardProps>): React.ReactElement {
-
   const vote: string = movie.vote_average.toFixed(1)
-  const release: string = movie.release_date ? new Date(movie.release_date).toLocaleDateString() : translate.MOVIE.INVALID_DATE
+  const release: string = movie.release_date
+    ? new Date(movie.release_date).toLocaleDateString()
+    : translate.MOVIE.INVALID_DATE
 
   return (
     <CardContent sx={{ padding: 2 }}>
-      <Typography variant='h6' gutterBottom sx={{ fontWeight: 'bold' }}>
+      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
         {movie.name}
       </Typography>
 
-      <BoxContentCard
-        icon={<CalendarTodayIcon />}
-        text={`${translate.MOVIE.RELEASE} ${release}`}
-      />
+      <BoxContentCard icon={<CalendarTodayIcon />} text={`${translate.MOVIE.RELEASE} ${release}`} />
 
-      <BoxContentCard
-        icon={<StarIcon />}
-        text={`${translate.PLACE.RATING} ${vote}`}
-      />
+      <BoxContentCard icon={<StarIcon />} text={`${translate.PLACE.RATING} ${vote}`} />
 
       {movie.genres && movie.genres.length > 0 && (
-        <BoxContentCard
-         text={`${translate.MOVIE.GENRES} ${movie.genres.join(', ')}`}
-        />
+        <BoxContentCard text={`${translate.MOVIE.GENRES} ${movie.genres.join(', ')}`} />
       )}
 
       {movie.providers.length > 0 && (
-        <BoxContentCard
-         text={`${translate.MOVIE.PROVIDERS} ${movie.providers.join(', ')}`}
-        />
+        <BoxContentCard text={`${translate.MOVIE.PROVIDERS} ${movie.providers.join(', ')}`} />
       )}
 
-      <Typography variant='body2' color='text.secondary' sx={{ mt: 1 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
         {movie.overview.length > 150 ? `${movie.overview.substring(0, 150)}...` : movie.overview}
       </Typography>
     </CardContent>

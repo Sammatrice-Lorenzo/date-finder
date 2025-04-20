@@ -6,10 +6,10 @@ const SpinnerLoader = () => {
       sx={{
         position: 'fixed',
         left: '45%',
-        marginBottom: '5%'
+        marginBottom: '5%',
       }}
     >
-      <CircularProgress color='inherit' />
+      <CircularProgress color="inherit" />
     </Box>
   )
 }

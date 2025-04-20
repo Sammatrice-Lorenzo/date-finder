@@ -5,14 +5,20 @@ import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
 import React, { type ChangeEvent } from 'react'
 
 export type InputSearchProps = {
-  placeholder: string,
-  idInput: string,
+  placeholder: string
+  idInput: string
   refSearch: React.RefObject<HTMLInputElement>
-  setSearch?: (input: string) => void,
+  setSearch?: (input: string) => void
   onUpdateInput?: () => void
 }
 
-const InputSearch = ({ idInput, placeholder, refSearch, onUpdateInput, setSearch }: InputSearchProps ): React.ReactElement => {
+const InputSearch = ({
+  idInput,
+  placeholder,
+  refSearch,
+  onUpdateInput,
+  setSearch,
+}: InputSearchProps): React.ReactElement => {
   const [colorIcon, setColorIcon] = React.useState<'default' | 'primary' | 'secondary'>('default')
   const handleSearchIconUpdateColor = (element: React.ChangeEvent<HTMLInputElement>): void => {
     const isNotEmptyValue: boolean = element.target.value.trim() !== ''
@@ -42,11 +48,7 @@ const InputSearch = ({ idInput, placeholder, refSearch, onUpdateInput, setSearch
 
   return (
     <>
-      <IconButton
-        type='button'
-        aria-label='search'
-        sx={{ color: colorIcon === 'primary' ? '#d33252' : 'inherit' }}
-      >
+      <IconButton type="button" aria-label="search" sx={{ color: colorIcon === 'primary' ? '#d33252' : 'inherit' }}>
         <SearchIcon />
       </IconButton>
       <InputBase
@@ -62,8 +64,8 @@ const InputSearch = ({ idInput, placeholder, refSearch, onUpdateInput, setSearch
       />
       <IconButton
         onClick={clearInput}
-        type='button'
-        aria-label='search'
+        type="button"
+        aria-label="search"
         sx={{ color: colorIcon === 'primary' ? '#d33252' : 'inherit' }}
       >
         <BackspaceOutlinedIcon />

@@ -12,26 +12,22 @@ import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import SpinnerLoader from '../Loader/SpinnerLoader'
 import useMovieStore from '@/services/Store/MovieStoreService'
 
-
 const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
   const movieStore: MovieStoreInterface = useMovieStore()
 
-  const {
-    page,
-    setPage,
-    queryParams,
-  } = movieStore
+  const { page, setPage, queryParams } = movieStore
 
   const { data } = useApi({
     url: `/api/movies?${queryParams().toString()}`,
     method: 'GET',
-    optionsSWR: { keepPreviousData: true,
+    optionsSWR: {
+      keepPreviousData: true,
       fallbackData: {
         results: initialMovies.results,
         page: initialMovies.page,
-        total_pages: initialMovies.total_pages
+        total_pages: initialMovies.total_pages,
       },
-    }
+    },
   })
   const moviesData: ResponseMoviesInterface = data as ResponseMoviesInterface
   const moviesResponse: MovieAPIInterface[] = moviesData.results ?? []
@@ -60,15 +56,16 @@ const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps):
       }}
     >
       {movieStore.movies.map((movie: MovieInterface, index: number) => (
-          <Grid2
-            id={`grid-${movie.id}-${index}`}
-            className='grid-movies'
-            spacing={1} sx={{ marginBottom: 3 }}
-            size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
-            key={`grid-${movie.id}-${index}`}
-          >
-            <MovieCard movie={movie} key={`movie-card-${movie.id}`} />
-          </Grid2>
+        <Grid2
+          id={`grid-${movie.id}-${index}`}
+          className="grid-movies"
+          spacing={1}
+          sx={{ marginBottom: 3 }}
+          size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
+          key={`grid-${movie.id}-${index}`}
+        >
+          <MovieCard movie={movie} key={`movie-card-${movie.id}`} />
+        </Grid2>
       ))}
     </InfiniteScroll>
   )

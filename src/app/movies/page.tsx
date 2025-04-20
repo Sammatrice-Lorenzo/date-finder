@@ -7,10 +7,10 @@ type ResponseMoviesGenres = {
   genres: MovieGenresInterface[]
 }
 
-const getGendersMovies =  async (apiTmdb: string, searchParameter: URLSearchParams): Promise<MovieGenresInterface[]> => {
+const getGendersMovies = async (apiTmdb: string, searchParameter: URLSearchParams): Promise<MovieGenresInterface[]> => {
   const res = await fetch(`${apiTmdb}genre/movie/list?${searchParameter.toString()}`)
   const data: ResponseMoviesGenres = await res.json()
-  
+
   return data.genres
 }
 
@@ -30,14 +30,12 @@ export default async function MoviesPage(): Promise<React.ReactElement> {
 
   const language: string = 'fr-FR'
   const searchParameter: URLSearchParams = new URLSearchParams({
-    'api_key': apiKey,
-    'language': language,
+    api_key: apiKey,
+    language: language,
   })
 
   const genres: MovieGenresInterface[] = await getGendersMovies(apiTmdb, searchParameter)
   const moviesResponse: ResponseMoviesInterface = await getMovies(apiTmdb, searchParameter)
 
-  return (
-    <Movies initialMovies={moviesResponse} genres={genres} language={language} />
-  )
+  return <Movies initialMovies={moviesResponse} genres={genres} language={language} />
 }

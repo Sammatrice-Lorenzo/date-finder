@@ -7,7 +7,7 @@ inputs:
     required: true
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Replace vars in .env and .env.test
       shell: bash

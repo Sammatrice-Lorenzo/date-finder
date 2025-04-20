@@ -6,8 +6,7 @@ import { mutate } from 'swr'
 import translate from '@/locales/fr/common.json'
 import useMovieStore from '@/services/Store/MovieStoreService'
 
-export default function MovieInputSearch(): React.ReactElement
-{
+export default function MovieInputSearch(): React.ReactElement {
   const refSearchMovie = React.useRef<HTMLInputElement>(null)
   const movieStore: MovieStoreInterface = useMovieStore()
 
@@ -21,17 +20,17 @@ export default function MovieInputSearch(): React.ReactElement
   return (
     <>
       <Paper
-        component='form'
+        component="form"
         sx={{
           display: 'flex',
           alignItems: 'center',
           width: { xs: '85%', md: '40%' },
           margin: '0 auto',
-          marginBottom: '1.5%'
+          marginBottom: '1.5%',
         }}
       >
-        <InputSearch 
-          idInput='input-movie'
+        <InputSearch
+          idInput="input-movie"
           placeholder={translate.MOVIE.SEARCH_MOVIE}
           refSearch={refSearchMovie}
           onUpdateInput={handleUpdateSearch}

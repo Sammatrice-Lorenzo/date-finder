@@ -5,7 +5,7 @@ import { Chip, Stack } from '@mui/material'
 import { mutate } from 'swr'
 
 export type GenresMoviesProps = {
-  genres: MovieGenresInterface[],
+  genres: MovieGenresInterface[]
 }
 
 const GenresMovies = ({ genres }: GenresMoviesProps) => {
@@ -20,11 +20,11 @@ const GenresMovies = ({ genres }: GenresMoviesProps) => {
 
   return (
     <Stack
-      direction='row'
+      direction="row"
       spacing={1}
       useFlexGap
-      flexWrap='wrap'
-      justifyContent='center'
+      flexWrap="wrap"
+      justifyContent="center"
       sx={{
         maxWidth: '800px',
         margin: '0 auto',
@@ -36,7 +36,7 @@ const GenresMovies = ({ genres }: GenresMoviesProps) => {
         <Chip
           key={genre.id}
           label={genre.name}
-          variant='outlined'
+          variant="outlined"
           clickable
           onClick={() => handleUpdateGenre(genre)}
           color={movieStore.selectedGenre === genre.id ? 'primary' : 'default'}

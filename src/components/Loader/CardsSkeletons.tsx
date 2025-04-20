@@ -1,5 +1,5 @@
-import type { ReactElement } from "react"
-import CardSkeleton from "./CardSkeleton"
+import type { ReactElement } from 'react'
+import CardSkeleton from './CardSkeleton'
 
 const getNumberInArray = (number: number): number[] => {
   const numbers: number[] = []
