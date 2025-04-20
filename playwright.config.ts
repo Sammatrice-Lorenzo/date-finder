@@ -1,15 +1,15 @@
-import { defineConfig, devices } from "@playwright/test";
+import { defineConfig, devices } from '@playwright/test'
 
-import dotenv from "dotenv";
+import dotenv from 'dotenv'
 
-dotenv.config({ path: "./.env.test.local", override: true });
-dotenv.config({ path: "./.env.test", override: false });
+dotenv.config({ path: './.env.test.local', override: true })
+dotenv.config({ path: './.env.test', override: false })
 
 // Use process.env.PORT by default and fallback to port 3000
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL: string = `http://localhost:${PORT}`;
+const baseURL: string = `http://localhost:${PORT}`
 
 // Reference: https://playwright.dev/docs/test-configuration
 export default defineConfig({
@@ -20,19 +20,19 @@ export default defineConfig({
   // If a test fails, retry it an additional 2 times
   retries: 2,
   // Artifacts folder where screenshots, videos, and traces are stored.
-  outputDir: "tests/.test-results/zip",
+  outputDir: 'tests/.test-results/zip',
   // globalSetup: require.resolve("./tests/global-setup"),
 
   // Run your local dev server before starting the tests:
   // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
   webServer: {
-    command: "yarn test-server",
+    command: 'yarn test-server',
     url: baseURL,
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
   },
 
-  reporter: [["html", { outputFolder: "tests/.test-results/html", open: "never" }]],
+  reporter: [['html', { outputFolder: 'tests/.test-results/html', open: 'never' }]],
 
   use: {
     // Use baseURL so to make navigations relative.
@@ -42,7 +42,7 @@ export default defineConfig({
     // Retry a test if it's failing with enabled tracing.
     // This allows you to analyze the DOM, console logs, network traffic, etc.
     // More information: https://playwright.dev/docs/trace-viewer
-    trace: "retry-with-trace",
+    trace: 'retry-with-trace',
 
     // All available context options : https://playwright.dev/docs/api/class-browser#browser-new-context
     // contextOptions: {

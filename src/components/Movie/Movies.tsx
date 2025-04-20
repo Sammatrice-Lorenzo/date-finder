@@ -11,30 +11,20 @@ import InfiniteScrollMovies from './InfiniteScrollMovies'
 import MovieInputSearch from './MovieInputSearch'
 
 export type MoviesProps = {
-  initialMovies: ResponseMoviesInterface,
-  genres: MovieGenresInterface[],
-  language: string,
+  initialMovies: ResponseMoviesInterface
+  genres: MovieGenresInterface[]
+  language: string
 }
-export default function Movies({ initialMovies, genres, language }: MoviesProps): React.ReactElement
-{
+export default function Movies({ initialMovies, genres, language }: MoviesProps): React.ReactElement {
   return (
     <Box sx={{ padding: 4 }}>
       <HeaderPlace title={`${translate.MOVIE.HOME_MOVIES}`} />
 
       <MovieInputSearch />
-      <GenresMovies
-        genres={genres}
-      />
+      <GenresMovies genres={genres} />
 
-      <Grid2
-        container
-        spacing={4}
-      >
-        <InfiniteScrollMovies
-          genres={genres}
-          initialMovies={initialMovies}
-          language={language}
-        />
+      <Grid2 container spacing={4}>
+        <InfiniteScrollMovies genres={genres} initialMovies={initialMovies} language={language} />
       </Grid2>
     </Box>
   )
