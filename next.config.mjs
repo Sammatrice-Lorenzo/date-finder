@@ -5,7 +5,6 @@ const env = process.env.NODE_ENV
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   compiler: {
     removeConsole: env === 'production',
   },

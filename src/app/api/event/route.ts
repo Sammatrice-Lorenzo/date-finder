@@ -1,9 +1,9 @@
-import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
+import type ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
 import EventCalendarService from '@/services/EventCalendarService'
 import MailEventService from '@/services/MailEventService'
 import sgMail from '@sendgrid/mail'
-import { MailData, MailDataRequired } from "@sendgrid/helpers/classes/mail"
-import { NextApiResponse } from 'next'
+import type { MailData, MailDataRequired } from '@sendgrid/helpers/classes/mail'
+import type { NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 import DateFormatter from '@/formatters/DateFormatter'
 import fr from '@/locales/fr/common.json'
@@ -18,14 +18,14 @@ export async function POST(req: Request, res: NextApiResponse) {
   try {
     const apiKey: string | undefined = process.env.API_KEY_SEND_GRID
     if (!apiKey) {
-      return res.status(500).json({error: 'API KEY not found'})
+      return res.status(500).json({ error: 'API KEY not found' })
     }
     sgMail.setApiKey(apiKey)
 
     const emailTarget: MailData = MailEventService.createEmailInvitation(body, body.targetEmail, icsContent)
     const emailAuthor: MailData = MailEventService.createEmailInvitation(body, body.activity.authorEmail, icsContent)
 
-    let codeResponse: number = 202
+    let codeResponse = 202
     for (const email of [emailAuthor, emailTarget]) {
       const responseEmail = await sgMail.send(email as MailDataRequired)
       codeResponse = responseEmail[0].statusCode

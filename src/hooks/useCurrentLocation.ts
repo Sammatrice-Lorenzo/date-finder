@@ -1,4 +1,4 @@
-import LocationStoreInterface from '@/interfaces/LocationStoreInterface'
+import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
 import LocationStoreService from '@/services/Store/LocationStoreService'
 import { useEffect } from 'react'
 
@@ -13,7 +13,7 @@ export const useCurrentLocation = (): void => {
             const { longitude, latitude } = position.coords
             setLocation({ longitude, latitude })
           },
-          (err) => console.log(err),
+          err => console.log(err),
           {
             enableHighAccuracy: true,
             timeout: 1000,

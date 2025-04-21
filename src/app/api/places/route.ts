@@ -1,24 +1,23 @@
 import { NextResponse } from 'next/server'
 import fr from '../../../locales/fr/common.json'
-import { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterface'
+import type { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterface'
 import data from '../../../data/restaurant-test-data.json'
-import { PlaceQueryInterface } from '@/interfaces/PlaceQueryInterface'
-import PlaceAPIInterface from '@/interfaces/place/PlaceAPIInterface'
-import { Location } from '@/interfaces/Location'
+import type { PlaceQueryInterface } from '@/interfaces/PlaceQueryInterface'
+import type PlaceAPIInterface from '@/interfaces/place/PlaceAPIInterface'
+import type { Location } from '@/interfaces/Location'
 import PlaceUrlService from '@/services/place/PlaceUrlService'
-import PlaceInterface from '@/interfaces/place/PlaceInterface'
+import type PlaceInterface from '@/interfaces/place/PlaceInterface'
 import PlaceAPIService from '@/services/place/PlaceAPIService'
-import CachePlaceInterface from '@/interfaces/CacheInterface'
+import type CachePlaceInterface from '@/interfaces/CacheInterface'
 import PlaceCacheService from '@/services/place/PlaceCacheService'
 
 const cacheResponse: CachePlaceInterface = {}
 
-function handleResponsePlacesForEnvTest(): NextResponse<PlaceResponseInterface>
-{
+function handleResponsePlacesForEnvTest(): NextResponse<PlaceResponseInterface> {
   const result: PlaceInterface | undefined = data[0]
   const response: PlaceResponseInterface = {
     response: result ? [result] : [],
-    message: ''
+    message: '',
   }
   return NextResponse.json(response)
 }
@@ -34,11 +33,13 @@ async function fetchPlaces(apiKey: string, requestParameters: PlaceQueryInterfac
   })
 }
 
-async function handleRequestParameters(request: Request): Promise<{ userLocation: Location, requestParameters: PlaceQueryInterface }> {
+async function handleRequestParameters(
+  request: Request
+): Promise<{ userLocation: Location; requestParameters: PlaceQueryInterface }> {
   const requestParameters: PlaceQueryInterface = await request.json()
   const userLocation: Location = {
     longitude: Number(requestParameters.longitude),
-    latitude: Number(requestParameters.latitude)
+    latitude: Number(requestParameters.latitude),
   }
   return { userLocation, requestParameters }
 }
@@ -67,14 +68,13 @@ async function handleApiResponse(
   return NextResponse.json(nextResponse, { status: status })
 }
 
-export async function POST(request: Request): Promise<NextResponse<PlaceResponseInterface>>
-{
+export async function POST(request: Request): Promise<NextResponse<PlaceResponseInterface>> {
   if (process.env.TEST_ENV === 'true') {
     return handleResponsePlacesForEnvTest()
   }
   const nextResponse: PlaceResponseInterface = {
     response: [],
-    message: fr.ERROR.SERVER_ERROR
+    message: fr.ERROR.SERVER_ERROR,
   }
 
   const apiKey: string | undefined = process.env.GOOGLE_PLACES_API_KEY
@@ -88,7 +88,7 @@ export async function POST(request: Request): Promise<NextResponse<PlaceResponse
   if (PlaceCacheService.checkCache(cacheResponse, cacheKey)) {
     nextResponse.response = cacheResponse[cacheKey].data
 
-    return NextResponse.json({response: cacheResponse[cacheKey].data, message: ''}, {status: 200})
+    return NextResponse.json({ response: cacheResponse[cacheKey].data, message: '' }, { status: 200 })
   }
 
   const response: Response = await fetchPlaces(apiKey, requestParameters)
