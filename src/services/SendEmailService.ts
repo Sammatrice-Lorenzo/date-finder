@@ -1,5 +1,5 @@
 import { AlertEnum } from "@/enums/AlertEnum"
-import { ActivityQueryProps } from "@/types/ActivityQueryProps"
+import type { ActivityQueryProps } from "@/types/ActivityQueryProps"
 import { v1 as uuidv1 } from 'uuid'
 
 export default class SendEmailService {
@@ -19,7 +19,6 @@ export default class SendEmailService {
     showAlert(data.message, alert)
   }
 
-  
   public async handleSendInviteRefused(activityQuery: ActivityQueryProps, showAlert: CallableFunction): Promise<void> {
     const response: Response = await fetch('/api/invite-refused', {
       method: 'POST',

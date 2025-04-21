@@ -1,14 +1,10 @@
-import React from 'react'
+import type React from 'react'
 import Places from '@/components/Place/Places'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
+import translate from '@/locales/fr/common.json'
 
 const Parks: NextPage = (): React.ReactElement => {
-  return (
-    <Places 
-      typePlace={'Parcs et attractions naturelles'}
-      category='aquarium|zoo|park|amusement park'
-    />
-  )
+  return <Places typePlace={translate.ACTIVITY.TYPES.PARKS_ACTRACTIONS} category="aquarium|zoo|park|amusement park" />
 }
 
 export default Parks

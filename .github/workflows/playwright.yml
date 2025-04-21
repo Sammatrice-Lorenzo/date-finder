@@ -15,6 +15,10 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: yarn
+    - uses: ./.github/actions/set-env-vars
+      with:
+        TMDB_API: ${{ secrets.TMDB_API }}
+        TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
     - name: Check build before deploy in production

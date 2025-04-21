@@ -2,70 +2,48 @@
 
 import fr from '../../locales/fr/common.json'
 import { Box, Grid2, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import type React from 'react'
 import PlaceCard from '@/components/Place/PlaceCard'
-import { Location } from '@/interfaces/Location'
+import type { Location } from '@/interfaces/Location'
 import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
-import PlaceSkeleton from '@/components/Place/Loader/PlaceSkeleton'
 import HeaderPlace from './HeaderPlace'
-import PlaceInterface from '@/interfaces/place/PlaceInterface'
-import useApi from '@/hooks/useApi'
-import { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterface'
+import type PlaceInterface from '@/interfaces/place/PlaceInterface'
 import LocationStoreService from '@/services/Store/LocationStoreService'
-import LocationStoreInterface from '@/interfaces/LocationStoreInterface'
+import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
+import translate from '@/locales/fr/common.json'
+import { CardsSkeletons } from '../Loader/CardsSkeletons'
+import usePlace from '@/hooks/place/usePlace'
 
 export type PlacesProps = {
-  typePlace: string,
+  typePlace: string
   category: string
 }
 
-export default function Places({ typePlace, category }: Readonly<PlacesProps>): React.ReactElement
-{
-  const [searchLocation, setSearchLocation] = useState<string>('')
-  const [searchTerm, setSearchTerm] = useState<string>('')
+export default function Places({ typePlace, category }: Readonly<PlacesProps>): React.ReactElement {
   const userLocation: Location | null = LocationStoreService.useStore((store: LocationStoreInterface) => store.location)
 
-  const body: string = JSON.stringify({
-    location: searchLocation,
-    term: searchTerm,
-    longitude: userLocation?.longitude,
-    latitude: userLocation?.latitude,
-    category: category
-  })
-
-  const { data, isLoading } = useApi({
-    url: '/api/places/',
-    method: 'POST',
-    body
-  })
-
-  const response: PlaceInterface[] = (data as PlaceResponseInterface)?.response ?? [];
+  const { response, isLoading, trigger } = usePlace(userLocation, '', '', category)
 
   return (
     <Box sx={{ padding: 4 }}>
-      <HeaderPlace typePlace={typePlace} />
-      <PlaceInputSearch
-        typePlace={typePlace}
-        setLocationSearch={setSearchLocation}
-        setTermSearch={setSearchTerm}
-      />
-      <Grid2
-        container
-        spacing={4}
-      >
-        {isLoading ? 
-          <><PlaceSkeleton /><PlaceSkeleton /><PlaceSkeleton /></>
-          : null}
-        {response.length > 0 ? response.map((place: PlaceInterface) => (
-          <PlaceCard key={place.id} place={place} />
-        )) : <Grid2 sx={{
-                alignItems: 'center', 
-                display: 'flex', 
-                justifyContent: 'center', 
-                textAlign: 'center' }}
-              >
-              <Typography>{fr.PLACE.NOT_FOUND}</Typography>
-            </Grid2>}
+      <HeaderPlace title={`${typePlace} ${translate.PLACE.PROXIMITY}`} />
+      <PlaceInputSearch typePlace={typePlace} category={category} onTriggerSearch={trigger} />
+      <Grid2 container spacing={4}>
+        {isLoading ? <CardsSkeletons /> : null}
+        {response.length > 0 ? (
+          response.map((place: PlaceInterface) => <PlaceCard key={place.id} place={place} />)
+        ) : (
+          <Grid2
+            sx={{
+              alignItems: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
+          >
+            <Typography>{fr.PLACE.NOT_FOUND}</Typography>
+          </Grid2>
+        )}
       </Grid2>
     </Box>
   )

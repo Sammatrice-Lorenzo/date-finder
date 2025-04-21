@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 export type HeaderPlacePros = {
-  typePlace: string
+  title: string
 }
 
-const HeaderPlace = ({ typePlace }: HeaderPlacePros) => {
+const HeaderPlace = ({ title }: HeaderPlacePros) => {
   const router: AppRouterInstance = useRouter()
 
   return (
@@ -39,7 +39,7 @@ const HeaderPlace = ({ typePlace }: HeaderPlacePros) => {
           fontWeight: 600,
         }}
       >
-        {typePlace} à proximité
+        {title}
       </Typography>
 
       <Box sx={{ width: '48px' }} />

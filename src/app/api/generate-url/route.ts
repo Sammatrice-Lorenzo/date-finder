@@ -1,18 +1,20 @@
 import { NextResponse } from 'next/server'
 import fr from '../../../locales/fr/common.json'
 import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
-import ActivityInterface from '@/interfaces/activity/ActivityInterface'
-import { ShareDataInterface } from '@/interfaces/ShareDataInterface'
+import type ActivityInterface from '@/interfaces/activity/ActivityInterface'
+import type { ShareDataInterface } from '@/interfaces/ShareDataInterface'
 
 interface UrlActivityParameters {
-  activity: ActivityInterface,
-  form: Record<string, string>,
+  activity: ActivityInterface
+  form: Record<string, string>
   baseUrl: string
 }
 
-export async function POST(req: Request): Promise<NextResponse<{
-  response: ShareDataInterface
-}>> {
+export async function POST(req: Request): Promise<
+  NextResponse<{
+    response: ShareDataInterface
+  }>
+> {
   const body: UrlActivityParameters = await req.json()
   const urlToken: string = UrlActivityGeneratorService.generateParametersActivityForShare(body.activity, body.form)
 

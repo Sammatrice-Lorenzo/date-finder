@@ -1,72 +1,72 @@
 import * as React from 'react'
 import Paper from '@mui/material/Paper'
 import { Button, Grid2 } from '@mui/material'
-import PlaceSearch from './PlaceSearch'
+import InputSearch from '../InputSearch'
+import translate from '@/locales/fr/common.json'
+import PlaceParametersService from '@/services/place/PlaceParametersService'
+import type ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
+import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
+import LocationStoreService from '@/services/Store/LocationStoreService'
+import type { Location } from '@/interfaces/Location'
 
 export type PlaceInputSearchProps = {
-  typePlace: string,
-  setLocationSearch: (search: string) => void
-  setTermSearch: (search: string) => void
+  typePlace: string
+  category: string
+  onTriggerSearch: (optins: ApiRequestInterface) => void
 }
 
-const getValueInput = (element: React.MouseEvent<HTMLButtonElement>, inputSelector: string): string => {
-  const parentElement: HTMLElement | null | undefined = element.currentTarget.parentElement?.parentElement
-  const input: HTMLInputElement | null | undefined = parentElement?.querySelector<HTMLInputElement>(`#${inputSelector}`)
+export default function PlaceInputSearch({
+  typePlace,
+  onTriggerSearch,
+  category,
+}: Readonly<PlaceInputSearchProps>): React.ReactElement {
+  const refSearchLocation = React.useRef<HTMLInputElement>(null)
+  const refSearchTerm = React.useRef<HTMLInputElement>(null)
+  const userLocation: Location | null = LocationStoreService.useStore((store: LocationStoreInterface) => store.location)
 
-  return input ? input?.value : ''
-}
-
-export default function PlaceInputSearch({ typePlace, setLocationSearch, setTermSearch }: Readonly<PlaceInputSearchProps>): React.ReactElement
-{
-  const handleSearchPlaces = (element: React.MouseEvent<HTMLButtonElement>): void => {
-    const valuePlace: string = getValueInput(element, 'input-place')
-    const valueLocation: string = getValueInput(element, 'input-location')
-
-    setTermSearch(valuePlace)
-    setLocationSearch(valueLocation)
+  const handleSearchPlaces = (): void => {
+    const options = new PlaceParametersService().buildPlaceOptions(
+      userLocation,
+      refSearchLocation?.current ? refSearchLocation.current.value : '',
+      refSearchTerm?.current ? refSearchTerm.current.value : '',
+      category
+    )
+    onTriggerSearch(options)
   }
 
   return (
     <>
       <Paper
-        component='form'
+        component="form"
         sx={{
           display: 'flex',
           alignItems: 'center',
           width: { xs: '85%', md: '40%' },
           margin: '0 auto',
-          marginBottom: '1.5%'
+          marginBottom: '1.5%',
         }}
       >
-        <PlaceSearch 
-          idInput='input-location'
-          placeholder='Ville'
-          setSearch={setLocationSearch}
-        />
+        <InputSearch idInput="input-location" placeholder={translate.PLACE.CITY} refSearch={refSearchLocation} />
       </Paper>
       <Paper
-        component='form'
+        component="form"
         sx={{
           display: 'flex',
           alignItems: 'center',
           width: { xs: '85%', md: '40%' },
           margin: '0 auto',
-          marginBottom: '3%'
+          marginBottom: '3%',
         }}
       >
-         <PlaceSearch
-          idInput='input-place'
-          placeholder={typePlace}
-          setSearch={setTermSearch}
-        />
+        <InputSearch idInput="input-place" placeholder={typePlace} refSearch={refSearchTerm} />
       </Paper>
       <Grid2 sx={{ alignItems: 'center', display: 'flex', marginBottom: '5%' }}>
         <Button
-          variant='outlined'
-          sx={{ borderColor: '#d33252', color: 'white', margin: '0 auto'}}
+          variant="outlined"
+          sx={{ borderColor: '#d33252', color: 'white', margin: '0 auto' }}
           onClick={handleSearchPlaces}
         >
-          Rechercher
+          {translate.PLACE.SEARCH}
         </Button>
       </Grid2>
     </>

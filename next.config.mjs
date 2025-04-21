@@ -1,14 +1,13 @@
 import withPWA from 'next-pwa'
 
-const env = process.env.NODE_ENV 
+const env = process.env.NODE_ENV
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   compiler: {
-    removeConsole: env === 'production'
-  }
+    removeConsole: env === 'production',
+  },
 }
 
 export default withPWA({

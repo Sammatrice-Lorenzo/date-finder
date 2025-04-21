@@ -1,5 +1,6 @@
 import DateFormatter from '@/formatters/DateFormatter'
-import { test, expect, Page, Locator } from '@playwright/test'
+import type { Page, Locator } from '@playwright/test'
+import { test, expect } from '@playwright/test'
 
 test('App Home', async ({ page, baseURL }) => {
   await page.goto(`${baseURL}`)

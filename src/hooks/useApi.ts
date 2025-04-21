@@ -1,7 +1,6 @@
-import ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
+import type ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
 import fr from '../locales/fr/common.json'
 import useSWR from 'swr'
-import Error from 'next/error'
 import { useAlert } from './useAlert'
 import { AlertEnum } from '@/enums/AlertEnum'
 
@@ -14,25 +13,25 @@ const fetcher = async (apiRequest: ApiRequestInterface): Promise<unknown> => {
   const data = await response.json()
   if (!response.ok) {
     const errorMessage: string = data.message !== '' ? data.message : fr.ERROR.SERVER_ERROR
-    throw new Error({ message: errorMessage, statusCode: response.status})
+    throw new Error(errorMessage)
   }
 
   return data
 }
 
-const useApi = (apiRequest: ApiRequestInterface)  => {
-  const { data, error, isLoading } = useSWR(apiRequest.url, () => fetcher(apiRequest))
+const useApi = (apiRequest: ApiRequestInterface) => {
+  const { data, error, isLoading } = useSWR(apiRequest.url, () => fetcher(apiRequest), apiRequest.optionsSWR)
   const { showAlert } = useAlert()
 
   if (error) {
-    const errorMessage: string = error.props?.title ?? fr.ERROR.SERVER_ERROR;
-    showAlert(errorMessage, AlertEnum.Error);
+    const errorMessage: string = error.props?.title ?? fr.ERROR.SERVER_ERROR
+    showAlert(errorMessage, AlertEnum.Error)
   }
 
   return {
-    data, 
+    data,
     error,
-    isLoading
+    isLoading,
   }
 }
 

@@ -34,7 +34,8 @@
     },
     "EMAIL": {
       "SUBJECT": "DateFinder notre prochaine activité",
-      "EVENT_DESCRIPTION": "Faire une activité ensemble"
+      "EVENT_DESCRIPTION": "Faire une activité ensemble",
+      "REQUEST_ACTIVITY": "Voici l'invitation :"
     },
     "MODAL": {
       "TITLE": "Planifier votre rendez-vous",
@@ -42,7 +43,7 @@
     },
     "MODAL_EMAIL_TARGET": {
       "TITLE": "Accepter l'invitation",
-      "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez a vérifier vos spams." 
+      "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez a vérifier vos spams."
     },
     "FORM": {
       "DATE": "Date",
@@ -51,10 +52,37 @@
       "NAME_TARGET": "Nom de la personne invitée",
       "SHARE": "Partager",
       "SEND": "Envoyer"
+    },
+    "TYPES": {
+      "BARS": "Bars",
+      "CINEMA": "Cinémas",
+      "GAMES": "Jeux d'arcades",
+      "MUSEUM": "Musées",
+      "PARKS": "Parcs",
+      "PARKS_ACTRACTIONS": "Parcs et attractions naturelles",
+      "RELAX_SPA": "Bien être / Spa",
+      "RESTAURANTS": "Restaurants"
     }
   },
+  "MOVIE": {
+    "NOT_FOUND": "Aucun films a été trouvé. Veuillez modifier votre recherches.",
+    "RELEASE": "Sortie :",
+    "GENRES": "Genres :",
+    "HOME_MOVIES": "Soirée Cinéma (Films à voir chez soi)",
+    "INVALID_DATE": "Pas de date renseigné",
+    "SEARCH_MOVIE": "Rechercher un film",
+    "PROVIDERS": "Plateformes :"
+  },
   "PLACE": {
-    "NOT_FOUND": "Aucun element a été trouvé. Veuillez modifier votre recherches."
+    "PROXIMITY": "à proximité",
+    "PHONE": "Numéro de téléphone :",
+    "RATING": "Note :",
+    "PRICE": "Prix :",
+    "DISTANCE": "Distance :",
+    "NOT_FOUND": "Aucun element a été trouvé. Veuillez modifier votre recherches.",
+    "NOT_DEFINED": "Non spécifié",
+    "CITY": "Ville",
+    "SEARCH": "Rechercher"
   },
   "PWA": {
     "INSTALL": "Installer DateFinder",
