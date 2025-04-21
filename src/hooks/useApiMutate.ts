@@ -1,16 +1,17 @@
 import type ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
-import fr from '../locales/fr/common.json'
-import useSWR from 'swr'
+import useSWRMutation from 'swr/mutation'
 import { useAlert } from './useAlert'
 import { AlertEnum } from '@/enums/AlertEnum'
+import fr from '../locales/fr/common.json'
 
-const fetcher = async (apiRequest: ApiRequestInterface): Promise<unknown> => {
-  const response: Response = await fetch(apiRequest.url, {
-    method: apiRequest.method,
-    headers: apiRequest.headers,
-    body: apiRequest.body,
+const fetcher = async (url: string, { arg }: { arg: ApiRequestInterface }): Promise<unknown> => {
+  const response = await fetch(url, {
+    method: arg.method,
+    headers: arg.headers,
+    body: arg.body,
   })
   const data = await response.json()
+
   if (!response.ok) {
     const errorMessage: string = data.message !== '' ? data.message : fr.ERROR.SERVER_ERROR
     throw new Error(errorMessage)
@@ -19,8 +20,8 @@ const fetcher = async (apiRequest: ApiRequestInterface): Promise<unknown> => {
   return data
 }
 
-const useApi = (apiRequest: ApiRequestInterface) => {
-  const { data, error, isLoading } = useSWR(apiRequest.url, () => fetcher(apiRequest), apiRequest.optionsSWR)
+const useApiMutate = (apiRequest: ApiRequestInterface) => {
+  const { trigger, data, error, isMutating: isLoading } = useSWRMutation(apiRequest.url, fetcher)
   const { showAlert } = useAlert()
 
   if (error) {
@@ -28,11 +29,7 @@ const useApi = (apiRequest: ApiRequestInterface) => {
     showAlert(errorMessage, AlertEnum.Error)
   }
 
-  return {
-    data,
-    error,
-    isLoading,
-  }
+  return { trigger, data, error, isLoading }
 }
 
-export default useApi
+export default useApiMutate

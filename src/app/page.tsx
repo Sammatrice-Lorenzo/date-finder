@@ -6,17 +6,16 @@ import Header from '@/components/Header'
 import BoxActivity from '@/components/BoxActivity'
 import InstallPrompt from '@/components/InstallPrompt'
 import styles from '@/styles/home.module.css'
-import ACTIVITIES_DATA, { HomeActivitiesData } from '@/data/activitiesData'
+import ACTIVITIES_DATA, { type HomeActivitiesData } from '@/data/activitiesData'
 import { useCurrentLocation } from '@/hooks/useCurrentLocation'
 
 const Home: NextPage = () => {
-
   useCurrentLocation()
 
   return (
     <>
       <InstallPrompt />
-      <Box className={styles.boxHome} >
+      <Box className={styles.boxHome}>
         <Header />
 
         <Grid2 container spacing={3} className={styles.containerGridHome}>
@@ -30,7 +29,7 @@ const Home: NextPage = () => {
                   color={activity.color}
                   route={activity.route}
                 />
-            </Grid2>
+              </Grid2>
             )
           })}
         </Grid2>

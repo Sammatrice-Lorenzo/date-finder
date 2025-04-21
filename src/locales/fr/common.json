@@ -43,7 +43,7 @@
     },
     "MODAL_EMAIL_TARGET": {
       "TITLE": "Accepter l'invitation",
-      "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez a vérifier vos spams." 
+      "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez a vérifier vos spams."
     },
     "FORM": {
       "DATE": "Date",
@@ -52,6 +52,16 @@
       "NAME_TARGET": "Nom de la personne invitée",
       "SHARE": "Partager",
       "SEND": "Envoyer"
+    },
+    "TYPES": {
+      "BARS": "Bars",
+      "CINEMA": "Cinémas",
+      "GAMES": "Jeux d'arcades",
+      "MUSEUM": "Musées",
+      "PARKS": "Parcs",
+      "PARKS_ACTRACTIONS": "Parcs et attractions naturelles",
+      "RELAX_SPA": "Bien être / Spa",
+      "RESTAURANTS": "Restaurants"
     }
   },
   "MOVIE": {
