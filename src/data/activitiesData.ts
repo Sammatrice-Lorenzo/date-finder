@@ -23,7 +23,7 @@ const ACTIVITIES_DATA: HomeActivitiesData[] = [
   { key: 'museum', icon: 'museum', title: translate.ACTIVITY.TYPES.MUSEUM, color: '#9b7858', route: '/museums' },
   { key: 'parks', icon: 'parks', title: translate.ACTIVITY.TYPES.PARKS, color: '#02cc93', route: '/parks' },
   { key: 'games', icon: 'games', title: translate.ACTIVITY.TYPES.GAMES, color: '#9c277b', route: '/games' },
-  { key: 'relax', icon: 'spa', title: translate.ACTIVITY.TYPES.RELAX, color: '#e93f67', route: '/relax' },
+  { key: 'relax', icon: 'spa', title: translate.ACTIVITY.TYPES.RELAX_SPA, color: '#e93f67', route: '/relax' },
 ]
 
 export default ACTIVITIES_DATA

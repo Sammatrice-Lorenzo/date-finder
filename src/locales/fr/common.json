@@ -58,8 +58,9 @@
       "CINEMA": "Cinémas",
       "GAMES": "Jeux d'arcades",
       "MUSEUM": "Musées",
-      "PARKS": "Parcs et attractions naturelles",
-      "RELAX": "Bien être",
+      "PARKS": "Parcs",
+      "PARKS_ACTRACTIONS": "Parcs et attractions naturelles",
+      "RELAX_SPA": "Bien être / Spa",
       "RESTAURANTS": "Restaurants"
     }
   },

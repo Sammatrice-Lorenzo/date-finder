@@ -23,7 +23,8 @@ function handleResponsePlacesForEnvTest(): NextResponse<PlaceResponseInterface> 
 }
 
 async function fetchPlaces(apiKey: string, requestParameters: PlaceQueryInterface): Promise<Response> {
-  const url: string = await PlaceUrlService.getPlacesUrl(requestParameters)
+  const url: string = await new PlaceUrlService().getPlacesUrl(requestParameters)
+
   return await fetch(url, {
     method: 'GET',
     headers: {

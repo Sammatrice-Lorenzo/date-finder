@@ -1,22 +1,20 @@
-import { Location } from "@/interfaces/Location"
-import { PlaceQueryInterface } from "@/interfaces/PlaceQueryInterface"
-import PlaceLocationService from "./PlaceLocationService"
+import type { Location } from '@/interfaces/Location'
+import type { PlaceQueryInterface } from '@/interfaces/PlaceQueryInterface'
+import PlaceLocationService from './PlaceLocationService'
 
 export default class PlaceUrlService {
-  
-  private static getParameters(requestParameters: PlaceQueryInterface, apiKey: string): URLSearchParams
-  {
+  private getParameters(requestParameters: PlaceQueryInterface, apiKey: string): URLSearchParams {
     return new URLSearchParams({
       location: `${requestParameters.latitude},${requestParameters.longitude}`,
       radius: requestParameters.radius?.toString() ?? '5000',
       type: requestParameters.category,
       key: apiKey,
-      keyword: requestParameters.category
+      keyword: requestParameters.category,
       // rankby: 'prominence'
     })
   }
 
-  public static async getPlacesUrl(requestParameters: PlaceQueryInterface): Promise<string> {
+  public async getPlacesUrl(requestParameters: PlaceQueryInterface): Promise<string> {
     const baseUrl: string = `${process.env.GOOGLE_PLACE_API}nearbysearch/json`
     const apiKey = process.env.GOOGLE_PLACES_API_KEY
     if (!apiKey) {
@@ -24,14 +22,17 @@ export default class PlaceUrlService {
     }
 
     if (!requestParameters.latitude || requestParameters.location) {
-      const locationCity: Location = await PlaceLocationService.getLatitudeLongitudeByLocation(requestParameters.location, apiKey)
+      const locationCity: Location = await PlaceLocationService.getLatitudeLongitudeByLocation(
+        requestParameters.location,
+        apiKey
+      )
       requestParameters.latitude = locationCity.latitude.toString()
       requestParameters.longitude = locationCity.longitude.toString()
     }
 
-    const queryParams: URLSearchParams = PlaceUrlService['getParameters'](requestParameters, apiKey)
+    const queryParams: URLSearchParams = this.getParameters(requestParameters, apiKey)
     if (requestParameters.term) {
-      queryParams.append('keyword', requestParameters.term)
+      queryParams.set('keyword', requestParameters.term)
     }
 
     return `${baseUrl}?${queryParams.toString()}`

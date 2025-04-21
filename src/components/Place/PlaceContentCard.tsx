@@ -16,7 +16,7 @@ type PlaceContentCardProps = {
 
 const getContentBox = (place: PlaceInterface): BoxContentCardProps[] => {
   const location: string = place.location
-  const distanceInKm: string = place.distance?.toFixed(2)
+  const distanceInKm: string = place.distance?.toFixed(2) ?? ''
 
   return [
     {
@@ -38,15 +38,14 @@ const getContentBox = (place: PlaceInterface): BoxContentCardProps[] => {
     {
       text: `${translation.PLACE.DISTANCE} ${distanceInKm} km`,
       icon: <DirectionsWalkIcon />,
-    }
+    },
   ]
 }
 
-export default function PlaceContentCard({ place }: Readonly<PlaceContentCardProps>): React.ReactElement
-{
+export default function PlaceContentCard({ place }: Readonly<PlaceContentCardProps>): React.ReactElement {
   return (
     <CardContent sx={{ padding: 2 }}>
-      <Typography variant='h6' gutterBottom sx={{ fontWeight: 'bold' }}>
+      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
         {place.name}
       </Typography>
 
