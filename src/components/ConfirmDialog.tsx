@@ -23,14 +23,14 @@ export default function ConfirmDialog(props: ConfirmDialogProps): React.ReactEle
   }
 
   return (
-    <Dialog maxWidth="xs" open={open}>
+    <Dialog maxWidth='xs' open={open}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent dividers>{message}</DialogContent>
       <DialogActions>
-        <Button variant="outlined" color="secondary" autoFocus onClick={() => onClose()}>
+        <Button variant='outlined' color='secondary' autoFocus onClick={() => onClose()}>
           {fr.CONFIRM_DIALOG.CANCELED}
         </Button>
-        <Button variant="contained" color="error" onClick={handleOk}>
+        <Button variant='contained' color='error' onClick={handleOk}>
           Ok
         </Button>
       </DialogActions>

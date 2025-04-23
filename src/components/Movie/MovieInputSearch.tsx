@@ -4,7 +4,7 @@ import InputSearch from '../InputSearch'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { mutate } from 'swr'
 import translate from '@/locales/fr/common.json'
-import useMovieStore from '@/services/store/MovieStoreService'
+import useMovieStore from '@/services/store/useMovieStore'
 
 export default function MovieInputSearch(): React.ReactElement {
   const refSearchMovie = React.useRef<HTMLInputElement>(null)
@@ -20,7 +20,7 @@ export default function MovieInputSearch(): React.ReactElement {
   return (
     <>
       <Paper
-        component="form"
+        component='form'
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -30,7 +30,7 @@ export default function MovieInputSearch(): React.ReactElement {
         }}
       >
         <InputSearch
-          idInput="input-movie"
+          idInput='input-movie'
           placeholder={translate.MOVIE.SEARCH_MOVIE}
           refSearch={refSearchMovie}
           onUpdateInput={handleUpdateSearch}

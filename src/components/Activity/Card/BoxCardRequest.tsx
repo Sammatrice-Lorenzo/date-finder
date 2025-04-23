@@ -11,9 +11,9 @@ type IconsActivities = {
 }
 
 const iconsActivities: IconsActivities = {
-  map: <PlaceIcon color="primary" sx={{ mr: 1 }} />,
-  person: <PersonIcon color="primary" sx={{ mr: 1 }} />,
-  event: <EventIcon color="primary" sx={{ mr: 1 }} />,
+  map: <PlaceIcon color='primary' sx={{ mr: 1 }} />,
+  person: <PersonIcon color='primary' sx={{ mr: 1 }} />,
+  event: <EventIcon color='primary' sx={{ mr: 1 }} />,
 }
 
 type IconBoxKeys = keyof IconsActivities // 'map' | 'person' | 'event'
@@ -25,9 +25,9 @@ export type BoxCardRequestProps = {
 
 const BoxCardRequest = ({ text, iconBox }: BoxCardRequestProps): React.ReactElement => {
   return (
-    <Box display="flex" alignItems="center" mb={1}>
+    <Box display='flex' alignItems='center' mb={1}>
       {iconsActivities[iconBox]}
-      <Typography variant="body1">{text}</Typography>
+      <Typography variant='body1'>{text}</Typography>
     </Box>
   )
 }

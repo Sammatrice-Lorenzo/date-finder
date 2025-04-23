@@ -11,7 +11,10 @@ export class UrlActivityGeneratorService {
     this._jwtService = new JWTService()
   }
 
-  public generateParametersActivityForShare(activity: ActivityInterface, formJson: Record<string, string>): string {
+  public generateParametersActivityForShare(
+    activity: ActivityInterface,
+    formJson: Record<string, string>
+  ): string {
     const dateFormatted: Date = new Date(formJson.date)
     const dateEuropean: string = new DateFormatter().getDateEuropeanFormat(dateFormatted)
 

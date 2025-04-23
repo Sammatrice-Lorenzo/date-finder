@@ -3,11 +3,15 @@ import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
 import type MovieAPIInterface from '@/interfaces/movie/MovieAPInterface'
 import type MovieInterface from '@/interfaces/movie/MovieInterface'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
-import useMovieStore from '@/services/store/MovieStoreService'
+import useMovieStore from '@/services/store/useMovieStore'
 import { useMemo } from 'react'
 import useSWR from 'swr'
 
-const useFormattedMovies = (moviesResponse: MovieAPIInterface[], genres: MovieGenresInterface[], language: string) => {
+const useFormattedMovies = (
+  moviesResponse: MovieAPIInterface[],
+  genres: MovieGenresInterface[],
+  language: string
+) => {
   const movieStore: MovieStoreInterface = useMovieStore()
 
   const swrKey = useMemo(() => {

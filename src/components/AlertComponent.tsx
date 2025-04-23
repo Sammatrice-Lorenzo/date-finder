@@ -7,7 +7,10 @@ export type AlertComponentProps = {
   severity: AlertEnum
 }
 
-export default function AlertComponent({ description, severity }: Readonly<AlertComponentProps>): React.ReactElement {
+export default function AlertComponent({
+  description,
+  severity,
+}: Readonly<AlertComponentProps>): React.ReactElement {
   return (
     <div
       style={{
@@ -18,7 +21,7 @@ export default function AlertComponent({ description, severity }: Readonly<Alert
         zIndex: 1000,
       }}
     >
-      <Alert variant="filled" severity={severity} sx={{ width: '300px', textAlign: 'center' }}>
+      <Alert variant='filled' severity={severity} sx={{ width: '300px', textAlign: 'center' }}>
         {description}
       </Alert>
     </div>

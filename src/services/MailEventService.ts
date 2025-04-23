@@ -4,7 +4,11 @@ import type { MailData } from '@sendgrid/helpers/classes/mail'
 import translation from '@/locales/fr/common.json'
 
 export default class MailEventService {
-  public createEmailInvitation(body: ActivityEventCalendarInterface, emailUser: string, icsContent: string): MailData {
+  public createEmailInvitation(
+    body: ActivityEventCalendarInterface,
+    emailUser: string,
+    icsContent: string
+  ): MailData {
     const mailUsername: string | undefined = process.env.SEND_EMAIL
     if (!mailUsername) {
       throw new Error('No mail username found')

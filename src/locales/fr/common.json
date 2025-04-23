@@ -85,6 +85,7 @@
     "SEARCH": "Rechercher"
   },
   "PWA": {
+    "DESCRIPTION_APP": "Planifier votre prochain date",
     "INSTALL": "Installer DateFinder",
     "HOME": "Installer",
     "IOS": "Pour installer cette application sur votre appareil IOS :",

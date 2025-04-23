@@ -7,16 +7,18 @@ interface CardRequestActivityProps {
   activity: ActivityQueryProps
 }
 
-export default function CardRequestActivity({ activity }: Readonly<CardRequestActivityProps>): React.ReactElement {
+export default function CardRequestActivity({
+  activity,
+}: Readonly<CardRequestActivityProps>): React.ReactElement {
   return (
     <Card sx={{ my: 3, p: 2 }}>
       <CardContent>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant='h6' gutterBottom>
           {activity.activity}
         </Typography>
-        <BoxCardRequest text={activity.date} iconBox="event" />
-        <BoxCardRequest text={activity.location} iconBox="map" />
-        <BoxCardRequest text={activity.author} iconBox="person" />
+        <BoxCardRequest text={activity.date} iconBox='event' />
+        <BoxCardRequest text={activity.location} iconBox='map' />
+        <BoxCardRequest text={activity.author} iconBox='person' />
       </CardContent>
     </Card>
   )

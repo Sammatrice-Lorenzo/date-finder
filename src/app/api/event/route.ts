@@ -22,8 +22,16 @@ export async function POST(req: NextRequest) {
     sgMail.setApiKey(apiKey)
     const mailEventService: MailEventService = new MailEventService()
 
-    const emailTarget: MailData = mailEventService.createEmailInvitation(body, body.targetEmail, icsContent)
-    const emailAuthor: MailData = mailEventService.createEmailInvitation(body, body.activity.authorEmail, icsContent)
+    const emailTarget: MailData = mailEventService.createEmailInvitation(
+      body,
+      body.targetEmail,
+      icsContent
+    )
+    const emailAuthor: MailData = mailEventService.createEmailInvitation(
+      body,
+      body.activity.authorEmail,
+      icsContent
+    )
 
     let codeResponse = 202
     for (const email of [emailAuthor, emailTarget]) {

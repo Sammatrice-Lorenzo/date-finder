@@ -11,7 +11,9 @@ export default function InstallPrompt(): React.ReactElement | null {
   const [isIOS, setIsIOS] = useState<boolean>(false)
   const [isStandalone, setIsStandalone] = useState<boolean>(false)
   const [showBanner, setShowBanner] = useState<boolean>(true)
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEventInterface | null>(null)
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEventInterface | null>(
+    null
+  )
   const [showInstructionIOS, setShowInstructionIOS] = useState<boolean>(false)
 
   useEffect(() => {
@@ -32,8 +34,9 @@ export default function InstallPrompt(): React.ReactElement | null {
   const renderInstallIOS = (): React.ReactElement => {
     return (
       <Typography>
-        {fr.PWA.IOS} <ShareIcon fontSize="small" sx={{ verticalAlign: 'middle' }} /> {fr.PWA.BUTTON_SHARE}{' '}
-        <AddIcon fontSize="small" sx={{ verticalAlign: 'middle' }} /> {fr.PWA.AFTER_CLICKED}
+        {fr.PWA.IOS} <ShareIcon fontSize='small' sx={{ verticalAlign: 'middle' }} />{' '}
+        {fr.PWA.BUTTON_SHARE} <AddIcon fontSize='small' sx={{ verticalAlign: 'middle' }} />{' '}
+        {fr.PWA.AFTER_CLICKED}
       </Typography>
     )
   }
@@ -73,10 +76,10 @@ export default function InstallPrompt(): React.ReactElement | null {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <IconButton size="small" onClick={() => setShowBanner(false)} sx={{ color: '#888', mr: 1 }}>
+        <IconButton size='small' onClick={() => setShowBanner(false)} sx={{ color: '#888', mr: 1 }}>
           <CloseIcon />
         </IconButton>
-        <Avatar src="images/Date-finder.png" alt="DateFinder" sx={{ width: 48, height: 48 }} />
+        <Avatar src='images/Date-finder.png' alt='DateFinder' sx={{ width: 48, height: 48 }} />
       </Box>
 
       {showInstructionIOS ? (
@@ -84,17 +87,17 @@ export default function InstallPrompt(): React.ReactElement | null {
       ) : (
         <>
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+            <Typography variant='subtitle1' sx={{ fontWeight: 500 }}>
               {fr.PWA.INSTALL}
             </Typography>
           </Box>
           <Box>
             <Button
-              size="small"
-              variant="outlined"
-              color="primary"
+              size='small'
+              variant='outlined'
+              color='primary'
               onClick={handleInstallClick}
-              aria-label="Install PWA"
+              aria-label='Install PWA'
             >
               {fr.PWA.HOME}
             </Button>

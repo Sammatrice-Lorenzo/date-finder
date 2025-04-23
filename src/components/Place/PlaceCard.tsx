@@ -16,7 +16,7 @@ export default function PlaceCard({ place }: Readonly<PlaceCardProps>): React.Re
 
   return (
     <Grid2
-      className="place-card"
+      className='place-card'
       key={place.id}
       size={{ xs: 12, md: 4 }}
       sx={{
@@ -25,8 +25,8 @@ export default function PlaceCard({ place }: Readonly<PlaceCardProps>): React.Re
     >
       <Card sx={{ height: '100%' }} onClick={handleClickOpen}>
         <CardMedia
-          component="img"
-          height="140"
+          component='img'
+          height='140'
           image={place.image_url ? place.image_url : '/images/Image-not-found.png'}
           alt={place.name}
         />
