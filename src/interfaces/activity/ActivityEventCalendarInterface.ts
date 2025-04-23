@@ -1,7 +1,7 @@
-import { ActivityQueryProps } from "@/types/ActivityQueryProps"
+import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 
 export default interface ActivityEventCalendarInterface {
-  uid: string,
+  uid: string
   activity: ActivityQueryProps
   targetEmail: string
 }

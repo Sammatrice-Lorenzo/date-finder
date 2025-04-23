@@ -1,4 +1,4 @@
-import * as React from 'react'
+import type * as React from 'react'
 import Button from '@mui/material/Button'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
@@ -9,13 +9,12 @@ import fr from '../locales/fr/common.json'
 export interface ConfirmDialogProps {
   open: boolean
   onClose: (value?: string) => void
-  title: string,
-  message: string,
+  title: string
+  message: string
   onConfirm: () => void
 }
 
-export default function ConfirmDialog(props: ConfirmDialogProps): React.ReactElement
-{
+export default function ConfirmDialog(props: ConfirmDialogProps): React.ReactElement {
   const { onClose, open, title, message, onConfirm } = props
 
   const handleOk = (): void => {
@@ -24,19 +23,16 @@ export default function ConfirmDialog(props: ConfirmDialogProps): React.ReactEle
   }
 
   return (
-    <Dialog
-      maxWidth='xs'
-      open={open}
-    >
+    <Dialog maxWidth='xs' open={open}>
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent dividers>
-        {message}
-      </DialogContent>
+      <DialogContent dividers>{message}</DialogContent>
       <DialogActions>
         <Button variant='outlined' color='secondary' autoFocus onClick={() => onClose()}>
           {fr.CONFIRM_DIALOG.CANCELED}
         </Button>
-        <Button variant='contained' color='error' onClick={handleOk}>Ok</Button>
+        <Button variant='contained' color='error' onClick={handleOk}>
+          Ok
+        </Button>
       </DialogActions>
     </Dialog>
   )

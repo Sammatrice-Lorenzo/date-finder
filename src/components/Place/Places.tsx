@@ -1,18 +1,18 @@
 'use client'
 
-import fr from '../../locales/fr/common.json'
+import PlaceCard from '@/components/Place/PlaceCard'
+import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
+import usePlace from '@/hooks/place/usePlace'
+import type { Location } from '@/interfaces/Location'
+import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
+import type PlaceInterface from '@/interfaces/place/PlaceInterface'
+import translate from '@/locales/fr/common.json'
+import useLocationStore from '@/services/store/useLocationStore'
 import { Box, Grid2, Typography } from '@mui/material'
 import type React from 'react'
-import PlaceCard from '@/components/Place/PlaceCard'
-import type { Location } from '@/interfaces/Location'
-import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
-import HeaderPlace from './HeaderPlace'
-import type PlaceInterface from '@/interfaces/place/PlaceInterface'
-import LocationStoreService from '@/services/Store/LocationStoreService'
-import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
-import translate from '@/locales/fr/common.json'
+import fr from '../../locales/fr/common.json'
 import { CardsSkeletons } from '../Loader/CardsSkeletons'
-import usePlace from '@/hooks/place/usePlace'
+import HeaderPlace from './HeaderPlace'
 
 export type PlacesProps = {
   typePlace: string
@@ -20,7 +20,9 @@ export type PlacesProps = {
 }
 
 export default function Places({ typePlace, category }: Readonly<PlacesProps>): React.ReactElement {
-  const userLocation: Location | null = LocationStoreService.useStore((store: LocationStoreInterface) => store.location)
+  const userLocation: Location | null = useLocationStore(
+    (store: LocationStoreInterface) => store.location
+  )
 
   const { response, isLoading, trigger } = usePlace(userLocation, '', '', category)
 

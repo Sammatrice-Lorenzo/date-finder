@@ -23,14 +23,14 @@ type IconsActivities = {
 }
 
 const iconsActivities: IconsActivities = {
-  restaurant: <RestaurantIcon fontSize="large" />,
-  movie: <MovieIcon color="action" fontSize="large" />,
-  bar: <LocalBarIcon fontSize="large" />,
-  museum: <MuseumIcon fontSize="large" />,
-  games: <CasinoIcon fontSize="large" />,
-  spa: <SpaIcon fontSize="large" />,
-  cinema: <LocalMoviesIcon fontSize="large" />,
-  parks: <NaturePeopleIcon fontSize="large" />,
+  restaurant: <RestaurantIcon fontSize='large' />,
+  movie: <MovieIcon color='action' fontSize='large' />,
+  bar: <LocalBarIcon fontSize='large' />,
+  museum: <MuseumIcon fontSize='large' />,
+  games: <CasinoIcon fontSize='large' />,
+  spa: <SpaIcon fontSize='large' />,
+  cinema: <LocalMoviesIcon fontSize='large' />,
+  parks: <NaturePeopleIcon fontSize='large' />,
 }
 
 export type IconBoxKeys = keyof IconsActivities
@@ -42,7 +42,12 @@ export type BoxActivityProps = {
   route?: string
 }
 
-export default function BoxActivity({ title, icon, color, route }: Readonly<BoxActivityProps>): React.ReactElement {
+export default function BoxActivity({
+  title,
+  icon,
+  color,
+  route,
+}: Readonly<BoxActivityProps>): React.ReactElement {
   const router: AppRouterInstance = useRouter()
 
   return (
@@ -62,7 +67,7 @@ export default function BoxActivity({ title, icon, color, route }: Readonly<BoxA
       onClick={() => router.push(route ?? '/')}
     >
       {iconsActivities[icon]}
-      <Typography variant="h6">{title}</Typography>
+      <Typography variant='h6'>{title}</Typography>
     </Box>
   )
 }

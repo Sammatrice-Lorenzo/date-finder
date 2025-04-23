@@ -1,15 +1,15 @@
 import EventIcon from '@mui/icons-material/Event'
 import PlaceIcon from '@mui/icons-material/Place'
 import PersonIcon from '@mui/icons-material/Person'
-import React from 'react'
+import type React from 'react'
 import { Box, Typography } from '@mui/material'
 
 type IconsActivities = {
-  map: React.ReactElement,
-  person: React.ReactElement,
+  map: React.ReactElement
+  person: React.ReactElement
   event: React.ReactElement
 }
-  
+
 const iconsActivities: IconsActivities = {
   map: <PlaceIcon color='primary' sx={{ mr: 1 }} />,
   person: <PersonIcon color='primary' sx={{ mr: 1 }} />,
@@ -19,11 +19,11 @@ const iconsActivities: IconsActivities = {
 type IconBoxKeys = keyof IconsActivities // 'map' | 'person' | 'event'
 
 export type BoxCardRequestProps = {
-  text: string,
-  iconBox: IconBoxKeys,
+  text: string
+  iconBox: IconBoxKeys
 }
 
-const BoxCardRequest = ({ text, iconBox}: BoxCardRequestProps): React.ReactElement => {
+const BoxCardRequest = ({ text, iconBox }: BoxCardRequestProps): React.ReactElement => {
   return (
     <Box display='flex' alignItems='center' mb={1}>
       {iconsActivities[iconBox]}

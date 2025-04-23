@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   const start: Date = DateFormatter.generateDateTimeFromString(body.activity.date)
   const end: Date = new Date(new Date(start).getTime() + 60 * 60 * 1000)
 
-  const icsContent: string = EventCalendarService.getCalendarFormatICS(body, start, end)
+  const icsContent: string = new EventCalendarService().getCalendarFormatICS(body, start, end)
 
   try {
     const apiKey: string | undefined = process.env.API_KEY_SEND_GRID
@@ -20,9 +20,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'API KEY not found' }, { status: 500 })
     }
     sgMail.setApiKey(apiKey)
+    const mailEventService: MailEventService = new MailEventService()
 
-    const emailTarget: MailData = MailEventService.createEmailInvitation(body, body.targetEmail, icsContent)
-    const emailAuthor: MailData = MailEventService.createEmailInvitation(body, body.activity.authorEmail, icsContent)
+    const emailTarget: MailData = mailEventService.createEmailInvitation(
+      body,
+      body.targetEmail,
+      icsContent
+    )
+    const emailAuthor: MailData = mailEventService.createEmailInvitation(
+      body,
+      body.activity.authorEmail,
+      icsContent
+    )
 
     let codeResponse = 202
     for (const email of [emailAuthor, emailTarget]) {

@@ -22,7 +22,7 @@ export default class PlaceUrlService {
     }
 
     if (!requestParameters.latitude || requestParameters.location) {
-      const locationCity: Location = await PlaceLocationService.getLatitudeLongitudeByLocation(
+      const locationCity: Location = await new PlaceLocationService().getLatitudeLongitudeByLocation(
         requestParameters.location,
         apiKey
       )

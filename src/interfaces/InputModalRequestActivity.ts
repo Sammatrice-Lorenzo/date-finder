@@ -1,14 +1,14 @@
-import { RequestActivityNameEnum } from '@/enums/RequestActivityNameEnum'
+import type { RequestActivityNameEnum } from '@/enums/RequestActivityNameEnum'
 
 export interface InputModalRequestActivity {
-  id: string;
-  name: RequestActivityNameEnum;
-  label: string;
-  type: string;
-  margin: 'none' | 'dense' | 'normal';
+  id: string
+  name: RequestActivityNameEnum
+  label: string
+  type: string
+  margin: 'none' | 'dense' | 'normal'
   props?: {
     inputLabel: {
-      shrink: boolean;
+      shrink: boolean
     }
-  };
+  }
 }

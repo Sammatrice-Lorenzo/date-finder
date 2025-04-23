@@ -1,13 +1,13 @@
-import * as React from 'react'
-import Paper from '@mui/material/Paper'
-import { Button, Grid2 } from '@mui/material'
-import InputSearch from '../InputSearch'
+import type ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
+import type { Location } from '@/interfaces/Location'
+import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
 import translate from '@/locales/fr/common.json'
 import PlaceParametersService from '@/services/place/PlaceParametersService'
-import type ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
-import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
-import LocationStoreService from '@/services/Store/LocationStoreService'
-import type { Location } from '@/interfaces/Location'
+import useLocationStore from '@/services/store/useLocationStore'
+import { Button, Grid2 } from '@mui/material'
+import Paper from '@mui/material/Paper'
+import * as React from 'react'
+import InputSearch from '../InputSearch'
 
 export type PlaceInputSearchProps = {
   typePlace: string
@@ -22,7 +22,9 @@ export default function PlaceInputSearch({
 }: Readonly<PlaceInputSearchProps>): React.ReactElement {
   const refSearchLocation = React.useRef<HTMLInputElement>(null)
   const refSearchTerm = React.useRef<HTMLInputElement>(null)
-  const userLocation: Location | null = LocationStoreService.useStore((store: LocationStoreInterface) => store.location)
+  const userLocation: Location | null = useLocationStore(
+    (store: LocationStoreInterface) => store.location
+  )
 
   const handleSearchPlaces = (): void => {
     const options = new PlaceParametersService().buildPlaceOptions(
@@ -37,7 +39,7 @@ export default function PlaceInputSearch({
   return (
     <>
       <Paper
-        component="form"
+        component='form'
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -46,10 +48,14 @@ export default function PlaceInputSearch({
           marginBottom: '1.5%',
         }}
       >
-        <InputSearch idInput="input-location" placeholder={translate.PLACE.CITY} refSearch={refSearchLocation} />
+        <InputSearch
+          idInput='input-location'
+          placeholder={translate.PLACE.CITY}
+          refSearch={refSearchLocation}
+        />
       </Paper>
       <Paper
-        component="form"
+        component='form'
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -58,11 +64,11 @@ export default function PlaceInputSearch({
           marginBottom: '3%',
         }}
       >
-        <InputSearch idInput="input-place" placeholder={typePlace} refSearch={refSearchTerm} />
+        <InputSearch idInput='input-place' placeholder={typePlace} refSearch={refSearchTerm} />
       </Paper>
       <Grid2 sx={{ alignItems: 'center', display: 'flex', marginBottom: '5%' }}>
         <Button
-          variant="outlined"
+          variant='outlined'
           sx={{ borderColor: '#d33252', color: 'white', margin: '0 auto' }}
           onClick={handleSearchPlaces}
         >
