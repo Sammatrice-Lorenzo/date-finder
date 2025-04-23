@@ -13,7 +13,11 @@ const HeaderPlace = ({ title }: HeaderPlacePros) => {
 
   return (
     <Box className={styles.containerHeader}>
-      <IconButton onClick={() => router.push('/')} aria-label='Retour' className={styles.backButton}>
+      <IconButton
+        onClick={() => router.push('/')}
+        aria-label='Retour'
+        className={styles.backButton}
+      >
         <KeyboardReturnIcon />
       </IconButton>
 
