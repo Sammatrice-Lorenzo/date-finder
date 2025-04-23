@@ -12,6 +12,7 @@ module.exports = {
   bracketSpacing: true,
   arrowParens: 'avoid',
   jsxSingleQuote: true,
+  jsxBracketSameLine: false,
   overrides: [
     {
       files: '*.jsx, *.tsx',
