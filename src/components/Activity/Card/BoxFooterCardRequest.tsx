@@ -1,6 +1,6 @@
 'use client'
 
-import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import { Box, Button } from '@mui/material'
 import React from 'react'
 import ModalEmailTarget from '../ModalEmailTarget'
@@ -23,13 +23,18 @@ const BoxFooterCardRequest = ({ activityQuery }: BoxFooterCardRequestProps): Rea
   const sendEmailService: SendEmailService = new SendEmailService()
 
   return (
-    <Box display='flex' justifyContent='space-around' mt={3}>
-      <Button variant='contained' sx={{ justifyContent: 'space-between'}} color='secondary' onClick={() => setOpen(true)}>
-        <EventAvailableIcon fontSize='small' sx={{ marginRight: 1 }} />
+    <Box display="flex" justifyContent="space-around" mt={3}>
+      <Button
+        variant="contained"
+        sx={{ justifyContent: 'space-between' }}
+        color="secondary"
+        onClick={() => setOpen(true)}
+      >
+        <EventAvailableIcon fontSize="small" sx={{ marginRight: 1 }} />
         {fr.ACTIVITY.INVITATION.ACCEPT}
       </Button>
-      <Button variant='outlined' color='error' onClick={() => setOpenDialog(true)}>
-        <EventBusyIcon fontSize='small' sx={{ marginRight: 1 }} />
+      <Button variant="outlined" color="error" onClick={() => setOpenDialog(true)}>
+        <EventBusyIcon fontSize="small" sx={{ marginRight: 1 }} />
         {fr.ACTIVITY.INVITATION.REFUSED}
       </Button>
       <ConfirmDialog
@@ -39,11 +44,7 @@ const BoxFooterCardRequest = ({ activityQuery }: BoxFooterCardRequestProps): Rea
         message={fr.CONFIRM_DIALOG.DECLINE_INVITATION}
         onConfirm={() => sendEmailService.handleSendInviteRefused(activityQuery, showAlert)}
       />
-      <ModalEmailTarget
-        activityQuery={activityQuery}
-        isOpen={openModal}
-        onClose={() => setOpen(false)}
-      />
+      <ModalEmailTarget activityQuery={activityQuery} isOpen={openModal} onClose={() => setOpen(false)} />
     </Box>
   )
 }

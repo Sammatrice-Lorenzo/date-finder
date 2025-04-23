@@ -1,7 +1,7 @@
-import { Location } from "@/interfaces/Location"
+import type { Location } from '@/interfaces/Location'
 
 export default class PlaceLocationService {
-  public static async getLatitudeLongitudeByLocation(location: string | null, apiKey: string): Promise<Location> {
+  public async getLatitudeLongitudeByLocation(location: string | null, apiKey: string): Promise<Location> {
     const geocodeUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json'
     const geocodeParams: URLSearchParams = new URLSearchParams({
       address: location || 'Paris',

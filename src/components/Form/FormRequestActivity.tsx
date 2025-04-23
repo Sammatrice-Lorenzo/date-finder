@@ -1,6 +1,5 @@
 import { Button } from '@mui/material'
 import type { InputModalRequestActivity } from '@/interfaces/InputModalRequestActivity'
-import { RequestActivityFormService } from '@/services/RequestActivityFormService'
 import ShareIcon from '@mui/icons-material/Share'
 import FormControlRequestActivity from './FormControlRequestActivity'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,6 +9,7 @@ import fr from '../../locales/fr/common.json'
 import type ActivityInterface from '@/interfaces/activity/ActivityInterface'
 import ShareActivityService from '@/services/ShareActivityService'
 import type { FormRequestActivityInterface } from '@/interfaces/activity/FormRequestActivityInterface'
+import valuesInputsModalRequestActivity from '@/data/valuesInputsModalRequestData'
 
 const formSchema = z.object({
   date: z
@@ -62,7 +62,7 @@ export const FormRequestActivity = ({ activity, handleClose }: FormRequestActivi
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} noValidate>
-      {RequestActivityFormService.getValuesInputsModalRequestActivity().map((input: InputModalRequestActivity) => (
+      {valuesInputsModalRequestActivity().map((input: InputModalRequestActivity) => (
         <FormControlRequestActivity form={form} input={input} key={input.id} />
       ))}
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3%' }}>

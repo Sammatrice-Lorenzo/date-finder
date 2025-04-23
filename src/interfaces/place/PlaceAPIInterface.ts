@@ -1,38 +1,38 @@
 export default interface PlaceAPIInterface {
-  business_status: string,
+  business_status: string
   geometry: {
     location: {
-      lat: number,
+      lat: number
       lng: number
-    },
+    }
     viewport: {
       northeast: {
-        lat: number,
+        lat: number
         lng: number
-      },
+      }
       southwest: {
-        lat: number,
+        lat: number
         lng: number
-      },
-    },
-  },
-  icon: string,
-  icon_background_color: string,
-  icon_mask_base_uri: string,
-  name: string,
+      }
+    }
+  }
+  icon: string
+  icon_background_color: string
+  icon_mask_base_uri: string
+  name: string
   opening_hours: {
     open_now: boolean
-  },
-  place_id: string,
+  }
+  place_id: string
   plus_code: {
-    compound_code: string,
+    compound_code: string
     global_code: string
-  },
+  }
   price_level: number
-  rating: 4.3,
-  reference: string,
-  scope: string,
-  types: string[],
-  user_ratings_total: number,
+  rating: number
+  reference: string
+  scope: string
+  types: string[]
+  user_ratings_total: number
   vicinity: string
 }

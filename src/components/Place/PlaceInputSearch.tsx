@@ -6,8 +6,8 @@ import translate from '@/locales/fr/common.json'
 import PlaceParametersService from '@/services/place/PlaceParametersService'
 import type ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
 import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
-import LocationStoreService from '@/services/Store/LocationStoreService'
 import type { Location } from '@/interfaces/Location'
+import useLocationStore from '@/services/store/LocationStoreService'
 
 export type PlaceInputSearchProps = {
   typePlace: string
@@ -22,7 +22,7 @@ export default function PlaceInputSearch({
 }: Readonly<PlaceInputSearchProps>): React.ReactElement {
   const refSearchLocation = React.useRef<HTMLInputElement>(null)
   const refSearchTerm = React.useRef<HTMLInputElement>(null)
-  const userLocation: Location | null = LocationStoreService.useStore((store: LocationStoreInterface) => store.location)
+  const userLocation: Location | null = useLocationStore((store: LocationStoreInterface) => store.location)
 
   const handleSearchPlaces = (): void => {
     const options = new PlaceParametersService().buildPlaceOptions(

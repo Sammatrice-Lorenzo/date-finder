@@ -2,7 +2,7 @@ import { Box, Typography, Divider, Paper } from '@mui/material'
 import CardRequestActivity from './Card/CardRequestActivity'
 import BoxFooterCardRequest from './Card/BoxFooterCardRequest'
 import BoxHeaderRequest from './Card/BoxHeaderRequest'
-import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import fr from '../../locales/fr/common.json'
 
 export type InvitationActivityProps = {
@@ -10,7 +10,6 @@ export type InvitationActivityProps = {
 }
 
 export default function InvitationActivity({ activity }: Readonly<InvitationActivityProps>) {
-
   return (
     <Box alignItems="center" justifyContent="center" minHeight="80vh" sx={{ p: 3 }}>
       <Paper elevation={3} sx={{ maxWidth: 500, width: '100%', p: 3, borderRadius: 2 }}>
@@ -21,10 +20,7 @@ export default function InvitationActivity({ activity }: Readonly<InvitationActi
           {activity.author} {fr.ACTIVITY.INVITATION.TITLE}
         </Typography>
 
-        <CardRequestActivity
-          key={0}
-          activity={activity}
-        />
+        <CardRequestActivity key={0} activity={activity} />
         <Divider />
 
         <BoxFooterCardRequest activityQuery={activity} />

@@ -1,7 +1,7 @@
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import { Box, Typography, IconButton } from '@mui/material'
 import { useRouter } from 'next/navigation'
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 export type HeaderPlacePros = {
   title: string
@@ -20,9 +20,9 @@ const HeaderPlace = ({ title }: HeaderPlacePros) => {
         padding: '16px',
       }}
     >
-      <IconButton 
-        onClick={() => router.push('/')} 
-        aria-label='Retour'
+      <IconButton
+        onClick={() => router.push('/')}
+        aria-label="Retour"
         sx={{
           '&:hover': { color: 'primary.main' },
         }}
@@ -30,9 +30,9 @@ const HeaderPlace = ({ title }: HeaderPlacePros) => {
         <KeyboardReturnIcon />
       </IconButton>
 
-      <Typography 
-        variant='h6' 
-        component='div' 
+      <Typography
+        variant="h6"
+        component="div"
         sx={{
           textAlign: 'center',
           flexGrow: 1,

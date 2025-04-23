@@ -1,4 +1,4 @@
-import PlaceInterface from './PlaceInterface'
+import type PlaceInterface from './PlaceInterface'
 
 export interface PlaceResponseInterface {
   response: PlaceInterface[]

@@ -1,13 +1,11 @@
-import DetailsPlaceAPIInterface from "@/interfaces/api/DetailsPlaceAPIInterface"
-import { Location } from "@/interfaces/Location"
-import PlaceAPIInterface from "@/interfaces/place/PlaceAPIInterface"
-import PlaceInterface from "@/interfaces/place/PlaceInterface"
+import type DetailsPlaceAPIInterface from '@/interfaces/api/DetailsPlaceAPIInterface'
+import type { Location } from '@/interfaces/Location'
+import type PlaceAPIInterface from '@/interfaces/place/PlaceAPIInterface'
+import type PlaceInterface from '@/interfaces/place/PlaceInterface'
 import haversine from 'haversine'
 
 export default class PlaceFormatter {
-
-  private static getPriceFormatted(place: PlaceAPIInterface): string
-  {
+  private getPriceFormatted(place: PlaceAPIInterface): string {
     let priceFormatted = ''
     for (let index = 0; index < place.price_level; index++) {
       priceFormatted += '€'
@@ -16,12 +14,11 @@ export default class PlaceFormatter {
     return priceFormatted
   }
 
-  public static async convertDataFromAPIToPlace(
+  public async convertDataFromAPIToPlace(
     place: PlaceAPIInterface,
     details: DetailsPlaceAPIInterface,
     locationUser: Location
-  ): Promise<PlaceInterface>
-  {
+  ): Promise<PlaceInterface> {
     const urlAPI: string | undefined = process.env.GOOGLE_PLACE_API
     const apiKey: string | undefined = process.env.GOOGLE_PLACES_API_KEY
 
@@ -42,8 +39,8 @@ export default class PlaceFormatter {
       rating: place.rating,
       image_url: photoUrl,
       display_phone: phone || '',
-      price: PlaceFormatter['getPriceFormatted'](place),
-      distance: haversine(locationUser, placeLocation) 
+      price: this.getPriceFormatted(place),
+      distance: haversine(locationUser, placeLocation),
     }
   }
 }

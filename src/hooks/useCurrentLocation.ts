@@ -1,9 +1,9 @@
 import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
-import LocationStoreService from '@/services/Store/LocationStoreService'
+import useLocationStore from '@/services/store/LocationStoreService'
 import { useEffect } from 'react'
 
 export const useCurrentLocation = (): void => {
-  const setLocation = LocationStoreService.useStore((state: LocationStoreInterface) => state.setLocation)
+  const setLocation = useLocationStore((state: LocationStoreInterface) => state.setLocation)
 
   useEffect(() => {
     function handleLocation(): void {

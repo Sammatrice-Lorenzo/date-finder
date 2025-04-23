@@ -4,7 +4,7 @@ import InputSearch from '../InputSearch'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { mutate } from 'swr'
 import translate from '@/locales/fr/common.json'
-import useMovieStore from '@/services/Store/MovieStoreService'
+import useMovieStore from '@/services/store/MovieStoreService'
 
 export default function MovieInputSearch(): React.ReactElement {
   const refSearchMovie = React.useRef<HTMLInputElement>(null)

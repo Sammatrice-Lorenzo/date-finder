@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import fr from '../../../locales/fr/common.json'
 import type { PlaceResponseInterface } from '@/interfaces/place/PlaceResponseInterface'
-import data from '../../../data/restaurant-test-data.json'
+import data from '../../../data/json/restaurant-test-data.json'
 import type { PlaceQueryInterface } from '@/interfaces/PlaceQueryInterface'
 import type PlaceAPIInterface from '@/interfaces/place/PlaceAPIInterface'
 import type { Location } from '@/interfaces/Location'
@@ -56,7 +56,7 @@ async function handleApiResponse(
   if (response.ok) {
     const data = await response.json()
     const results: PlaceAPIInterface[] = data.results
-    const { convertedResults, cache } = await PlaceAPIService.getDataAPI(results, userLocation)
+    const { convertedResults, cache } = await new PlaceAPIService().getDataAPI(results, userLocation)
     cacheResponse[cacheKey] = cache
 
     return NextResponse.json({ response: convertedResults, message: '' }, { status: status })
@@ -85,8 +85,9 @@ export async function POST(request: Request): Promise<NextResponse<PlaceResponse
   }
   const { userLocation, requestParameters } = await handleRequestParameters(request)
 
-  const cacheKey: string = PlaceCacheService.getCacheKey(requestParameters, userLocation)
-  if (PlaceCacheService.checkCache(cacheResponse, cacheKey)) {
+  const placeCacheService: PlaceCacheService = new PlaceCacheService()
+  const cacheKey: string = placeCacheService.getCacheKey(requestParameters, userLocation)
+  if (placeCacheService.checkCache(cacheResponse, cacheKey)) {
     nextResponse.response = cacheResponse[cacheKey].data
 
     return NextResponse.json({ response: cacheResponse[cacheKey].data, message: '' }, { status: 200 })

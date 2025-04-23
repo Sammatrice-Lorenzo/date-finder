@@ -10,7 +10,7 @@ import type MovieInterface from '@/interfaces/movie/MovieInterface'
 import useFormattedMovies from '@/hooks/movie/useFormattedMovies'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import SpinnerLoader from '../Loader/SpinnerLoader'
-import useMovieStore from '@/services/Store/MovieStoreService'
+import useMovieStore from '@/services/store/MovieStoreService'
 
 const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
   const movieStore: MovieStoreInterface = useMovieStore()

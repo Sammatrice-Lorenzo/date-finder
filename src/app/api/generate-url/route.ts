@@ -16,7 +16,10 @@ export async function POST(req: Request): Promise<
   }>
 > {
   const body: UrlActivityParameters = await req.json()
-  const urlToken: string = UrlActivityGeneratorService.generateParametersActivityForShare(body.activity, body.form)
+  const urlToken: string = new UrlActivityGeneratorService().generateParametersActivityForShare(
+    body.activity,
+    body.form
+  )
 
   const shareData: ShareDataInterface = {
     title: fr.ACTIVITY.TITLE_LINK_SHARED,

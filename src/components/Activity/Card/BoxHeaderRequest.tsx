@@ -1,5 +1,5 @@
 import { Avatar, Box, Typography } from '@mui/material'
-import React from 'react';
+import type React from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import DateHelper from '@/helper/DateHelper'
 
@@ -8,12 +8,12 @@ export type BoxHeaderRequestProps = {
 }
 const BoxHeaderRequest = ({ targetName }: BoxHeaderRequestProps): React.ReactElement => {
   return (
-    <Box display='flex' mb={3}>
+    <Box display="flex" mb={3}>
       <Avatar sx={{ bgcolor: '#d33252', width: 30, height: 30 }}>
-        <PersonIcon fontSize='medium' />
+        <PersonIcon fontSize="medium" />
       </Avatar>
-      <Typography variant='h5' sx={{ ml: 2, fontWeight: 'bold' }}>
-        {DateHelper.getGreetings()} {targetName}
+      <Typography variant="h5" sx={{ ml: 2, fontWeight: 'bold' }}>
+        {new DateHelper().getGreetings()} {targetName}
       </Typography>
     </Box>
   )

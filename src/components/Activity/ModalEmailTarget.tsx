@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogContentText } from '@mui/material'
-import React from 'react'
-import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import type React from 'react'
+import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import ModalTitle from '../ModalTitle'
 import { FormEmailTarget } from '../Form/FormEmailTarget'
 import fr from '../../locales/fr/common.json'
@@ -11,25 +11,19 @@ export type ModalEmailTargetProps = {
   onClose: () => void
 }
 
-export default function ModalEmailTarget({ activityQuery, isOpen, onClose }: ModalEmailTargetProps): React.ReactElement
-{
+export default function ModalEmailTarget({
+  activityQuery,
+  isOpen,
+  onClose,
+}: ModalEmailTargetProps): React.ReactElement {
   return (
-    <Dialog
-      open={isOpen}
-      onClose={onClose}
-    >
-      <ModalTitle
-        title={fr.ACTIVITY.MODAL_EMAIL_TARGET.TITLE}
-        onCloseModal={onClose}
-      />
+    <Dialog open={isOpen} onClose={onClose}>
+      <ModalTitle title={fr.ACTIVITY.MODAL_EMAIL_TARGET.TITLE} onCloseModal={onClose} />
       <DialogContent sx={{ pt: 2, px: 3 }}>
         <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>
           {fr.ACTIVITY.MODAL_EMAIL_TARGET.CONTENT}
         </DialogContentText>
-        <FormEmailTarget
-          activityQuery={activityQuery}
-          handleClose={onClose}
-        />
+        <FormEmailTarget activityQuery={activityQuery} handleClose={onClose} />
       </DialogContent>
     </Dialog>
   )

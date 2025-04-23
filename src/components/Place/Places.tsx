@@ -8,11 +8,11 @@ import type { Location } from '@/interfaces/Location'
 import PlaceInputSearch from '@/components/Place/PlaceInputSearch'
 import HeaderPlace from './HeaderPlace'
 import type PlaceInterface from '@/interfaces/place/PlaceInterface'
-import LocationStoreService from '@/services/Store/LocationStoreService'
 import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
 import translate from '@/locales/fr/common.json'
 import { CardsSkeletons } from '../Loader/CardsSkeletons'
 import usePlace from '@/hooks/place/usePlace'
+import useLocationStore from '@/services/store/LocationStoreService'
 
 export type PlacesProps = {
   typePlace: string
@@ -20,7 +20,7 @@ export type PlacesProps = {
 }
 
 export default function Places({ typePlace, category }: Readonly<PlacesProps>): React.ReactElement {
-  const userLocation: Location | null = LocationStoreService.useStore((store: LocationStoreInterface) => store.location)
+  const userLocation: Location | null = useLocationStore((store: LocationStoreInterface) => store.location)
 
   const { response, isLoading, trigger } = usePlace(userLocation, '', '', category)
 

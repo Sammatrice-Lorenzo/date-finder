@@ -1,6 +1,6 @@
 'use client'
 
-import { AlertContext, AlertContextProps } from '@/context/AlertContext'
+import { AlertContext, type AlertContextProps } from '@/context/AlertContext'
 import { useContext } from 'react'
 
 export function useAlert(): AlertContextProps {
