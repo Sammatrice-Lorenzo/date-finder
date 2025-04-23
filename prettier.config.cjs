@@ -11,4 +11,13 @@ module.exports = {
   printWidth: 120,
   bracketSpacing: true,
   arrowParens: 'avoid',
+  jsxSingleQuote: true,
+  overrides: [
+    {
+      files: '*.jsx, *.tsx',
+      options: {
+        jsxBracketSameLine: false,
+      },
+    },
+  ],
 }
