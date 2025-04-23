@@ -1,16 +1,16 @@
-import { Grid2 } from '@mui/material'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import MovieCard from './MovieCard'
-import React, { type ReactElement, useCallback } from 'react'
-import type { MoviesProps } from './Movies'
+import useFormattedMovies from '@/hooks/movie/useFormattedMovies'
 import useApi from '@/hooks/useApi'
-import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
 import type MovieAPIInterface from '@/interfaces/movie/MovieAPInterface'
 import type MovieInterface from '@/interfaces/movie/MovieInterface'
-import useFormattedMovies from '@/hooks/movie/useFormattedMovies'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
+import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
+import useMovieStore from '@/services/store/useMovieStore'
+import { Grid2 } from '@mui/material'
+import React, { type ReactElement, useCallback } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import SpinnerLoader from '../Loader/SpinnerLoader'
-import useMovieStore from '@/services/Store/MovieStoreService'
+import MovieCard from './MovieCard'
+import type { MoviesProps } from './Movies'
 
 const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
   const movieStore: MovieStoreInterface = useMovieStore()
@@ -58,7 +58,7 @@ const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps):
       {movieStore.movies.map((movie: MovieInterface, index: number) => (
         <Grid2
           id={`grid-${movie.id}-${index}`}
-          className="grid-movies"
+          className='grid-movies'
           spacing={1}
           sx={{ marginBottom: 3 }}
           size={{ xs: 12, sm: 6, md: 4, lg: 3 }}

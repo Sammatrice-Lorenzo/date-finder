@@ -1,6 +1,6 @@
 export enum AlertEnum {
-  Success= 'success',
+  Success = 'success',
   Error = 'error',
   Warning = 'warning',
-  Info = 'info'
+  Info = 'info',
 }

@@ -13,23 +13,17 @@ export type ModalRequestActivityProps = {
   onClose: () => void
 }
 
-export default function ModalRequestActivity({ activity, open, onClose }: ModalRequestActivityProps): React.ReactElement {
+export default function ModalRequestActivity({
+  activity,
+  open,
+  onClose,
+}: ModalRequestActivityProps): React.ReactElement {
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}>
-      <ModalTitle
-        title={fr.ACTIVITY.MODAL.TITLE}
-        onCloseModal={onClose}
-      />
+    <Dialog open={open} onClose={onClose}>
+      <ModalTitle title={fr.ACTIVITY.MODAL.TITLE} onCloseModal={onClose} />
       <DialogContent sx={{ pt: 2, px: 3 }}>
-        <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>
-          {fr.ACTIVITY.MODAL.CONTENT}
-        </DialogContentText>
-        <FormRequestActivity 
-          activity={activity}
-          handleClose={onClose}
-        />
+        <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>{fr.ACTIVITY.MODAL.CONTENT}</DialogContentText>
+        <FormRequestActivity activity={activity} handleClose={onClose} />
       </DialogContent>
     </Dialog>
   )

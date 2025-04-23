@@ -1,15 +1,22 @@
-import ActivityInterface from '@/interfaces/activity/ActivityInterface'
+import type ActivityInterface from '@/interfaces/activity/ActivityInterface'
 import JWTService from './JWTServices'
-import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import DateFormatter from '@/formatters/DateFormatter'
-import { Payload } from '@/types/Payload'
+import type { Payload } from '@/types/Payload'
 
 export class UrlActivityGeneratorService {
+  private _jwtService: JWTService
 
-  public static generateParametersActivityForShare(activity: ActivityInterface, formJson: Record<string, string>): string
-  {
-    const dateFormatted: Date = new Date(formJson['date'].toString())
-    const dateEuropean: string = DateFormatter.getDateEuropeanFormat(dateFormatted)
+  constructor() {
+    this._jwtService = new JWTService()
+  }
+
+  public generateParametersActivityForShare(
+    activity: ActivityInterface,
+    formJson: Record<string, string>
+  ): string {
+    const dateFormatted: Date = new Date(formJson.date)
+    const dateEuropean: string = new DateFormatter().getDateEuropeanFormat(dateFormatted)
 
     const route: ActivityQueryProps = {
       activity: encodeURIComponent(activity.name),
@@ -17,15 +24,14 @@ export class UrlActivityGeneratorService {
       authorEmail: encodeURIComponent(formJson['author-email'].toString()),
       target: encodeURIComponent(formJson['target-name'].toString()),
       date: encodeURIComponent(`${dateEuropean}`),
-      location: encodeURIComponent(activity.location)
+      location: encodeURIComponent(activity.location),
     }
 
-    return JWTService.generateToken(route)
+    return this._jwtService.generateToken(route)
   }
 
-  public static decodeParametersRouteRequestActivity(token: string): ActivityQueryProps | null
-  {
-    const routerParameters: Payload | null = JWTService.getDecodedToken(token)
+  public decodeParametersRouteRequestActivity(token: string): ActivityQueryProps | null {
+    const routerParameters: Payload | null = this._jwtService.getDecodedToken(token)
     if (!routerParameters) {
       return null
     }
@@ -36,7 +42,7 @@ export class UrlActivityGeneratorService {
       authorEmail: decodeURIComponent(routerParameters.e),
       target: decodeURIComponent(routerParameters.t),
       date: decodeURIComponent(routerParameters.d),
-      location: decodeURIComponent(routerParameters.l)
+      location: decodeURIComponent(routerParameters.l),
     }
   }
 }

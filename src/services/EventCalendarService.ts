@@ -1,14 +1,17 @@
 import DateFormatter from '@/formatters/DateFormatter'
-import ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
+import type ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
 import translation from '@/locales/fr/common.json'
 
 export default class EventCalendarService {
-
-  public static getCalendarFormatICS(body: ActivityEventCalendarInterface, start: Date, end: Date): string
-  {
-    const timeStamp: string = DateFormatter.getTimeStampOnDate(new Date())
-    const startIcs: string = DateFormatter.getTimeStampOnDate(start)
-    const endIcs: string = DateFormatter.getTimeStampOnDate(end)
+  public getCalendarFormatICS(
+    body: ActivityEventCalendarInterface,
+    start: Date,
+    end: Date
+  ): string {
+    const dateFormatter: DateFormatter = new DateFormatter()
+    const timeStamp: string = dateFormatter.getTimeStampOnDate(new Date())
+    const startIcs: string = dateFormatter.getTimeStampOnDate(start)
+    const endIcs: string = dateFormatter.getTimeStampOnDate(end)
 
     return `
       BEGIN:VCALENDAR
@@ -32,6 +35,9 @@ export default class EventCalendarService {
       END:VALARM
       END:VEVENT
       END:VCALENDAR
-    `.split('\n').map(line => line.trim()).join('\n')
+    `
+      .split('\n')
+      .map(line => line.trim())
+      .join('\n')
   }
 }

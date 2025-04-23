@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     }
     sgMail.setApiKey(apiKey)
 
-    const email: MailData = MailEventService.createEmailRefuseInvitation(body)
+    const email: MailData = new MailEventService().createEmailRefuseInvitation(body)
     let codeResponse = 202
     const responseEmail = await sgMail.send(email as MailDataRequired)
 

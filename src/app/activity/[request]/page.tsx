@@ -9,10 +9,11 @@ import { notFound } from 'next/navigation'
 import type React from 'react'
 
 type ActivityParams = Promise<{ request: string }>
+
 export default async function Activity({ params }: Readonly<{ params: ActivityParams }>): Promise<React.ReactElement> {
   const request: string = (await params).request
   const routerParameters: ActivityQueryProps | null =
-    UrlActivityGeneratorService.decodeParametersRouteRequestActivity(request)
+    new UrlActivityGeneratorService().decodeParametersRouteRequestActivity(request)
 
   if (routerParameters === null) {
     return notFound()

@@ -1,6 +1,6 @@
 {
   "name": "date-finder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --experimental-https --experimental-https-key ./certificates/key.pem --experimental-https-cert ./certificates/cert.pem",
@@ -24,7 +24,10 @@
     ]
   },
   "resolutions": {
-    "strip-ansi": "^6.0.1"
+    "strip-ansi": "^6.0.1",
+    "string-width": "^4.2.3",
+    "cliui": "7.0.4",
+    "wrap-ansi": "7.0.0"
   },
   "type": "module",
   "dependencies": {
@@ -77,7 +80,7 @@
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",
     "eslint": "^9.25.0",
-    "eslint-config-next": "14.2.15",
+    "eslint-config-next": "15.3.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.5.3",

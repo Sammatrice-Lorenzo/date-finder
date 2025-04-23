@@ -1,17 +1,19 @@
-import { Alert } from "@mui/material";
-import React from "react";
-import { AlertEnum } from "@/enums/AlertEnum";
+import { Alert } from '@mui/material'
+import type React from 'react'
+import type { AlertEnum } from '@/enums/AlertEnum'
 
 export type AlertComponentProps = {
-  description: string;
+  description: string
   severity: AlertEnum
 }
 
-export default function AlertComponent({ description, severity }: Readonly<AlertComponentProps>): React.ReactElement
-{
+export default function AlertComponent({
+  description,
+  severity,
+}: Readonly<AlertComponentProps>): React.ReactElement {
   return (
     <div
-      style={{ 
+      style={{
         position: 'fixed',
         top: '5%',
         left: '50%',
@@ -19,11 +21,7 @@ export default function AlertComponent({ description, severity }: Readonly<Alert
         zIndex: 1000,
       }}
     >
-      <Alert
-        variant="filled"
-        severity={severity}
-        sx={{ width: '300px', textAlign: 'center'}}
-      >
+      <Alert variant='filled' severity={severity} sx={{ width: '300px', textAlign: 'center' }}>
         {description}
       </Alert>
     </div>
