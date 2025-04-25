@@ -23,7 +23,7 @@ export async function POST(req: Request): Promise<
 
   const shareData: ShareDataInterface = {
     title: fr.ACTIVITY.TITLE_LINK_SHARED,
-    url: `${body.baseUrl}/activity/${urlToken}`,
+    url: `${body.baseUrl}/activity?token=${urlToken}`,
   }
 
   return NextResponse.json({ response: shareData }, { status: 200 })
