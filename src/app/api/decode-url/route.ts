@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
-import { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 
 type UrlActivityToken = {
   token: string | null

@@ -8,9 +8,10 @@ import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import { Box } from '@mui/material'
 import { notFound, useSearchParams } from 'next/navigation'
 import type React from 'react'
-import { UrlActivityDecoded } from '../api/decode-url/route'
+import type { UrlActivityDecoded } from '../api/decode-url/route'
+import { Suspense } from 'react'
 
-export default function Activity(): React.ReactElement {
+const Search = (): React.ReactElement => {
   const searchParams = useSearchParams()
   const token: string | null = searchParams.get('token')
 
@@ -27,24 +28,33 @@ export default function Activity(): React.ReactElement {
     return notFound()
   }
 
-  return (
-    <Box
+  return isLoading ? (
+    <SpinnerLoader
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 2,
+        marginTop: '10%',
+        alignContent: 'center',
       }}
-    >
-      {isLoading ? (
-        <SpinnerLoader />
-      ) : (
-        <>
-          <Header />
-          <InvitationActivity key={0} activity={activity} />
-        </>
-      )}
-    </Box>
+    />
+  ) : (
+    <InvitationActivity key={0} activity={activity} />
+  )
+}
+
+export default function Activity(): React.ReactElement {
+  return (
+    <Suspense fallback={<SpinnerLoader />}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 2,
+        }}
+      >
+        <Header />
+        <Search />
+      </Box>
+    </Suspense>
   )
 }
