@@ -6,25 +6,6 @@ export default class DateFormatter {
     return `${year}${month}${day}T${hours}${minutes}00`
   }
 
-  /**
-   * @param date format "DD/MM/YYYY HH:mm"
-   *
-   * @returns Date
-   */
-  public static generateDateTimeFromString(date: string): Date {
-    const [datePart, time] = date.split(' ')
-    const [day, month, year] = datePart.split('/')
-    const [hours, minutes] = time.split(':')
-
-    return new Date(
-      Number.parseInt(year),
-      Number.parseInt(month) - 1,
-      Number.parseInt(day),
-      Number.parseInt(hours),
-      Number.parseInt(minutes)
-    )
-  }
-
   public getDateTimeLocal(date: Date): string {
     const [year, month, day] = this.getDefaultFormatOfDate(date)
     const [hours, minutes] = this.getDefaultFormatTime(date)

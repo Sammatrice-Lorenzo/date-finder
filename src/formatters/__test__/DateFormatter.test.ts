@@ -7,16 +7,6 @@ describe('MovieUrlService', () => {
     service = new DateFormatter()
   })
 
-  test('Test generate date from string', async () => {
-    const now: Date = new Date()
-    now.setFullYear(2025, 0, 1)
-    now.setHours(8, 10, 0, 0)
-
-    const dateGenerated: Date = DateFormatter.generateDateTimeFromString('01/01/2025 08:10')
-
-    expect(dateGenerated).toStrictEqual(now)
-  })
-
   test('Test get date time local', async () => {
     const date: Date = new Date('2025-01-01 08:10')
     const localDate: string = service.getDateTimeLocal(date)
