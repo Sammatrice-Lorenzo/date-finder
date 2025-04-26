@@ -29,9 +29,14 @@ export default class EventCalendarService {
       ORGANIZER;CN=${body.activity.author}:mailto:${body.activity.authorEmail}
       ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=${body.activity.target}:mailto:${body.targetEmail}
       BEGIN:VALARM
-      TRIGGER:-PT15M
+      TRIGGER;RELATED=START:-PT2H
       ACTION:DISPLAY
-      DESCRIPTION:Reminder
+      DESCRIPTION:Reminder 2h before
+      END:VALARM
+      BEGIN:VALARM
+      TRIGGER;RELATED=START:-PT30M
+      ACTION:DISPLAY
+      DESCRIPTION:Reminder 30m before
       END:VALARM
       END:VEVENT
       END:VCALENDAR

@@ -5,6 +5,8 @@ inputs:
     required: true
   TMDB_API_KEY:
     required: true
+  JWT_KEY:
+    required: false
 
 runs:
   using: 'composite'
@@ -14,8 +16,11 @@ runs:
       env:
         TMDB_API: ${{ inputs.TMDB_API }}
         TMDB_API_KEY: ${{ inputs.TMDB_API_KEY }}
+        JWT_KEY: ${{ inputs.JWT_KEY }}
       run: |
         echo "TMDB_API=${TMDB_API}" > .env.test
         echo "TMDB_API_KEY=${TMDB_API_KEY}" >> .env.test
+        echo "JWT_KEY=${JWT_KEY}" >> .env.test
         echo "TMDB_API=${TMDB_API}" > .env
         echo "TMDB_API_KEY=${TMDB_API_KEY}" >> .env
+        echo "JWT_KEY=${JWT_KEY}" >> .env

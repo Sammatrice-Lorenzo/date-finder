@@ -19,7 +19,7 @@
       "prettier --write",
       "eslint --fix"
     ],
-    "*.{css,json,md}": [
+    "*.{css,json,md,yml}": [
       "prettier --write"
     ]
   },
@@ -54,6 +54,7 @@
     "haversine": "^1.1.1",
     "husky": "^9.1.7",
     "install": "^0.13.0",
+    "jest-json-schema": "^6.1.0",
     "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "lint-staged": "^15.5.1",
@@ -75,6 +76,7 @@
     "@babel/preset-typescript": "^7.27.0",
     "@playwright/test": "^1.49.0",
     "@types/haversine": "^1.1.8",
+    "@types/jest-json-schema": "^6.1.4",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^18.3.20",
