@@ -39,18 +39,48 @@ export default class DateFormatter {
     return `${day}/${month}/${year} ${hours}:${minutes}`
   }
 
-  private getDefaultFormatOfDate(date: Date): string[] {
-    const year: string = String(date.getFullYear())
-    const month: string = String(date.getMonth() + 1).padStart(2, '0')
-    const day: string = String(date.getDate()).padStart(2, '0')
+  private getTimeZoneFormat(
+    date: Date,
+    options: Intl.DateTimeFormatOptions
+  ): Intl.DateTimeFormatPart[] {
+    options.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
-    return [year, month, day]
+    const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(undefined, options)
+
+    return formatter.formatToParts(date)
+  }
+
+  private extractParts(parts: Intl.DateTimeFormatPart[], types: string[]): string[] {
+    return types.map(type => {
+      if (type === 'year') {
+        return parts.find(p => p.type === type)?.value ?? '0000'
+      } else {
+        return parts.find(p => p.type === type)?.value ?? '00'
+      }
+    })
+  }
+
+  private getDefaultFormatOfDate(date: Date): string[] {
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }
+
+    const parts: Intl.DateTimeFormatPart[] = this.getTimeZoneFormat(date, options)
+
+    return this.extractParts(parts, ['year', 'month', 'day'])
   }
 
   private getDefaultFormatTime(date: Date): string[] {
-    const hours: string = String(date.getHours()).padStart(2, '0')
-    const minutes: string = String(date.getMinutes()).padStart(2, '0')
+    const options: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }
 
-    return [hours, minutes]
+    const parts: Intl.DateTimeFormatPart[] = this.getTimeZoneFormat(date, options)
+
+    return this.extractParts(parts, ['hour', 'minute'])
   }
 }
