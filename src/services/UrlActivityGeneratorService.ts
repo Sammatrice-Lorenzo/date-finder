@@ -1,7 +1,6 @@
 import type ActivityInterface from '@/interfaces/activity/ActivityInterface'
 import JWTService from './JWTServices'
 import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
-import DateFormatter from '@/formatters/DateFormatter'
 import type { Payload } from '@/types/Payload'
 import type { FormRequestActivityInterface } from '@/interfaces/activity/FormRequestActivityInterface'
 
@@ -16,15 +15,15 @@ export class UrlActivityGeneratorService {
     activity: ActivityInterface,
     formJson: FormRequestActivityInterface
   ): string {
-    const dateFormatted: Date = new Date(formJson.date ?? new Date())
-    const dateEuropean: string = new DateFormatter().getDateEuropeanFormat(dateFormatted)
+    const date: Date = new Date(formJson.date ?? new Date())
+    const dateFormatted: string = date.toUTCString()
 
     const route: ActivityQueryProps = {
       activity: encodeURIComponent(activity.name),
       author: encodeURIComponent(formJson['author-name']),
       authorEmail: encodeURIComponent(formJson['author-email']),
       target: encodeURIComponent(formJson['target-name']),
-      date: encodeURIComponent(`${dateEuropean}`),
+      date: encodeURIComponent(`${dateFormatted}`),
       location: encodeURIComponent(activity.location),
     }
 

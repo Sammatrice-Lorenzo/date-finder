@@ -11,7 +11,6 @@ expect.extend(matchers)
 import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
 import type { NextResponseUrlActivityDecodedType } from '@/types/NextResponseUrlActivityDecodedType'
 import type { ErrorResponseType } from '@/types/ErrorResponseType'
-import DateFormatter from '@/formatters/DateFormatter'
 
 type FormRequest = Omit<FormRequestActivityInterface, 'date'>
 
@@ -45,8 +44,8 @@ it('Test return response with status 200', async () => {
   const body: NextResponseUrlActivityDecodedType = await response.json()
   expect(body.response.author).toBe(form['author-name'])
 
-  const dateExpected: string = new DateFormatter().getDateEuropeanFormat(form.date ?? new Date())
-  expect(body.response.date).toBe(dateExpected)
+  const dateExpected: Date = form.date ?? new Date()
+  expect(body.response.date).toBe(dateExpected.toUTCString())
 })
 
 it('Test return response error token', async () => {
