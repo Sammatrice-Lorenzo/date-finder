@@ -13,6 +13,8 @@ test('Movies cards', async ({ page, baseURL }) => {
 
   await assertMovies(page)
 
+  await assertScrollUpButton(page)
+
   await page.getByRole('button', { name: 'Animation' }).click()
   await assertMovies(page)
 
@@ -25,6 +27,18 @@ test('Movies cards', async ({ page, baseURL }) => {
   await assertMovies(page)
   await expect(page.getByRole('img', { name: 'Fast & Furious X' })).toBeVisible()
 })
+
+async function assertScrollUpButton(page: Page) {
+  await page.evaluate(() => window.scrollTo({ top: 600, behavior: 'smooth' }))
+  await page.click('button[aria-label="Scroll Up"]')
+
+  await page.waitForTimeout(5000)
+  const scrollY: number = await page.$eval('body', element =>
+    element.ownerDocument.defaultView ? element.ownerDocument.defaultView?.scrollY : 600
+  )
+
+  expect(scrollY).toBe(0)
+}
 
 async function assertMovies(page: Page): Promise<void> {
   await page.waitForSelector('.grid-movies', { timeout: 30000 })
