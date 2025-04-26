@@ -3,6 +3,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import { useRouter } from 'next/navigation'
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import styles from '@/styles/header.module.css'
+import ScrollToTopButton from '../ScrollToTopButton'
 
 export type HeaderPlacePros = {
   title: string
@@ -20,7 +21,7 @@ const HeaderPlace = ({ title }: HeaderPlacePros) => {
       >
         <KeyboardReturnIcon />
       </IconButton>
-
+      <ScrollToTopButton />
       <Typography variant='h6' component='div' className={styles.titleHeader}>
         {title}
       </Typography>
