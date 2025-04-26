@@ -11,7 +11,7 @@ interface CardRequestActivityProps {
 export default function CardRequestActivity({
   activity,
 }: Readonly<CardRequestActivityProps>): React.ReactElement {
-  const date = new DateFormatter().getDateEuropeanFormat(new Date(activity.date))
+  const date: string = new DateFormatter().getDateEuropeanFormat(new Date(activity.date))
 
   return (
     <Card sx={{ my: 3, p: 2 }}>

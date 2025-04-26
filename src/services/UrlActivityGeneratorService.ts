@@ -15,8 +15,6 @@ export class UrlActivityGeneratorService {
     activity: ActivityInterface,
     formJson: FormRequestActivityInterface
   ): string {
-    console.log(formJson.date)
-
     const date: Date = new Date(formJson.date ?? new Date())
     const dateFormatted: string = date.toUTCString()
 

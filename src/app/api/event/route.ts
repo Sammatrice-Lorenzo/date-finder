@@ -4,12 +4,11 @@ import MailEventService from '@/services/MailEventService'
 import sgMail from '@sendgrid/mail'
 import type { MailData, MailDataRequired } from '@sendgrid/helpers/classes/mail'
 import { type NextRequest, NextResponse } from 'next/server'
-import DateFormatter from '@/formatters/DateFormatter'
 import fr from '@/locales/fr/common.json'
 
 export async function POST(req: NextRequest) {
   const body: ActivityEventCalendarInterface = await req.json()
-  const start: Date = DateFormatter.generateDateTimeFromString(body.activity.date)
+  const start: Date = new Date(body.activity.date)
   const end: Date = new Date(new Date(start).getTime() + 60 * 60 * 1000)
 
   const icsContent: string = new EventCalendarService().getCalendarFormatICS(body, start, end)
