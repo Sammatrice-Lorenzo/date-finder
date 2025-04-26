@@ -3,6 +3,7 @@ import JWTService from './JWTServices'
 import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import DateFormatter from '@/formatters/DateFormatter'
 import type { Payload } from '@/types/Payload'
+import type { FormRequestActivityInterface } from '@/interfaces/activity/FormRequestActivityInterface'
 
 export class UrlActivityGeneratorService {
   private _jwtService: JWTService
@@ -13,16 +14,16 @@ export class UrlActivityGeneratorService {
 
   public generateParametersActivityForShare(
     activity: ActivityInterface,
-    formJson: Record<string, string>
+    formJson: FormRequestActivityInterface
   ): string {
-    const dateFormatted: Date = new Date(formJson.date)
+    const dateFormatted: Date = new Date(formJson.date ?? new Date())
     const dateEuropean: string = new DateFormatter().getDateEuropeanFormat(dateFormatted)
 
     const route: ActivityQueryProps = {
       activity: encodeURIComponent(activity.name),
-      author: encodeURIComponent(formJson['author-name'].toString()),
-      authorEmail: encodeURIComponent(formJson['author-email'].toString()),
-      target: encodeURIComponent(formJson['target-name'].toString()),
+      author: encodeURIComponent(formJson['author-name']),
+      authorEmail: encodeURIComponent(formJson['author-email']),
+      target: encodeURIComponent(formJson['target-name']),
       date: encodeURIComponent(`${dateEuropean}`),
       location: encodeURIComponent(activity.location),
     }
