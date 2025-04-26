@@ -5,10 +5,10 @@ import Header from '@/components/Header'
 import SpinnerLoader from '@/components/Loader/SpinnerLoader'
 import useApi from '@/hooks/useApi'
 import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import type { NextResponseUrlActivityDecodedType } from '@/types/NextResponseUrlActivityDecodedType'
 import { Box } from '@mui/material'
 import { notFound, useSearchParams } from 'next/navigation'
 import type React from 'react'
-import type { UrlActivityDecoded } from '../api/decode-url/route'
 import { Suspense } from 'react'
 
 const Search = (): React.ReactElement => {
@@ -21,7 +21,7 @@ const Search = (): React.ReactElement => {
     body: JSON.stringify({ token: token }),
   })
 
-  const dataResponse = data as UrlActivityDecoded | null
+  const dataResponse = data as NextResponseUrlActivityDecodedType | null
   const activity = dataResponse?.response as ActivityQueryProps | null
 
   if (activity === null) {

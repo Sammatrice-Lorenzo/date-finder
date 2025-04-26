@@ -1,26 +1,20 @@
 import { NextResponse } from 'next/server'
 import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
 import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
+import type { NextResponseUrlActivityDecodedType } from '@/types/NextResponseUrlActivityDecodedType'
+import type { ErrorResponseType } from '@/types/ErrorResponseType'
 
 type UrlActivityToken = {
   token: string | null
 }
 
-type ErrorResponse = {
-  error: string
-}
-
-export type UrlActivityDecoded = {
-  response: ActivityQueryProps
-}
-
 export async function POST(
   req: Request
-): Promise<NextResponse<UrlActivityDecoded | ErrorResponse>> {
+): Promise<NextResponse<NextResponseUrlActivityDecodedType | ErrorResponseType>> {
   const body: UrlActivityToken = await req.json()
   const token: string | null = body.token
 
-  const errorResponse: NextResponse<ErrorResponse> = NextResponse.json(
+  const errorResponse: NextResponse<ErrorResponseType> = NextResponse.json(
     { error: 'Invalid token' },
     { status: 400 }
   )
