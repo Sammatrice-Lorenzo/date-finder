@@ -14,9 +14,13 @@ export async function POST(
   const body: UrlActivityToken = await req.json()
   const token: string | null = body.token
 
+  /** code 200 pour renvoyer la page Not Found côté client */
   const errorResponse: NextResponse<ErrorResponseType> = NextResponse.json(
-    { error: 'Invalid token' },
-    { status: 400 }
+    {
+      response: null,
+      error: 'Invalid token',
+    },
+    { status: 200 }
   )
   if (!token) {
     return errorResponse
