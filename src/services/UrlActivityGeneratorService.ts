@@ -19,12 +19,12 @@ export class UrlActivityGeneratorService {
     const dateFormatted: string = date.toUTCString()
 
     const route: ActivityQueryProps = {
-      activity: encodeURIComponent(activity.name),
-      author: encodeURIComponent(formJson['author-name']),
-      authorEmail: encodeURIComponent(formJson['author-email']),
-      target: encodeURIComponent(formJson['target-name']),
-      date: encodeURIComponent(`${dateFormatted}`),
-      location: encodeURIComponent(activity.location),
+      activity: activity.name,
+      author: formJson['author-name'],
+      authorEmail: formJson['author-email'],
+      target: formJson['target-name'],
+      date: `${dateFormatted}`,
+      location: activity.location,
     }
 
     return this._jwtService.generateToken(route)
@@ -37,12 +37,12 @@ export class UrlActivityGeneratorService {
     }
 
     return {
-      activity: decodeURIComponent(routerParameters.a),
-      author: decodeURIComponent(routerParameters.o),
-      authorEmail: decodeURIComponent(routerParameters.e),
-      target: decodeURIComponent(routerParameters.t),
-      date: decodeURIComponent(routerParameters.d),
-      location: decodeURIComponent(routerParameters.l),
+      activity: routerParameters.a,
+      author: routerParameters.o,
+      authorEmail: routerParameters.e,
+      target: routerParameters.t,
+      date: routerParameters.d,
+      location: routerParameters.l,
     }
   }
 }

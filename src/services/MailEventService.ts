@@ -19,15 +19,13 @@ export default class MailEventService {
       throw new Error('No mail username found')
     }
 
-    const start: Date = new Date(body.activity.date)
-
     return {
       to: emailUser,
       from: this._mailUsername,
       subject: translation.ACTIVITY.EMAIL.SUBJECT,
       templateId: process.env.SEND_GRID_TEMPLATE_ID,
       dynamicTemplateData: {
-        event_date: new DateFormatter().getDateEuropeanFormat(start),
+        event_date: body.eventDate,
         event_location: body.activity.location,
       },
       attachments: [
