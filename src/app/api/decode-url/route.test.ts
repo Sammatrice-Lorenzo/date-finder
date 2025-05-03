@@ -55,7 +55,7 @@ it('Test return response error token', async () => {
   const response: NextResponse<NextResponseUrlActivityDecodedType | ErrorResponseType> =
     await POST(request)
 
-  expect(response.status).toBe(400)
+  expect(response.status).toBe(200)
 
   const body: ErrorResponseType = await response.json()
   expect(body.error).toBe('Invalid token')

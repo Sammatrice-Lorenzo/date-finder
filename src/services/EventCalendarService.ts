@@ -3,15 +3,9 @@ import type ActivityEventCalendarInterface from '@/interfaces/activity/ActivityE
 import translation from '@/locales/fr/common.json'
 
 export default class EventCalendarService {
-  public getCalendarFormatICS(
-    body: ActivityEventCalendarInterface,
-    start: Date,
-    end: Date
-  ): string {
+  public getCalendarFormatICS(body: ActivityEventCalendarInterface): string {
     const dateFormatter: DateFormatter = new DateFormatter()
     const timeStamp: string = dateFormatter.getTimeStampOnDate(new Date())
-    const startIcs: string = dateFormatter.getTimeStampOnDate(start)
-    const endIcs: string = dateFormatter.getTimeStampOnDate(end)
 
     return `
       BEGIN:VCALENDAR
@@ -20,8 +14,8 @@ export default class EventCalendarService {
       BEGIN:VEVENT
       UID:${body.uid}
       DTSTAMP:${timeStamp}Z
-      DTSTART:${startIcs}
-      DTEND:${endIcs}
+      DTSTART:${body.startDateTimeStamp}
+      DTEND:${body.endDateTimeStamp}
       SUMMARY:Date ${body.activity.activity}
       DESCRIPTION:${translation.ACTIVITY.EMAIL.EVENT_DESCRIPTION}
       LOCATION:${body.activity.location}
