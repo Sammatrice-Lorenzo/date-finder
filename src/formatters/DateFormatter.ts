@@ -1,9 +1,10 @@
 export default class DateFormatter {
   public getTimeStampOnDate(date: Date): string {
-    const [year, month, day] = this.getDefaultFormatOfDate(date)
-    const [hours, minutes] = this.getDefaultFormatTime(date)
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0]
+    // const [year, month, day] = this.getDefaultFormatOfDate(date)
+    // const [hours, minutes] = this.getDefaultFormatTime(date)
 
-    return `${year}${month}${day}T${hours}${minutes}00`
+    // return `${year}${month}${day}T${hours}${minutes}00`
   }
 
   public getDateTimeLocal(date: Date): string {
