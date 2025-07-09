@@ -2,9 +2,11 @@ import { Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import type React from 'react'
-import translate from '@/locales/fr/common.json'
+import { useTranslations } from 'next-intl'
 
 export default function Header(): React.ReactElement {
+  const t = useTranslations('PWA')
+
   return (
     <Link
       href='/'
@@ -20,7 +22,7 @@ export default function Header(): React.ReactElement {
         DateFinder
       </Typography>
       <Typography variant='h5' component='h2' gutterBottom>
-        {translate.PWA.DESCRIPTION_APP}
+        {t('DESCRIPTION_APP')}
       </Typography>
     </Link>
   )

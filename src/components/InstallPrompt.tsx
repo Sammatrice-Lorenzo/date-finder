@@ -1,58 +1,13 @@
-import { Button, Typography, Box, IconButton, Avatar } from '@mui/material'
+import { Box, IconButton, Avatar } from '@mui/material'
 import type React from 'react'
-import { useEffect, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
-import ShareIcon from '@mui/icons-material/Share'
-import AddIcon from '@mui/icons-material/Add'
-import fr from '../locales/fr/common.json'
-import type { BeforeInstallPromptEventInterface } from '@/interfaces/BeforeInstallPromptEventInterface'
+import InstallIOS from './InstallPWA/InstallIOS'
+import InstallDefaultPWA from './InstallPWA/InstallDefaultPWA'
+import { useInstallPrompt } from '@/hooks/installPromt/useInstallPrompt'
 
 export default function InstallPrompt(): React.ReactElement | null {
-  const [isIOS, setIsIOS] = useState<boolean>(false)
-  const [isStandalone, setIsStandalone] = useState<boolean>(false)
-  const [showBanner, setShowBanner] = useState<boolean>(true)
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEventInterface | null>(
-    null
-  )
-  const [showInstructionIOS, setShowInstructionIOS] = useState<boolean>(false)
-
-  useEffect(() => {
-    const isIOS = (): boolean => {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !('MSStream' in window)
-    }
-    setIsIOS(isIOS())
-
-    setIsStandalone(window.matchMedia('(display-mode: standalone)').matches)
-
-    window.addEventListener('beforeinstallprompt', e => {
-      const promptEvent = e as BeforeInstallPromptEventInterface
-      e.preventDefault()
-      setDeferredPrompt(promptEvent)
-    })
-  }, [])
-
-  const renderInstallIOS = (): React.ReactElement => {
-    return (
-      <Typography>
-        {fr.PWA.IOS} <ShareIcon fontSize='small' sx={{ verticalAlign: 'middle' }} />{' '}
-        {fr.PWA.BUTTON_SHARE} <AddIcon fontSize='small' sx={{ verticalAlign: 'middle' }} />{' '}
-        {fr.PWA.AFTER_CLICKED}
-      </Typography>
-    )
-  }
-
-  const handleInstallClick = () => {
-    if (isIOS) {
-      setShowInstructionIOS(true)
-    }
-
-    if (deferredPrompt) {
-      deferredPrompt.prompt()
-      deferredPrompt.userChoice.then(() => {
-        setDeferredPrompt(null)
-      })
-    }
-  }
+  const { isStandalone, showBanner, setShowBanner, showInstructionIOS, handleInstallClick } =
+    useInstallPrompt()
 
   if (isStandalone || !showBanner) {
     return null
@@ -83,26 +38,9 @@ export default function InstallPrompt(): React.ReactElement | null {
       </Box>
 
       {showInstructionIOS ? (
-        renderInstallIOS()
+        <InstallIOS />
       ) : (
-        <>
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography variant='subtitle1' sx={{ fontWeight: 500 }}>
-              {fr.PWA.INSTALL}
-            </Typography>
-          </Box>
-          <Box>
-            <Button
-              size='small'
-              variant='outlined'
-              color='primary'
-              onClick={handleInstallClick}
-              aria-label='Install PWA'
-            >
-              {fr.PWA.HOME}
-            </Button>
-          </Box>
-        </>
+        <InstallDefaultPWA handleInstallClick={handleInstallClick} />
       )}
     </Box>
   )

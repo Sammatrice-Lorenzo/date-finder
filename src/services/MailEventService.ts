@@ -1,13 +1,15 @@
 import DateFormatter from '@/formatters/DateFormatter'
 import type ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
 import type { MailData } from '@sendgrid/helpers/classes/mail'
-import translation from '@/locales/fr/common.json'
+import { createTranslator } from 'next-intl'
 
 export default class MailEventService {
   private _mailUsername: string | undefined
+  private _translator: ReturnType<typeof createTranslator>
 
-  constructor() {
+  constructor(translator: ReturnType<typeof createTranslator>) {
     this._mailUsername = process.env.SEND_EMAIL
+    this._translator = translator
   }
 
   public createEmailInvitation(
@@ -22,7 +24,7 @@ export default class MailEventService {
     return {
       to: emailUser,
       from: this._mailUsername,
-      subject: translation.ACTIVITY.EMAIL.SUBJECT,
+      subject: this._translator('SUBJECT'),
       templateId: process.env.SEND_GRID_TEMPLATE_ID,
       dynamicTemplateData: {
         event_date: body.eventDate,
@@ -49,7 +51,7 @@ export default class MailEventService {
     return {
       to: body.activity.authorEmail,
       from: this._mailUsername,
-      subject: translation.ACTIVITY.EMAIL.SUBJECT,
+      subject: this._translator('SUBJECT'),
       templateId: process.env.SEND_GRID_TEMPLATE_REFUSED_ID,
       dynamicTemplateData: {
         event_date: new DateFormatter().getDateEuropeanFormat(start),

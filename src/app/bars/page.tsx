@@ -1,7 +1,9 @@
 import type React from 'react'
 import Places from '@/components/Place/Places'
-import translate from '@/locales/fr/common.json'
+import { getTranslations } from 'next-intl/server'
 
-export default function Bars(): React.ReactElement {
-  return <Places typePlace={translate.ACTIVITY.TYPES.BARS} category="bar" />
+export default async function Bars(): Promise<React.ReactElement> {
+  const t = await getTranslations('ACTIVITY.TYPES')
+
+  return <Places typePlace={t('BARS')} category='bar' />
 }

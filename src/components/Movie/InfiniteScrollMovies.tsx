@@ -11,24 +11,28 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import SpinnerLoader from '../Loader/SpinnerLoader'
 import MovieCard from './MovieCard'
 import type { MoviesProps } from './Movies'
+import { useTranslations } from 'next-intl'
 
 const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
   const movieStore: MovieStoreInterface = useMovieStore()
 
   const { page, setPage, queryParams } = movieStore
 
-  const { data } = useApi({
-    url: `/api/movies?${queryParams().toString()}`,
-    method: 'GET',
-    optionsSWR: {
-      keepPreviousData: true,
-      fallbackData: {
-        results: initialMovies.results,
-        page: initialMovies.page,
-        total_pages: initialMovies.total_pages,
+  const { data } = useApi(
+    {
+      url: `/api/movies?${queryParams().toString()}`,
+      method: 'GET',
+      optionsSWR: {
+        keepPreviousData: true,
+        fallbackData: {
+          results: initialMovies.results,
+          page: initialMovies.page,
+          total_pages: initialMovies.total_pages,
+        },
       },
     },
-  })
+    useTranslations('ERROR')
+  )
   const moviesData: ResponseMoviesInterface = data as ResponseMoviesInterface
   const moviesResponse: MovieAPIInterface[] = moviesData.results ?? []
 

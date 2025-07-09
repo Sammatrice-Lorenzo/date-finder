@@ -6,13 +6,14 @@ import usePlace from '@/hooks/place/usePlace'
 import type { Location } from '@/interfaces/Location'
 import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
 import type PlaceInterface from '@/interfaces/place/PlaceInterface'
-import translate from '@/locales/fr/common.json'
 import useLocationStore from '@/services/store/useLocationStore'
 import { Box, Grid2, Typography } from '@mui/material'
 import type React from 'react'
-import fr from '../../locales/fr/common.json'
 import { CardsSkeletons } from '../Loader/CardsSkeletons'
 import HeaderPlace from './HeaderPlace'
+import { useTranslations } from 'next-intl'
+import PlaceParametersService from '@/services/place/PlaceParametersService'
+import ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
 
 export type PlacesProps = {
   typePlace: string
@@ -24,11 +25,19 @@ export default function Places({ typePlace, category }: Readonly<PlacesProps>): 
     (store: LocationStoreInterface) => store.location
   )
 
-  const { response, isLoading, trigger } = usePlace(userLocation, '', '', category)
+  const placeParameters: ApiRequestInterface = new PlaceParametersService().buildPlaceOptions(
+    userLocation,
+    '',
+    '',
+    category
+  )
+
+  const { response, isLoading, trigger } = usePlace(placeParameters, useTranslations('ERROR'))
+  const t = useTranslations('PLACE')
 
   return (
     <Box sx={{ padding: 4 }}>
-      <HeaderPlace title={`${typePlace} ${translate.PLACE.PROXIMITY}`} />
+      <HeaderPlace title={`${typePlace} ${t('PROXIMITY')}`} />
       <PlaceInputSearch typePlace={typePlace} category={category} onTriggerSearch={trigger} />
       <Grid2 container spacing={4}>
         {isLoading ? <CardsSkeletons /> : null}
@@ -43,7 +52,7 @@ export default function Places({ typePlace, category }: Readonly<PlacesProps>): 
               textAlign: 'center',
             }}
           >
-            <Typography>{fr.PLACE.NOT_FOUND}</Typography>
+            <Typography>{t('NOT_FOUND')}</Typography>
           </Grid2>
         )}
       </Grid2>

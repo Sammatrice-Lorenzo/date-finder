@@ -1,13 +1,13 @@
 import type ApiRequestInterface from '@/interfaces/api/ApiRequestInterface'
 import type { Location } from '@/interfaces/Location'
 import type LocationStoreInterface from '@/interfaces/LocationStoreInterface'
-import translate from '@/locales/fr/common.json'
 import PlaceParametersService from '@/services/place/PlaceParametersService'
 import useLocationStore from '@/services/store/useLocationStore'
 import { Button, Grid2 } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import * as React from 'react'
 import InputSearch from '../InputSearch'
+import { useTranslations } from 'next-intl'
 
 export type PlaceInputSearchProps = {
   typePlace: string
@@ -25,6 +25,8 @@ export default function PlaceInputSearch({
   const userLocation: Location | null = useLocationStore(
     (store: LocationStoreInterface) => store.location
   )
+
+  const t = useTranslations('PLACE')
 
   const handleSearchPlaces = (): void => {
     const options = new PlaceParametersService().buildPlaceOptions(
@@ -50,7 +52,7 @@ export default function PlaceInputSearch({
       >
         <InputSearch
           idInput='input-location'
-          placeholder={translate.PLACE.CITY}
+          placeholder={t('CITY')}
           refSearch={refSearchLocation}
         />
       </Paper>
@@ -72,7 +74,7 @@ export default function PlaceInputSearch({
           sx={{ borderColor: '#d33252', color: 'white', margin: '0 auto' }}
           onClick={handleSearchPlaces}
         >
-          {translate.PLACE.SEARCH}
+          {t('SEARCH')}
         </Button>
       </Grid2>
     </>

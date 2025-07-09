@@ -1,13 +1,15 @@
 import { RequestActivityNameEnum } from '@/enums/RequestActivityNameEnum'
 import type { InputModalRequestActivity } from '@/interfaces/InputModalRequestActivity'
-import fr from '../locales/fr/common.json'
+import { createTranslator, Messages, NestedKeyOf } from 'next-intl'
 
-const valuesInputsModalRequestActivity = (): InputModalRequestActivity[] => {
+const valuesInputsModalRequestActivity = (
+  t: ReturnType<typeof createTranslator<Messages, NestedKeyOf>>
+): InputModalRequestActivity[] => {
   return [
     {
       id: 'date-input',
       name: RequestActivityNameEnum.DATE,
-      label: fr.ACTIVITY.FORM.DATE,
+      label: t('DATE'),
       type: 'datetime-local',
       margin: 'none',
       props: {
@@ -19,14 +21,14 @@ const valuesInputsModalRequestActivity = (): InputModalRequestActivity[] => {
     {
       id: 'author-input',
       name: RequestActivityNameEnum.AUTHOR_NAME,
-      label: fr.ACTIVITY.FORM.YOUR_NAME,
+      label: t('YOUR_NAME'),
       margin: 'dense',
       type: 'text',
     },
     {
       id: 'author-email',
       name: RequestActivityNameEnum.AUTHOR_EMAIL,
-      label: fr.ACTIVITY.FORM.YOUR_EMAIL,
+      label: t('YOUR_EMAIL'),
       margin: 'dense',
       type: 'email',
     },
@@ -34,7 +36,7 @@ const valuesInputsModalRequestActivity = (): InputModalRequestActivity[] => {
       id: 'target-input',
       margin: 'dense',
       name: RequestActivityNameEnum.TARGET_NAME,
-      label: fr.ACTIVITY.FORM.NAME_TARGET,
+      label: t('NAME_TARGET'),
       type: 'text',
     },
   ]

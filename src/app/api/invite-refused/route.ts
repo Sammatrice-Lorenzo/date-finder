@@ -2,11 +2,14 @@ import type ActivityEventCalendarInterface from '@/interfaces/activity/ActivityE
 import sgMail from '@sendgrid/mail'
 import type { MailData, MailDataRequired } from '@sendgrid/helpers/classes/mail'
 import { NextResponse } from 'next/server'
-import fr from '../../../locales/fr/common.json'
 import MailEventService from '@/services/MailEventService'
+import { getTranslations } from 'next-intl/server'
 
 export async function POST(req: Request) {
   const body: ActivityEventCalendarInterface = await req.json()
+  const translateError = await getTranslations('ERROR')
+  const translateSuccess = await getTranslations('SUCCESS')
+  const translatorActivity = await getTranslations('ACTIVITY.EMAIL')
 
   try {
     const apiKey: string | undefined = process.env.API_KEY_SEND_GRID
@@ -15,19 +18,21 @@ export async function POST(req: Request) {
     }
     sgMail.setApiKey(apiKey)
 
-    const email: MailData = new MailEventService().createEmailRefuseInvitation(body)
+    const email: MailData = new MailEventService(translatorActivity).createEmailRefuseInvitation(
+      body
+    )
     let codeResponse = 202
     const responseEmail = await sgMail.send(email as MailDataRequired)
 
-    let message: string = fr.SUCCESS.EMAIL
+    let message: string = translateSuccess('EMAIL')
     if (codeResponse !== 202) {
-      message = fr.ERROR.EMAIL_ERROR
+      message = translateError('EMAIL_ERROR')
       codeResponse = responseEmail[0].statusCode
     }
 
     return NextResponse.json({ message: message }, { status: codeResponse })
   } catch (error) {
     console.error(error)
-    return NextResponse.json({ message: fr.ERROR.SERVER_ERROR }, { status: 500 })
+    return NextResponse.json({ message: translateError('SERVER_ERROR') }, { status: 500 })
   }
 }

@@ -4,7 +4,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogActions from '@mui/material/DialogActions'
 import Dialog from '@mui/material/Dialog'
-import fr from '../locales/fr/common.json'
+import { useTranslations } from 'next-intl'
 
 export interface ConfirmDialogProps {
   open: boolean
@@ -16,6 +16,7 @@ export interface ConfirmDialogProps {
 
 export default function ConfirmDialog(props: ConfirmDialogProps): React.ReactElement {
   const { onClose, open, title, message, onConfirm } = props
+  const t = useTranslations('CONFIRM_DIALOG')
 
   const handleOk = (): void => {
     onConfirm()
@@ -28,7 +29,7 @@ export default function ConfirmDialog(props: ConfirmDialogProps): React.ReactEle
       <DialogContent dividers>{message}</DialogContent>
       <DialogActions>
         <Button variant='outlined' color='secondary' autoFocus onClick={() => onClose()}>
-          {fr.CONFIRM_DIALOG.CANCELED}
+          {t('CANCELED')}
         </Button>
         <Button variant='contained' color='error' onClick={handleOk}>
           Ok

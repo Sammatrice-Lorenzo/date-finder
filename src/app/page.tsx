@@ -6,11 +6,13 @@ import Header from '@/components/Header'
 import BoxActivity from '@/components/BoxActivity'
 import InstallPrompt from '@/components/InstallPrompt'
 import styles from '@/styles/home.module.css'
-import ACTIVITIES_DATA, { type HomeActivitiesData } from '@/data/activitiesData'
 import { useCurrentLocation } from '@/hooks/useCurrentLocation'
+import { useTranslations } from 'next-intl'
+import getActivitiesData, { HomeActivitiesData } from '@/data/activitiesData'
 
 const Home: NextPage = () => {
   useCurrentLocation()
+  const t = useTranslations('ACTIVITY.TYPES')
 
   return (
     <>
@@ -19,7 +21,7 @@ const Home: NextPage = () => {
         <Header />
 
         <Grid2 container spacing={3} className={styles.containerGridHome}>
-          {ACTIVITIES_DATA.map((activity: HomeActivitiesData) => {
+          {getActivitiesData(t).map((activity: HomeActivitiesData) => {
             return (
               <Grid2 className={styles.gridItem} key={`${activity.key}grid`}>
                 <BoxActivity
