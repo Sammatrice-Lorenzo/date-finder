@@ -1,4 +1,3 @@
-import type { Config } from 'jest'
 import nextJest from 'next/jest.js'
 
 const createJestConfig = nextJest({
@@ -6,14 +5,11 @@ const createJestConfig = nextJest({
   dir: './',
 })
 
-// Add any custom config to be passed to Jest
-const config: Config = {
-  coverageProvider: 'v8',
-  testEnvironment: 'jsdom',
-  // Add more setup options before each test is run
-  // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  testPathIgnorePatterns: ['/node_modules/', '/tests/', '.*\\.spec\\.ts$'],
-}
-
-// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-export default createJestConfig(config)
+module.exports = async () => ({
+  ...(await createJestConfig({
+    testEnvironment: 'jsdom',
+    rootDir: 'src',
+  })()),
+  // https://github.com/vercel/next.js/issues/40183
+  transformIgnorePatterns: ['node_modules/(?!next-intl)/'],
+})

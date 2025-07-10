@@ -1,9 +1,9 @@
 import { RequestActivityNameEnum } from '@/enums/RequestActivityNameEnum'
 import type { InputModalRequestActivity } from '@/interfaces/InputModalRequestActivity'
-import { createTranslator, Messages, NestedKeyOf } from 'next-intl'
+import { createTranslator } from 'next-intl'
 
 const valuesInputsModalRequestActivity = (
-  t: ReturnType<typeof createTranslator<Messages, NestedKeyOf>>
+  t: ReturnType<typeof createTranslator>
 ): InputModalRequestActivity[] => {
   return [
     {
