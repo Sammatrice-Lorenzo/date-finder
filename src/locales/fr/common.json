@@ -33,9 +33,17 @@
       "GOOD_EVENING": "Bonsoir"
     },
     "EMAIL": {
-      "SUBJECT": "DateFinder notre prochaine activité",
+      "SUBJECT": "DateFinder notre prochaine activité 🎉",
+      "TITLE": "Votre prochain date !",
+      "GREETING": "Salut",
+      "MESSAGE": "L'invitation au date a été acceptée, veuillez ajouter l'événement dans votre calendrier :",
+      "DATE": "Date",
+      "LOCATION": "Lieu",
+      "REGARDS": "Cordialement",
       "EVENT_DESCRIPTION": "Faire une activité ensemble",
-      "REQUEST_ACTIVITY": "Voici l'invitation :"
+      "REQUEST_ACTIVITY": "Voici l'invitation :",
+      "REFUSED_MESSAGE": "Nous sommes au regret de vous informer que votre invitation a été refusée.",
+      "TITLE_REFUSED": "Invitation refusée"
     },
     "MODAL": {
       "TITLE": "Planifier votre rendez-vous",

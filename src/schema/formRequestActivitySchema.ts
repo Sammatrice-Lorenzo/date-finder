@@ -1,7 +1,7 @@
-import { createTranslator, Messages, NestedKey } from 'next-intl'
+import { createTranslator } from 'next-intl'
 import { z } from 'zod'
 
-const createFormActivitySchema = (t: ReturnType<typeof createTranslator<Messages, NestedKey>>) => {
+const createFormActivitySchema = (t: ReturnType<typeof createTranslator>) => {
   return z.object({
     date: z
       .union([z.string({ required_error: t('MISSING_DATE') }), z.date()])

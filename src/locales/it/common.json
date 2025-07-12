@@ -33,9 +33,17 @@
       "GOOD_EVENING": "Buonasera"
     },
     "EMAIL": {
-      "SUBJECT": "DateFinder la nostra prossima attività",
+      "SUBJECT": "DateFinder la nostra prossima attività 🎉",
+      "TITLE": "Il tuo prossimo appuntamento!",
+      "GREETING": "Ciao",
+      "MESSAGE": "L'invito all'appuntamento è stato accettato, aggiungi l'evento al tuo calendario:",
+      "DATE": "Data",
+      "LOCATION": "Luogo",
+      "REGARDS": "Cordiali saluti",
       "EVENT_DESCRIPTION": "Fare un'attività insieme",
-      "REQUEST_ACTIVITY": "Ecco l'invito:"
+      "REQUEST_ACTIVITY": "Ecco l'invito:",
+      "REFUSED_MESSAGE": "Siamo spiacenti di informarla che il suo invito è stato rifiutato.",
+      "TITLE_REFUSED": "Invito rifiutato"
     },
     "MODAL": {
       "TITLE": "Pianifica il tuo appuntamento",
