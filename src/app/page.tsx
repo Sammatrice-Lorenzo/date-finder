@@ -17,23 +17,21 @@ const Home: NextPage = () => {
   return (
     <>
       <InstallPrompt />
-      <Box className={styles.boxHome}>
+      <Box>
         <Header />
 
         <Grid2 container spacing={3} className={styles.containerGridHome}>
-          {getActivitiesData(t).map((activity: HomeActivitiesData) => {
-            return (
-              <Grid2 className={styles.gridItem} key={`${activity.key}grid`}>
-                <BoxActivity
-                  key={activity.key}
-                  icon={activity.icon}
-                  title={activity.title}
-                  color={activity.color}
-                  route={activity.route}
-                />
-              </Grid2>
-            )
-          })}
+          {getActivitiesData(t).map((activity: HomeActivitiesData) => (
+            <Grid2 size={6} key={`${activity.key}grid`} className={styles.gridItem}>
+              <BoxActivity
+                key={activity.key}
+                icon={activity.icon}
+                title={activity.title}
+                color={activity.color}
+                route={activity.route}
+              />
+            </Grid2>
+          ))}
         </Grid2>
       </Box>
     </>
