@@ -29,16 +29,25 @@ export default function SelectLanguage(): React.ReactElement {
         onChange={handleChageLanguage}
         sx={{ borderRadius: 5 }}
       >
-        {supportedLanguages.map((language: string) => (
-          <MenuItem key={`${language}-select`} value={language} data-testid={`${language}-select`}>
-            <Image
-              width={32}
-              height={32}
-              alt={language}
-              src={`https://flagsapi.com/${language.toLocaleUpperCase()}/flat/64.png`}
-            />
-          </MenuItem>
-        ))}
+        {supportedLanguages.map((language: string) => {
+          const flag = language === 'en' ? 'GB' : language.toLocaleUpperCase()
+
+          return (
+            <MenuItem
+              value={language}
+              key={`${language}-select`}
+              data-testid={`${language}-select`}
+              sx={{ justifyContent: 'center' }}
+            >
+              <Image
+                width={32}
+                height={32}
+                alt={language}
+                src={`https://flagsapi.com/${flag}/flat/64.png`}
+              />
+            </MenuItem>
+          )
+        })}
       </Select>
     </FormControl>
   )

@@ -29,21 +29,21 @@
       "TITLE": "ti ha chiesto un appuntamento!",
       "ACCEPT": "Accetta",
       "REFUSED": "Rifiuta",
-      "GOOD_MORNING": "Buongiorno",
-      "GOOD_EVENING": "Buonasera"
+      "GOOD_MORNING": "☀️ Buongiorno",
+      "GOOD_EVENING": "🌙 Buonasera"
     },
     "EMAIL": {
-      "SUBJECT": "DateFinder la nostra prossima attività 🎉",
-      "TITLE": "Il tuo prossimo appuntamento!",
-      "GREETING": "Ciao",
-      "MESSAGE": "L'invito all'appuntamento è stato accettato, aggiungi l'evento al tuo calendario:",
-      "DATE": "Data",
-      "LOCATION": "Luogo",
-      "REGARDS": "Cordiali saluti",
+      "SUBJECT": "🎉 DateFinder - La nostra prossima attività",
+      "TITLE": "📅 Il tuo prossimo appuntamento!",
+      "GREETING": "👋 Ciao",
+      "MESSAGE": "🎯 L'invito all'appuntamento è stato accettato, aggiungi l'evento al tuo calendario:",
+      "DATE": "📅 Data",
+      "LOCATION": "📍 Luogo",
+      "REGARDS": "🫶 Cordiali saluti",
       "EVENT_DESCRIPTION": "Fare un'attività insieme",
-      "REQUEST_ACTIVITY": "Ecco l'invito:",
-      "REFUSED_MESSAGE": "Siamo spiacenti di informarla che il suo invito è stato rifiutato.",
-      "TITLE_REFUSED": "Invito rifiutato"
+      "REQUEST_ACTIVITY": "💌 Ecco l'invito:",
+      "REFUSED_MESSAGE": "😔 Siamo spiacenti di informarla che il suo invito è stato rifiutato.",
+      "TITLE_REFUSED": "🚫 Invito rifiutato"
     },
     "MODAL": {
       "TITLE": "Pianifica il tuo appuntamento",
@@ -74,9 +74,9 @@
     }
   },
   "MOVIE": {
-    "NOT_FOUND": "Nessun film trovato. Modifica la tua ricerca.",
+    "NOT_FOUND": "😕 Nessun film trovato. Modifica la tua ricerca.",
     "RELEASE": "Uscita:",
-    "GENRES": "Generi:",
+    "GENRES": "🎭 Generi:",
     "HOME_MOVIES": "Serata Cinema (Film da guardare a casa)",
     "INVALID_DATE": "Nessuna data inserita",
     "SEARCH_MOVIE": "Cerca un film",
@@ -88,7 +88,7 @@
     "RATING": "Valutazione:",
     "PRICE": "Prezzo:",
     "DISTANCE": "Distanza:",
-    "NOT_FOUND": "Nessun elemento trovato. Modifica la tua ricerca.",
+    "NOT_FOUND": "😕 Nessun elemento trovato. Modifica la tua ricerca.",
     "NOT_DEFINED": "Non specificato",
     "CITY": "Città",
     "SEARCH": "Cerca"
@@ -97,10 +97,10 @@
     "DESCRIPTION_APP": "Pianifica il tuo prossimo date",
     "INSTALL": "Installa DateFinder",
     "HOME": "Installa",
-    "IOS": "Per installare questa app sul tuo dispositivo iOS:",
+    "IOS": "📱 Per installare questa app sul tuo dispositivo iOS:",
     "BUTTON_SHARE": "Tocca il pulsante di condivisione",
-    "AFTER_CLICKED": "poi su 'Aggiungi alla schermata Home'.",
-    "PAGE_NOT_FOUND": "Ops! Pagina non trovata.",
+    "AFTER_CLICKED": "👉 poi su 'Aggiungi alla schermata Home'.",
+    "PAGE_NOT_FOUND": "😵 Ops! Pagina non trovata.",
     "MISSED_DATE": "Sembra che tu abbia perso l'appuntamento perfetto.",
     "LANGUAGE": "Lingua"
   }

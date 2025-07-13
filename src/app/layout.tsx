@@ -23,30 +23,16 @@ export const metadata: Metadata = {
   description: 'DateFinder find activity for a new date',
 }
 
-export function generateStaticParams() {
-  return [{ locale: 'fr' }, { locale: 'it' }]
-}
-
 export default async function RootLayout({
   children,
-  // params: { locale }
 }: Readonly<{
   children: React.ReactNode
-  // params: { locale: string };
 }>): Promise<React.ReactElement> {
-  // let messages
-  // try {
-  //   messages = (await import(`@/locales/${locale}/common.json`))
-  // } catch (error) {
-  //   console.error('locale not found', error)
-  //   messages = (await import(`@/locales/fr/common.json`))
-  // }
   const locale = await getLocale()
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
         <NextIntlClientProvider>
           <AppRouterCacheProvider>
             <AlertProvider>
