@@ -23,13 +23,14 @@ export default function SelectLanguage(): React.ReactElement {
       <Select
         labelId='select-language'
         id='language-flag'
+        data-testid='language-flag-test'
         value={language}
         label={t('LANGUAGE')}
         onChange={handleChageLanguage}
         sx={{ borderRadius: 5 }}
       >
         {supportedLanguages.map((language: string) => (
-          <MenuItem key={`${language}-select`} value={language}>
+          <MenuItem key={`${language}-select`} value={language} data-testid={`${language}-select`}>
             <Image
               width={32}
               height={32}

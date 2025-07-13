@@ -16,11 +16,11 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-  }
+  },
 }
 
 const withNextIntl = createNextIntlPlugin()
-const configWithPWA =  withPWA({
+const configWithPWA = withPWA({
   dest: 'public',
   register: env === 'production',
   disable: env === 'development' || env === 'test',
