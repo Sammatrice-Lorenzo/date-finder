@@ -101,6 +101,7 @@
     "BUTTON_SHARE": "Appuyez sur le bouton de partage",
     "AFTER_CLICKED": "puis sur 'Ajouter à l'écran d'accueil'.",
     "PAGE_NOT_FOUND": "Oups ! Cette page est introuvable.",
-    "MISSED_DATE": "On dirait que tu as raté le bon rendez-vous."
+    "MISSED_DATE": "On dirait que tu as raté le bon rendez-vous.",
+    "LANGUAGE": "Langue"
   }
 }

@@ -101,6 +101,7 @@
     "BUTTON_SHARE": "Tocca il pulsante di condivisione",
     "AFTER_CLICKED": "poi su 'Aggiungi alla schermata Home'.",
     "PAGE_NOT_FOUND": "Ops! Pagina non trovata.",
-    "MISSED_DATE": "Sembra che tu abbia perso l'appuntamento perfetto."
+    "MISSED_DATE": "Sembra che tu abbia perso l'appuntamento perfetto.",
+    "LANGUAGE": "Lingua"
   }
 }

@@ -47,6 +47,7 @@ const Search = (): React.ReactElement => {
 export default function Activity(): React.ReactElement {
   return (
     <Suspense fallback={<SpinnerLoader />}>
+      <Header />
       <Box
         sx={{
           display: 'flex',
@@ -56,7 +57,6 @@ export default function Activity(): React.ReactElement {
           marginTop: 2,
         }}
       >
-        <Header />
         <Search />
       </Box>
     </Suspense>

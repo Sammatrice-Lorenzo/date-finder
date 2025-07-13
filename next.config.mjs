@@ -8,6 +8,15 @@ const nextConfig = {
   compiler: {
     removeConsole: env === 'production',
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'flagsapi.com',
+        pathname: '/**',
+      },
+    ],
+  }
 }
 
 const withNextIntl = createNextIntlPlugin()

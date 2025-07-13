@@ -1,13 +1,21 @@
+import supportedLanguages from '@/data/supportedLanguages'
 import { getRequestConfig, RequestConfig } from 'next-intl/server'
-import { headers } from 'next/headers'
+import { cookies, headers } from 'next/headers'
+
+const getValidLocale = (userLanguage: string, defaultLocale: string): string => {
+  return supportedLanguages.includes(userLanguage) ? userLanguage : defaultLocale
+}
 
 export default getRequestConfig(async (): Promise<RequestConfig> => {
-  // export default getRequestConfig(async ({ locale = 'fr' }): Promise<RequestConfig> => {
   const acceptLang: string = (await headers()).get('accept-language') || ''
   const userLanguagePrefered = acceptLang.split(',')[0]?.split('-')[0]
 
-  const supporteds: string[] = ['fr', 'it']
-  const locale: string = supporteds.includes(userLanguagePrefered) ? userLanguagePrefered : 'fr'
+  const acceptLanguageCookies: string | undefined = (await cookies()).get('NEXT_LOCALE')?.value
+  let locale: string = getValidLocale(userLanguagePrefered, 'fr')
+
+  if (acceptLanguageCookies) {
+    locale = getValidLocale(acceptLanguageCookies, locale)
+  }
 
   return {
     locale,
