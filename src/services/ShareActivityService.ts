@@ -1,24 +1,31 @@
-import type ActivityInterface from "@/interfaces/activity/ActivityInterface"
-import type { ShareDataInterface } from "@/interfaces/ShareDataInterface"
-import { MailService } from "./MailService"
-import type { FormRequestActivityInterface } from "@/interfaces/activity/FormRequestActivityInterface"
+import type ActivityInterface from '@/interfaces/activity/ActivityInterface'
+import type { ShareDataInterface } from '@/interfaces/ShareDataInterface'
+import { MailService } from './MailService'
+import type { FormRequestActivityInterface } from '@/interfaces/activity/FormRequestActivityInterface'
+import { createTranslator } from 'next-intl'
 
 export default class ShareActivityService {
-
-  private async generateUrl(activity: ActivityInterface, form: FormRequestActivityInterface): Promise<ShareDataInterface> {
+  private async generateUrl(
+    activity: ActivityInterface,
+    form: FormRequestActivityInterface
+  ): Promise<ShareDataInterface> {
     const baseUrl: string = window.location.origin
 
     const response: Response = await fetch('/api/generate-url', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ activity, baseUrl, form })
+      body: JSON.stringify({ activity, baseUrl, form }),
     })
     const data: { response: ShareDataInterface } = await response.json()
 
     return data.response
   }
 
-  public async handleShare(activity : ActivityInterface, data: FormRequestActivityInterface): Promise<void> {
+  public async handleShare(
+    activity: ActivityInterface,
+    data: FormRequestActivityInterface,
+    t: ReturnType<typeof createTranslator>
+  ): Promise<void> {
     const shareData: ShareDataInterface = await this.generateUrl(activity, data)
 
     if (navigator.share) {
@@ -28,7 +35,7 @@ export default class ShareActivityService {
         console.error('Error to share:', err)
       }
     } else {
-      new MailService().sendMail(shareData)
+      new MailService().sendMail(shareData, t)
       console.error('The api to share a link is not supported')
     }
   }

@@ -7,6 +7,7 @@ import useApi from '@/hooks/useApi'
 import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import type { NextResponseUrlActivityDecodedType } from '@/types/NextResponseUrlActivityDecodedType'
 import { Box } from '@mui/material'
+import { useTranslations } from 'next-intl'
 import { notFound, useSearchParams } from 'next/navigation'
 import type React from 'react'
 import { Suspense } from 'react'
@@ -15,11 +16,14 @@ const Search = (): React.ReactElement => {
   const searchParams = useSearchParams()
   const token: string | null = searchParams.get('token')
 
-  const { data, isLoading } = useApi({
-    method: 'POST',
-    url: '/api/decode-url',
-    body: JSON.stringify({ token: token }),
-  })
+  const { data, isLoading } = useApi(
+    {
+      method: 'POST',
+      url: '/api/decode-url',
+      body: JSON.stringify({ token: token }),
+    },
+    useTranslations('ERROR')
+  )
 
   const dataResponse = data as NextResponseUrlActivityDecodedType | null
   const activity = dataResponse?.response as ActivityQueryProps | null
@@ -43,6 +47,7 @@ const Search = (): React.ReactElement => {
 export default function Activity(): React.ReactElement {
   return (
     <Suspense fallback={<SpinnerLoader />}>
+      <Header />
       <Box
         sx={{
           display: 'flex',
@@ -52,7 +57,6 @@ export default function Activity(): React.ReactElement {
           marginTop: 2,
         }}
       >
-        <Header />
         <Search />
       </Box>
     </Suspense>

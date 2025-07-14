@@ -5,7 +5,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import type ActivityInterface from '@/interfaces/activity/ActivityInterface'
 import ModalTitle from '../ModalTitle'
 import { FormRequestActivity } from '../Form/FormRequestActivity'
-import fr from '../../locales/fr/common.json'
+import { useTranslations } from 'next-intl'
 
 export type ModalRequestActivityProps = {
   activity: ActivityInterface
@@ -18,11 +18,13 @@ export default function ModalRequestActivity({
   open,
   onClose,
 }: ModalRequestActivityProps): React.ReactElement {
+  const t = useTranslations('ACTIVITY.MODAL')
+
   return (
     <Dialog open={open} onClose={onClose}>
-      <ModalTitle title={fr.ACTIVITY.MODAL.TITLE} onCloseModal={onClose} />
+      <ModalTitle title={t('TITLE')} onCloseModal={onClose} />
       <DialogContent sx={{ pt: 2, px: 3 }}>
-        <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>{fr.ACTIVITY.MODAL.CONTENT}</DialogContentText>
+        <DialogContentText sx={{ textAlign: 'center', mb: 2 }}>{t('CONTENT')}</DialogContentText>
         <FormRequestActivity activity={activity} handleClose={onClose} />
       </DialogContent>
     </Dialog>

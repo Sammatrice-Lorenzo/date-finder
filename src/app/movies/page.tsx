@@ -2,19 +2,26 @@ import type React from 'react'
 import Movies from '@/components/Movie/Movies'
 import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
 import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
+import { getLocale } from 'next-intl/server'
 
 type ResponseMoviesGenres = {
   genres: MovieGenresInterface[]
 }
 
-const getGendersMovies = async (apiTmdb: string, searchParameter: URLSearchParams): Promise<MovieGenresInterface[]> => {
+const getGendersMovies = async (
+  apiTmdb: string,
+  searchParameter: URLSearchParams
+): Promise<MovieGenresInterface[]> => {
   const res = await fetch(`${apiTmdb}genre/movie/list?${searchParameter.toString()}`)
   const data: ResponseMoviesGenres = await res.json()
 
   return data.genres
 }
 
-const getMovies = async (apiTmdb: string, searchParameter: URLSearchParams): Promise<ResponseMoviesInterface> => {
+const getMovies = async (
+  apiTmdb: string,
+  searchParameter: URLSearchParams
+): Promise<ResponseMoviesInterface> => {
   const res = await fetch(`${apiTmdb}trending/all/day?${searchParameter.toString()}`)
   const data: ResponseMoviesInterface = await res.json()
 
@@ -28,7 +35,8 @@ export default async function MoviesPage(): Promise<React.ReactElement> {
     throw Error('API KEY is not defined.')
   }
 
-  const language: string = 'fr-FR'
+  const locale: string = await getLocale()
+  const language: string = `${locale}-${locale.toUpperCase()}`
   const searchParameter: URLSearchParams = new URLSearchParams({
     api_key: apiKey,
     language: language,

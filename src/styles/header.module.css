@@ -13,7 +13,7 @@
 }
 
 .backButton:hover {
-  color: #d33252;
+  color: var(--primary);
 }
 
 .titleHeader {
@@ -27,7 +27,7 @@
   bottom: 24px !important;
   right: 2% !important;
   z-index: 1500 !important;
-  background-color: #d33252 !important;
+  background-color: var(--primary) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
   border-radius: 50% !important;
   transition: background-color 0.3s ease !important;

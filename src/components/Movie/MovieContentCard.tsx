@@ -4,7 +4,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import type MovieInterface from '@/interfaces/movie/MovieInterface'
 import type React from 'react'
 import BoxContentCard from '../BoxContentCard'
-import translate from '@/locales/fr/common.json'
+import { useTranslations } from 'next-intl'
 
 interface MovieContentCardProps {
   movie: MovieInterface
@@ -14,9 +14,11 @@ export default function MovieContentCard({
   movie,
 }: Readonly<MovieContentCardProps>): React.ReactElement {
   const vote: string = movie.vote_average.toFixed(1)
+  const translateMovie = useTranslations('MOVIE')
+  const translatePlace = useTranslations('PLACE')
   const release: string = movie.release_date
     ? new Date(movie.release_date).toLocaleDateString()
-    : translate.MOVIE.INVALID_DATE
+    : translateMovie('INVALID_DATE')
 
   return (
     <CardContent sx={{ padding: 2 }}>
@@ -24,16 +26,19 @@ export default function MovieContentCard({
         {movie.name}
       </Typography>
 
-      <BoxContentCard icon={<CalendarTodayIcon />} text={`${translate.MOVIE.RELEASE} ${release}`} />
+      <BoxContentCard
+        icon={<CalendarTodayIcon />}
+        text={`${translateMovie('RELEASE')} ${release}`}
+      />
 
-      <BoxContentCard icon={<StarIcon />} text={`${translate.PLACE.RATING} ${vote} / 10`} />
+      <BoxContentCard icon={<StarIcon />} text={`${translatePlace('RATING')} ${vote} / 10`} />
 
       {movie.genres && movie.genres.length > 0 && (
-        <BoxContentCard text={`${translate.MOVIE.GENRES} ${movie.genres.join(', ')}`} />
+        <BoxContentCard text={`${translateMovie('GENRES')} ${movie.genres.join(', ')}`} />
       )}
 
       {movie.providers.length > 0 && (
-        <BoxContentCard text={`${translate.MOVIE.PROVIDERS} ${movie.providers.join(', ')}`} />
+        <BoxContentCard text={`${translateMovie('PROVIDERS')} ${movie.providers.join(', ')}`} />
       )}
 
       <Typography variant='body2' color='text.secondary' sx={{ mt: 1 }}>

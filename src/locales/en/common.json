@@ -1,0 +1,107 @@
+{
+  "ERROR": {
+    "SERVER_ERROR": "An internal error has occurred.",
+    "EMAIL_ERROR": "An error occurred while sending the email.",
+    "LIMIT_RATING": "The application has exceeded its data retrieval quota.",
+    "FORM_REQUEST_ACTIVITY": {
+      "MISSING_DATE": "The date field is required!",
+      "INVALID_DATE": "Please enter a valid date!",
+      "FUTURE_DATE_REQUIREMENT": "The date must be later than the current date!",
+      "MISSING_AUTHOR_NAME": "The name field is required",
+      "MISSING_TARGET_NAME": "The invitee's name is required",
+      "MISSING_EMAIL": "The email field is required",
+      "INVALID_EMAIL": "The entered email is invalid"
+    }
+  },
+  "CONFIRM_DIALOG": {
+    "CANCELED": "Cancel",
+    "DECLINE_INVITATION": "Do you really want to decline this invitation?",
+    "TITLE_CONFIRM_DECLINE": "Confirm decline"
+  },
+  "SUCCESS": {
+    "OK": "The operation was successful.",
+    "EMAIL": "The email has been sent!"
+  },
+  "ACTIVITY": {
+    "TITLE_LINK_SHARED": "Invitation for an outing",
+    "DISCOVER_ACTIVITY": "Discover our next activity together!",
+    "INVITATION": {
+      "TITLE": "is asking for a date with you!",
+      "ACCEPT": "Accept",
+      "REFUSED": "Decline",
+      "GOOD_MORNING": "☀️ Good morning",
+      "GOOD_EVENING": "🌙 Good evening"
+    },
+    "EMAIL": {
+      "SUBJECT": "🎉 DateFinder - Our next activity",
+      "TITLE": "📅 Your next date!",
+      "GREETING": "👋 Hi",
+      "MESSAGE": "🎯 The date invitation has been accepted. Please add the event to your calendar:",
+      "DATE": "📅 Date",
+      "LOCATION": "📍 Location",
+      "REGARDS": "🫶 Best regards",
+      "EVENT_DESCRIPTION": "Doing an activity together",
+      "REQUEST_ACTIVITY": "💌 Here is the invitation:",
+      "REFUSED_MESSAGE": "😔 We regret to inform you that your invitation was declined.",
+      "TITLE_REFUSED": "🚫 Invitation declined"
+    },
+    "MODAL": {
+      "TITLE": "Plan your date",
+      "CONTENT": "Fill in the information to create an invitation you can easily share."
+    },
+    "MODAL_EMAIL_TARGET": {
+      "TITLE": "Accept the invitation",
+      "CONTENT": "Please enter your email to receive the invitation and add it to your calendar. Don't forget to check your spam folder."
+    },
+    "FORM": {
+      "DATE": "Date",
+      "YOUR_NAME": "Your name",
+      "YOUR_EMAIL": "Your email",
+      "NAME_TARGET": "Name of the invited person",
+      "SHARE": "Share",
+      "SEND": "Send"
+    },
+    "TYPES": {
+      "BARS": "Bars",
+      "CINEMA": "Cinemas",
+      "GAMES": "Arcade games",
+      "MUSEUM": "Museums",
+      "PARKS": "Parks",
+      "PARKS_ACTRACTIONS": "Parks and natural attractions",
+      "RELAX_SPA": "Well-being / Spa",
+      "RESTAURANTS": "Restaurants",
+      "MOVIES": "Movies"
+    }
+  },
+  "MOVIE": {
+    "NOT_FOUND": "😕 No movies found. Please change your search.",
+    "RELEASE": "Release:",
+    "GENRES": "🎭 Genres:",
+    "HOME_MOVIES": "Movie night (Home viewing)",
+    "INVALID_DATE": "No date provided",
+    "SEARCH_MOVIE": "Search for a movie",
+    "PROVIDERS": "Platforms:"
+  },
+  "PLACE": {
+    "PROXIMITY": "nearby",
+    "PHONE": "Phone number:",
+    "RATING": "Rating:",
+    "PRICE": "Price:",
+    "DISTANCE": "Distance:",
+    "NOT_FOUND": "😕 No items found. Please change your search.",
+    "NOT_DEFINED": "Not specified",
+    "CITY": "City",
+    "SEARCH": "Search"
+  },
+  "PWA": {
+    "DESCRIPTION_APP": "Plan your next date",
+    "INSTALL": "Install DateFinder",
+    "HOME": "Install",
+    "IOS": "📱 To install this app on your iOS device:",
+    "BUTTON_SHARE": "Tap the share button",
+    "AFTER_CLICKED": "👉 then tap 'Add to Home Screen'.",
+    "PAGE_NOT_FOUND": "😵 Oops! This page could not be found.",
+    "MISSED_DATE": "Looks like you missed the right date.",
+    "LANGUAGE": "Language"
+  }
+}

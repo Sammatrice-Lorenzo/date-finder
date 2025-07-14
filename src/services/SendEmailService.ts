@@ -4,16 +4,21 @@ import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import { v1 as uuidv1 } from 'uuid'
 
 export default class SendEmailService {
+  private _dateFormatter: DateFormatter
+
+  public constructor() {
+    this._dateFormatter = new DateFormatter()
+  }
+
   public async handleSendInviteAccepted(
     targetEmail: string,
     activityQuery: ActivityQueryProps,
     showAlert: CallableFunction
   ): Promise<void> {
-    const dateFormatter: DateFormatter = new DateFormatter()
     const start: Date = new Date(activityQuery.date)
     const end: Date = new Date(new Date(start).getTime() + 60 * 60 * 1000)
-    const startDateTimeStamp: string = dateFormatter.getTimeStampOnDate(start)
-    const endDateTimeStamp: string = dateFormatter.getTimeStampOnDate(end)
+    const startDateTimeStamp: string = this._dateFormatter.getTimeStampOnDate(start)
+    const endDateTimeStamp: string = this._dateFormatter.getTimeStampOnDate(end)
 
     const response = await fetch('/api/event/', {
       method: 'POST',
@@ -21,7 +26,7 @@ export default class SendEmailService {
         uid: uuidv1(),
         activity: activityQuery,
         targetEmail: targetEmail,
-        eventDate: dateFormatter.getDateEuropeanFormat(start),
+        eventDate: this._dateFormatter.getDateEuropeanFormat(start),
         startDateTimeStamp,
         endDateTimeStamp,
       }),
@@ -36,10 +41,13 @@ export default class SendEmailService {
     activityQuery: ActivityQueryProps,
     showAlert: CallableFunction
   ): Promise<void> {
+    const start: Date = new Date(activityQuery.date)
+
     const response: Response = await fetch('/api/invite-refused', {
       method: 'POST',
       body: JSON.stringify({
         activity: activityQuery,
+        eventDate: this._dateFormatter.getDateEuropeanFormat(start),
       }),
     })
 

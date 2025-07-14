@@ -1,8 +1,8 @@
 {
   "ERROR": {
     "SERVER_ERROR": "Une erreur interne est survenue.",
-    "EMAIL_ERROR": "Une erreur est survenu lors de l'envoi d'e-mail.",
-    "LIMIT_RATING": "L'application a dépassé son quota de récupération des données sur les différents services.",
+    "EMAIL_ERROR": "Une erreur est survenue lors de l'envoi d'e-mail.",
+    "LIMIT_RATING": "L'application a dépassé son quota de récupération des données.",
     "FORM_REQUEST_ACTIVITY": {
       "MISSING_DATE": "Le champ date est requis !",
       "INVALID_DATE": "Veuillez saisir une date valide !",
@@ -10,7 +10,7 @@
       "MISSING_AUTHOR_NAME": "Le champ nom est requis",
       "MISSING_TARGET_NAME": "Le champ du nom de la personne invitée est requis",
       "MISSING_EMAIL": "Le champ email est requis",
-      "INVALID_EMAIL": "L'email saisie est invalide"
+      "INVALID_EMAIL": "L'email saisi est invalide"
     }
   },
   "CONFIRM_DIALOG": {
@@ -29,13 +29,21 @@
       "TITLE": "demande un date avec vous !",
       "ACCEPT": "Accepter",
       "REFUSED": "Décliner",
-      "GOOD_MORNING": "Bonjour",
-      "GOOD_EVENING": "Bonsoir"
+      "GOOD_MORNING": "☀️ Bonjour",
+      "GOOD_EVENING": "🌙 Bonsoir"
     },
     "EMAIL": {
-      "SUBJECT": "DateFinder notre prochaine activité",
+      "SUBJECT": "🎉 DateFinder - Notre prochaine activité",
+      "TITLE": "📅 Votre prochain date !",
+      "GREETING": "👋 Salut",
+      "MESSAGE": "🎯 L'invitation au date a été acceptée. Veuillez ajouter l'événement dans votre calendrier :",
+      "DATE": "📅 Date",
+      "LOCATION": "📍 Lieu",
+      "REGARDS": "🫶 Cordialement",
       "EVENT_DESCRIPTION": "Faire une activité ensemble",
-      "REQUEST_ACTIVITY": "Voici l'invitation :"
+      "REQUEST_ACTIVITY": "💌 Voici l'invitation :",
+      "REFUSED_MESSAGE": "😔 Nous sommes au regret de vous informer que votre invitation a été refusée.",
+      "TITLE_REFUSED": "🚫 Invitation refusée"
     },
     "MODAL": {
       "TITLE": "Planifier votre rendez-vous",
@@ -43,7 +51,7 @@
     },
     "MODAL_EMAIL_TARGET": {
       "TITLE": "Accepter l'invitation",
-      "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez a vérifier vos spams."
+      "CONTENT": "Veuillez saisir votre e-mail pour recevoir l'invitation à ajouter à votre calendrier. Pensez à vérifier vos spams."
     },
     "FORM": {
       "DATE": "Date",
@@ -60,16 +68,17 @@
       "MUSEUM": "Musées",
       "PARKS": "Parcs",
       "PARKS_ACTRACTIONS": "Parcs et attractions naturelles",
-      "RELAX_SPA": "Bien être / Spa",
-      "RESTAURANTS": "Restaurants"
+      "RELAX_SPA": "Bien-être / Spa",
+      "RESTAURANTS": "Restaurants",
+      "MOVIES": "Films"
     }
   },
   "MOVIE": {
-    "NOT_FOUND": "Aucun films a été trouvé. Veuillez modifier votre recherches.",
+    "NOT_FOUND": "😕 Aucun film n'a été trouvé. Veuillez modifier votre recherche.",
     "RELEASE": "Sortie :",
-    "GENRES": "Genres :",
+    "GENRES": "🎭 Genres :",
     "HOME_MOVIES": "Soirée Cinéma (Films à voir chez soi)",
-    "INVALID_DATE": "Pas de date renseigné",
+    "INVALID_DATE": "Pas de date renseignée",
     "SEARCH_MOVIE": "Rechercher un film",
     "PROVIDERS": "Plateformes :"
   },
@@ -79,7 +88,7 @@
     "RATING": "Note :",
     "PRICE": "Prix :",
     "DISTANCE": "Distance :",
-    "NOT_FOUND": "Aucun element a été trouvé. Veuillez modifier votre recherches.",
+    "NOT_FOUND": "😕 Aucun élément n'a été trouvé. Veuillez modifier votre recherche.",
     "NOT_DEFINED": "Non spécifié",
     "CITY": "Ville",
     "SEARCH": "Rechercher"
@@ -88,10 +97,11 @@
     "DESCRIPTION_APP": "Planifier votre prochain date",
     "INSTALL": "Installer DateFinder",
     "HOME": "Installer",
-    "IOS": "Pour installer cette application sur votre appareil IOS :",
+    "IOS": "📱 Pour installer cette application sur votre appareil IOS :",
     "BUTTON_SHARE": "Appuyez sur le bouton de partage",
-    "AFTER_CLICKED": "puis sur 'Ajouter à l'écran d'accueil'.",
-    "PAGE_NOT_FOUND": "Oups ! Cette page est introuvable.",
-    "MISSED_DATE": "On dirait que tu as raté le bon rendez-vous."
+    "AFTER_CLICKED": "👉 puis sur 'Ajouter à l'écran d'accueil'.",
+    "PAGE_NOT_FOUND": "😵 Oups ! Cette page est introuvable.",
+    "MISSED_DATE": "On dirait que tu as raté le bon rendez-vous.",
+    "LANGUAGE": "Langue"
   }
 }

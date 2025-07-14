@@ -1,8 +1,14 @@
 import DateFormatter from '@/formatters/DateFormatter'
 import type ActivityEventCalendarInterface from '@/interfaces/activity/ActivityEventCalendarInterface'
-import translation from '@/locales/fr/common.json'
+import { createTranslator } from 'next-intl'
 
 export default class EventCalendarService {
+  private _translator: ReturnType<typeof createTranslator>
+
+  constructor(translator: ReturnType<typeof createTranslator>) {
+    this._translator = translator
+  }
+
   public getCalendarFormatICS(body: ActivityEventCalendarInterface): string {
     const dateFormatter: DateFormatter = new DateFormatter()
     const timeStamp: string = dateFormatter.getTimeStampOnDate(new Date())
@@ -17,7 +23,7 @@ export default class EventCalendarService {
       DTSTART:${body.startDateTimeStamp}
       DTEND:${body.endDateTimeStamp}
       SUMMARY:Date ${body.activity.activity}
-      DESCRIPTION:${translation.ACTIVITY.EMAIL.EVENT_DESCRIPTION}
+      DESCRIPTION:${this._translator('EVENT_DESCRIPTION')}
       LOCATION:${body.activity.location}
       STATUS:CONFIRMED
       ORGANIZER;CN=${body.activity.author}:mailto:${body.activity.authorEmail}

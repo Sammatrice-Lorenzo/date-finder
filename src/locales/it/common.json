@@ -1,0 +1,107 @@
+{
+  "ERROR": {
+    "SERVER_ERROR": "Si è verificato un errore interno.",
+    "EMAIL_ERROR": "Si è verificato un errore durante l'invio dell'e-mail.",
+    "LIMIT_RATING": "L'applicazione ha superato il limite di richieste ai vari servizi.",
+    "FORM_REQUEST_ACTIVITY": {
+      "MISSING_DATE": "Il campo data è obbligatorio!",
+      "INVALID_DATE": "Inserisci una data valida!",
+      "FUTURE_DATE_REQUIREMENT": "La data deve essere successiva a quella attuale!",
+      "MISSING_AUTHOR_NAME": "Il campo nome è obbligatorio",
+      "MISSING_TARGET_NAME": "Il campo nome della persona invitata è obbligatorio",
+      "MISSING_EMAIL": "Il campo email è obbligatorio",
+      "INVALID_EMAIL": "L'indirizzo email inserito non è valido"
+    }
+  },
+  "CONFIRM_DIALOG": {
+    "CANCELED": "Annulla",
+    "DECLINE_INVITATION": "Sei sicuro di voler rifiutare questo invito?",
+    "TITLE_CONFIRM_DECLINE": "Conferma il rifiuto"
+  },
+  "SUCCESS": {
+    "OK": "L'operazione è stata completata con successo.",
+    "EMAIL": "L'e-mail è stata inviata!"
+  },
+  "ACTIVITY": {
+    "TITLE_LINK_SHARED": "Invito per un'uscita",
+    "DISCOVER_ACTIVITY": "Scopri la nostra prossima attività insieme!",
+    "INVITATION": {
+      "TITLE": "ti ha chiesto un appuntamento!",
+      "ACCEPT": "Accetta",
+      "REFUSED": "Rifiuta",
+      "GOOD_MORNING": "☀️ Buongiorno",
+      "GOOD_EVENING": "🌙 Buonasera"
+    },
+    "EMAIL": {
+      "SUBJECT": "🎉 DateFinder - La nostra prossima attività",
+      "TITLE": "📅 Il tuo prossimo appuntamento!",
+      "GREETING": "👋 Ciao",
+      "MESSAGE": "🎯 L'invito all'appuntamento è stato accettato, aggiungi l'evento al tuo calendario:",
+      "DATE": "📅 Data",
+      "LOCATION": "📍 Luogo",
+      "REGARDS": "🫶 Cordiali saluti",
+      "EVENT_DESCRIPTION": "Fare un'attività insieme",
+      "REQUEST_ACTIVITY": "💌 Ecco l'invito:",
+      "REFUSED_MESSAGE": "😔 Siamo spiacenti di informarla che il suo invito è stato rifiutato.",
+      "TITLE_REFUSED": "🚫 Invito rifiutato"
+    },
+    "MODAL": {
+      "TITLE": "Pianifica il tuo appuntamento",
+      "CONTENT": "Inserisci le informazioni per creare un invito da condividere facilmente."
+    },
+    "MODAL_EMAIL_TARGET": {
+      "TITLE": "Accetta l'invito",
+      "CONTENT": "Inserisci il tuo indirizzo email per ricevere l'invito da aggiungere al tuo calendario. Controlla anche la cartella spam."
+    },
+    "FORM": {
+      "DATE": "Data",
+      "YOUR_NAME": "Il tuo nome",
+      "YOUR_EMAIL": "La tua email",
+      "NAME_TARGET": "Nome della persona invitata",
+      "SHARE": "Condividi",
+      "SEND": "Invia"
+    },
+    "TYPES": {
+      "BARS": "Bar",
+      "CINEMA": "Cinema",
+      "GAMES": "Sale giochi",
+      "MUSEUM": "Musei",
+      "PARKS": "Parchi",
+      "PARKS_ACTRACTIONS": "Parchi e attrazioni naturali",
+      "RELAX_SPA": "Benessere / Spa",
+      "RESTAURANTS": "Ristoranti",
+      "MOVIES": "Film"
+    }
+  },
+  "MOVIE": {
+    "NOT_FOUND": "😕 Nessun film trovato. Modifica la tua ricerca.",
+    "RELEASE": "Uscita:",
+    "GENRES": "🎭 Generi:",
+    "HOME_MOVIES": "Serata Cinema (Film da guardare a casa)",
+    "INVALID_DATE": "Nessuna data inserita",
+    "SEARCH_MOVIE": "Cerca un film",
+    "PROVIDERS": "Piattaforme:"
+  },
+  "PLACE": {
+    "PROXIMITY": "nelle vicinanze",
+    "PHONE": "Numero di telefono:",
+    "RATING": "Valutazione:",
+    "PRICE": "Prezzo:",
+    "DISTANCE": "Distanza:",
+    "NOT_FOUND": "😕 Nessun elemento trovato. Modifica la tua ricerca.",
+    "NOT_DEFINED": "Non specificato",
+    "CITY": "Città",
+    "SEARCH": "Cerca"
+  },
+  "PWA": {
+    "DESCRIPTION_APP": "Pianifica il tuo prossimo date",
+    "INSTALL": "Installa DateFinder",
+    "HOME": "Installa",
+    "IOS": "📱 Per installare questa app sul tuo dispositivo iOS:",
+    "BUTTON_SHARE": "Tocca il pulsante di condivisione",
+    "AFTER_CLICKED": "👉 poi su 'Aggiungi alla schermata Home'.",
+    "PAGE_NOT_FOUND": "😵 Ops! Pagina non trovata.",
+    "MISSED_DATE": "Sembra che tu abbia perso l'appuntamento perfetto.",
+    "LANGUAGE": "Lingua"
+  }
+}

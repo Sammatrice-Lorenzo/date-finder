@@ -1,0 +1,107 @@
+{
+  "ERROR": {
+    "SERVER_ERROR": "Ocorreu um erro interno.",
+    "EMAIL_ERROR": "Ocorreu um erro ao enviar o e-mail.",
+    "LIMIT_RATING": "A aplicação excedeu sua cota de recuperação de dados.",
+    "FORM_REQUEST_ACTIVITY": {
+      "MISSING_DATE": "O campo de data é obrigatório!",
+      "INVALID_DATE": "Por favor, insira uma data válida!",
+      "FUTURE_DATE_REQUIREMENT": "A data deve ser posterior à data atual!",
+      "MISSING_AUTHOR_NAME": "O campo de nome é obrigatório",
+      "MISSING_TARGET_NAME": "O nome da pessoa convidada é obrigatório",
+      "MISSING_EMAIL": "O campo de e-mail é obrigatório",
+      "INVALID_EMAIL": "O e-mail inserido é inválido"
+    }
+  },
+  "CONFIRM_DIALOG": {
+    "CANCELED": "Cancelar",
+    "DECLINE_INVITATION": "Você realmente quer recusar este convite?",
+    "TITLE_CONFIRM_DECLINE": "Confirmar recusa"
+  },
+  "SUCCESS": {
+    "OK": "A operação foi realizada com sucesso.",
+    "EMAIL": "O e-mail foi enviado!"
+  },
+  "ACTIVITY": {
+    "TITLE_LINK_SHARED": "Convite para um encontro",
+    "DISCOVER_ACTIVITY": "Descubra nossa próxima atividade juntos!",
+    "INVITATION": {
+      "TITLE": "está te convidando para um encontro!",
+      "ACCEPT": "Aceitar",
+      "REFUSED": "Recusar",
+      "GOOD_MORNING": "☀️ Bom dia",
+      "GOOD_EVENING": "🌙 Boa noite"
+    },
+    "EMAIL": {
+      "SUBJECT": "🎉 DateFinder - Nossa próxima atividade",
+      "TITLE": "📅 Seu próximo encontro!",
+      "GREETING": "👋 Olá",
+      "MESSAGE": "🎯 O convite para o encontro foi aceito. Adicione o evento ao seu calendário:",
+      "DATE": "📅 Data",
+      "LOCATION": "📍 Local",
+      "REGARDS": "🫶 Atenciosamente",
+      "EVENT_DESCRIPTION": "Fazer uma atividade juntos",
+      "REQUEST_ACTIVITY": "💌 Aqui está o convite:",
+      "REFUSED_MESSAGE": "😔 Lamentamos informar que seu convite foi recusado.",
+      "TITLE_REFUSED": "🚫 Convite recusado"
+    },
+    "MODAL": {
+      "TITLE": "Planeje seu encontro",
+      "CONTENT": "Preencha as informações para criar um convite que possa compartilhar facilmente."
+    },
+    "MODAL_EMAIL_TARGET": {
+      "TITLE": "Aceitar o convite",
+      "CONTENT": "Digite seu e-mail para receber o convite e adicioná-lo ao seu calendário. Verifique sua pasta de spam."
+    },
+    "FORM": {
+      "DATE": "Data",
+      "YOUR_NAME": "Seu nome",
+      "YOUR_EMAIL": "Seu e-mail",
+      "NAME_TARGET": "Nome da pessoa convidada",
+      "SHARE": "Compartilhar",
+      "SEND": "Enviar"
+    },
+    "TYPES": {
+      "BARS": "Bares",
+      "CINEMA": "Cinemas",
+      "GAMES": "Jogos de arcade",
+      "MUSEUM": "Museus",
+      "PARKS": "Parques",
+      "PARKS_ACTRACTIONS": "Parques e atrações naturais",
+      "RELAX_SPA": "Bem-estar / Spa",
+      "RESTAURANTS": "Restaurantes",
+      "MOVIES": "Filmes"
+    }
+  },
+  "MOVIE": {
+    "NOT_FOUND": "😕 Nenhum filme encontrado. Tente outra pesquisa.",
+    "RELEASE": "Lançamento:",
+    "GENRES": "🎭 Gêneros:",
+    "HOME_MOVIES": "Sessão de cinema em casa",
+    "INVALID_DATE": "Nenhuma data fornecida",
+    "SEARCH_MOVIE": "Buscar filme",
+    "PROVIDERS": "Plataformas:"
+  },
+  "PLACE": {
+    "PROXIMITY": "próximo",
+    "PHONE": "Telefone:",
+    "RATING": "Avaliação:",
+    "PRICE": "Preço:",
+    "DISTANCE": "Distância:",
+    "NOT_FOUND": "😕 Nenhum item encontrado. Altere sua busca.",
+    "NOT_DEFINED": "Não especificado",
+    "CITY": "Cidade",
+    "SEARCH": "Buscar"
+  },
+  "PWA": {
+    "DESCRIPTION_APP": "Planeje seu próximo encontro",
+    "INSTALL": "Instalar o DateFinder",
+    "HOME": "Instalar",
+    "IOS": "📱 Para instalar este aplicativo no seu iOS:",
+    "BUTTON_SHARE": "Toque no botão de compartilhamento",
+    "AFTER_CLICKED": "👉 depois toque em 'Adicionar à tela de início'.",
+    "PAGE_NOT_FOUND": "😵 Opa! Página não encontrada.",
+    "MISSED_DATE": "Parece que você perdeu o encontro certo.",
+    "LANGUAGE": "Idioma"
+  }
+}

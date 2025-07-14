@@ -1,0 +1,107 @@
+{
+  "ERROR": {
+    "SERVER_ERROR": "Ha ocurrido un error interno.",
+    "EMAIL_ERROR": "Ocurrió un error al enviar el correo electrónico.",
+    "LIMIT_RATING": "La aplicación ha superado su cuota de recuperación de datos.",
+    "FORM_REQUEST_ACTIVITY": {
+      "MISSING_DATE": "¡El campo de fecha es obligatorio!",
+      "INVALID_DATE": "¡Por favor, introduce una fecha válida!",
+      "FUTURE_DATE_REQUIREMENT": "¡La fecha debe ser posterior a la actual!",
+      "MISSING_AUTHOR_NAME": "El campo de nombre es obligatorio",
+      "MISSING_TARGET_NAME": "El nombre de la persona invitada es obligatorio",
+      "MISSING_EMAIL": "El campo de correo electrónico es obligatorio",
+      "INVALID_EMAIL": "El correo electrónico ingresado no es válido"
+    }
+  },
+  "CONFIRM_DIALOG": {
+    "CANCELED": "Cancelar",
+    "DECLINE_INVITATION": "¿Realmente deseas rechazar esta invitación?",
+    "TITLE_CONFIRM_DECLINE": "Confirmar rechazo"
+  },
+  "SUCCESS": {
+    "OK": "La operación se realizó con éxito.",
+    "EMAIL": "¡El correo electrónico ha sido enviado!"
+  },
+  "ACTIVITY": {
+    "TITLE_LINK_SHARED": "Invitación para una salida",
+    "DISCOVER_ACTIVITY": "¡Descubre nuestra próxima actividad juntos!",
+    "INVITATION": {
+      "TITLE": "¡te ha pedido una cita!",
+      "ACCEPT": "Aceptar",
+      "REFUSED": "Rechazar",
+      "GOOD_MORNING": "☀️ Buenos días",
+      "GOOD_EVENING": "🌙 Buenas noches"
+    },
+    "EMAIL": {
+      "SUBJECT": "🎉 DateFinder - Nuestra próxima actividad",
+      "TITLE": "📅 ¡Tu próxima cita!",
+      "GREETING": "👋 Hola",
+      "MESSAGE": "🎯 La invitación ha sido aceptada. Por favor, añade el evento a tu calendario:",
+      "DATE": "📅 Fecha",
+      "LOCATION": "📍 Lugar",
+      "REGARDS": "🫶 Saludos cordiales",
+      "EVENT_DESCRIPTION": "Hacer una actividad juntos",
+      "REQUEST_ACTIVITY": "💌 Aquí está la invitación:",
+      "REFUSED_MESSAGE": "😔 Lamentamos informarte que tu invitación fue rechazada.",
+      "TITLE_REFUSED": "🚫 Invitación rechazada"
+    },
+    "MODAL": {
+      "TITLE": "Planifica tu cita",
+      "CONTENT": "Completa la información para crear una invitación que puedas compartir fácilmente."
+    },
+    "MODAL_EMAIL_TARGET": {
+      "TITLE": "Aceptar la invitación",
+      "CONTENT": "Introduce tu correo electrónico para recibir la invitación y añadirla a tu calendario. Revisa la carpeta de spam."
+    },
+    "FORM": {
+      "DATE": "Fecha",
+      "YOUR_NAME": "Tu nombre",
+      "YOUR_EMAIL": "Tu correo electrónico",
+      "NAME_TARGET": "Nombre de la persona invitada",
+      "SHARE": "Compartir",
+      "SEND": "Enviar"
+    },
+    "TYPES": {
+      "BARS": "Bares",
+      "CINEMA": "Cines",
+      "GAMES": "Juegos de arcade",
+      "MUSEUM": "Museos",
+      "PARKS": "Parques",
+      "PARKS_ACTRACTIONS": "Parques y atracciones naturales",
+      "RELAX_SPA": "Bienestar / Spa",
+      "RESTAURANTS": "Restaurantes",
+      "MOVIES": "Películas"
+    }
+  },
+  "MOVIE": {
+    "NOT_FOUND": "😕 No se encontró ninguna película. Modifica tu búsqueda.",
+    "RELEASE": "Estreno:",
+    "GENRES": "🎭 Géneros:",
+    "HOME_MOVIES": "Noche de cine (Películas en casa)",
+    "INVALID_DATE": "No se ha indicado una fecha",
+    "SEARCH_MOVIE": "Buscar una película",
+    "PROVIDERS": "Plataformas:"
+  },
+  "PLACE": {
+    "PROXIMITY": "cerca",
+    "PHONE": "Número de teléfono:",
+    "RATING": "Puntuación:",
+    "PRICE": "Precio:",
+    "DISTANCE": "Distancia:",
+    "NOT_FOUND": "😕 No se encontró ningún elemento. Modifica tu búsqueda.",
+    "NOT_DEFINED": "No especificado",
+    "CITY": "Ciudad",
+    "SEARCH": "Buscar"
+  },
+  "PWA": {
+    "DESCRIPTION_APP": "Planifica tu próxima cita",
+    "INSTALL": "Instalar DateFinder",
+    "HOME": "Instalar",
+    "IOS": "📱 Para instalar esta aplicación en tu dispositivo iOS:",
+    "BUTTON_SHARE": "Presiona el botón de compartir",
+    "AFTER_CLICKED": "👉 luego selecciona 'Añadir a la pantalla de inicio'.",
+    "PAGE_NOT_FOUND": "😵 ¡Ups! Esta página no existe.",
+    "MISSED_DATE": "Parece que te perdiste la cita correcta.",
+    "LANGUAGE": "Idioma"
+  }
+}
