@@ -71,7 +71,7 @@ export default function PlaceInputSearch({
       <Grid2 sx={{ alignItems: 'center', display: 'flex', marginBottom: '5%' }}>
         <Button
           variant='outlined'
-          sx={{ borderColor: '#d33252', color: 'white', margin: '0 auto' }}
+          sx={{ borderColor: 'primary', color: 'white', margin: '0 auto' }}
           onClick={handleSearchPlaces}
         >
           {t('SEARCH')}
