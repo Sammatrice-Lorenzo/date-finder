@@ -9,6 +9,8 @@ import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInter
 import InfiniteScrollMovies from './InfiniteScrollMovies'
 import MovieInputSearch from './MovieInputSearch'
 import { useTranslations } from 'next-intl'
+import { ProviderType } from '@/interfaces/movie/MovieProviderResponseInterface'
+import ProviderMovies from './ProviderMovie/ProvidersMovie'
 
 export type MoviesProps = {
   initialMovies: ResponseMoviesInterface
@@ -19,7 +21,8 @@ export default function Movies({
   initialMovies,
   genres,
   language,
-}: MoviesProps): React.ReactElement {
+  providers,
+}: MoviesProps & { providers: ProviderType[] }): React.ReactElement {
   const t = useTranslations('MOVIE')
 
   return (
@@ -28,6 +31,7 @@ export default function Movies({
 
       <MovieInputSearch />
       <GenresMovies genres={genres} />
+      <ProviderMovies providers={providers} />
 
       <Grid2 container spacing={4}>
         <InfiniteScrollMovies genres={genres} initialMovies={initialMovies} language={language} />

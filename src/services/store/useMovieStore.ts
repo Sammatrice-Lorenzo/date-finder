@@ -15,6 +15,8 @@ const useMovieStore = create<MovieStoreInterface>((set, get) => ({
   },
   language: 'fr-FR',
   setLanguage: (newLanguage: string) => set({ language: newLanguage }),
+  provider: 0,
+  setProvider: (newProvider: number) => set({ provider: newProvider }),
   movies: [],
   addMovies: (newMovies: MovieInterface[]) =>
     set((state: MovieStoreInterface) => ({
@@ -27,7 +29,17 @@ const useMovieStore = create<MovieStoreInterface>((set, get) => ({
       genre: get().selectedGenre.toString(),
       searchName: get().searchName,
       language: get().language,
+      provider: get().provider.toString(),
     }),
+  resetFilters: () => {
+    set({
+      page: 1,
+      selectedGenre: 0,
+      searchName: '',
+      provider: 0,
+      movies: [],
+    })
+  },
 }))
 
 export default useMovieStore

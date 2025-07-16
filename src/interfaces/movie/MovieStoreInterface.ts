@@ -9,8 +9,11 @@ export default interface MovieStoreInterface {
   setSearchName: (name: string) => void
   language: string
   setLanguage: (newLanguage: string) => void
+  provider: number
+  setProvider: (newProvider: number) => void
   movies: MovieInterface[]
   addMovies: (newMovies: MovieInterface[]) => void
   setMovies: (movies: MovieInterface[]) => void
   queryParams: () => URLSearchParams
+  resetFilters: () => void
 }

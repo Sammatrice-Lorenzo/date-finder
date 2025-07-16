@@ -22,6 +22,9 @@ export default class MovieUrlService {
 
     if (requestParameters.searchName !== '') {
       endpoint = `${baseUrl}search/movie?${queryParams}&query=${requestParameters.searchName}`
+    } else if (requestParameters.provider !== 0) {
+      const parameterProvider: string = `with_watch_providers=${requestParameters.provider}&watch_region=${requestParameters.language.split('-').pop()}`
+      endpoint = `${baseUrl}discover/movie?${queryParams}&${parameterProvider}`
     } else if (requestParameters.genre !== 0) {
       endpoint = `${baseUrl}discover/movie?${queryParams}&with_genres=${requestParameters.genre}`
     } else {
@@ -40,6 +43,7 @@ export default class MovieUrlService {
     return new URLSearchParams({
       api_key: apiKey,
       language: language,
+      wath_region: language.toLocaleUpperCase(),
     })
   }
 }

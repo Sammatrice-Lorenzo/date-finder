@@ -12,9 +12,9 @@ const GenresMovies = ({ genres }: GenresMoviesProps) => {
   const movieStore: MovieStoreInterface = useMovieStore()
 
   const handleUpdateGenre = (genre: MovieGenresInterface): void => {
+    movieStore.resetFilters()
     movieStore.setSelectedGenre(movieStore.selectedGenre !== genre.id ? genre.id : 0)
-    movieStore.setPage(1)
-    movieStore.setMovies([])
+
     mutate(`/api/movies?${movieStore.queryParams().toString()}`)
   }
 

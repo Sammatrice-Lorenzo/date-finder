@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: 'flagsapi.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        pathname: '/**',
+      }
     ],
   },
 }
