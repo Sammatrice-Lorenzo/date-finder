@@ -1,10 +1,10 @@
 import type MovieProviderResponseInterface from '@/interfaces/movie/MovieProviderResponseInterface'
-import { ProviderType } from '@/interfaces/movie/MovieProviderResponseInterface'
+import { ProviderInterface } from '@/interfaces/provider/ProviderInteface'
 import MovieProviderService from '@/services/movie/MovieProviderService'
 import MovieUrlService from '@/services/movie/MovieUrlService'
 import { NextResponse } from 'next/server'
 
-export async function GET(req: Request): Promise<NextResponse<string[] | ProviderType[]>> {
+export async function GET(req: Request): Promise<NextResponse<string[] | ProviderInterface[]>> {
   const baseUrl: string = `${process.env.TMDB_API}`
   const searchParams: URLSearchParams = new URL(req.url).searchParams
 

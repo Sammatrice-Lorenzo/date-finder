@@ -4,11 +4,7 @@ import useMovieStore from '@/services/store/useMovieStore'
 import { Chip, Stack } from '@mui/material'
 import { mutate } from 'swr'
 
-export type GenresMoviesProps = {
-  genres: MovieGenresInterface[]
-}
-
-const GenresMovies = ({ genres }: GenresMoviesProps) => {
+const GenresMovies = () => {
   const movieStore: MovieStoreInterface = useMovieStore()
 
   const handleUpdateGenre = (genre: MovieGenresInterface): void => {
@@ -32,7 +28,7 @@ const GenresMovies = ({ genres }: GenresMoviesProps) => {
         marginBottom: 2,
       }}
     >
-      {genres.map((genre: MovieGenresInterface) => (
+      {movieStore.genres.map((genre: MovieGenresInterface) => (
         <Chip
           key={genre.id}
           label={genre.name}

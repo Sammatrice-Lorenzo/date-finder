@@ -10,13 +10,12 @@ import React, { type ReactElement, useCallback } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import SpinnerLoader from '../Loader/SpinnerLoader'
 import MovieCard from './MovieCard'
-import type { MoviesProps } from './Movies'
 import { useTranslations } from 'next-intl'
 
-const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps): ReactElement => {
+const InfiniteScrollMovies = (): ReactElement => {
   const movieStore: MovieStoreInterface = useMovieStore()
 
-  const { page, setPage, queryParams } = movieStore
+  const { page, setPage, queryParams, initialMovies, genres } = movieStore
 
   const { data } = useApi(
     {
@@ -36,7 +35,7 @@ const InfiniteScrollMovies = ({ initialMovies, genres, language }: MoviesProps):
   const moviesData: ResponseMoviesInterface = data as ResponseMoviesInterface
   const moviesResponse: MovieAPIInterface[] = moviesData.results ?? []
 
-  useFormattedMovies(moviesResponse, genres, language)
+  useFormattedMovies(moviesResponse, genres)
 
   const hasMore = moviesData.page < moviesData.total_pages
   const loadMore = useCallback(() => {
