@@ -33,7 +33,11 @@ const SelectMovieProviders = (): React.ReactElement => {
         <em>---</em>
       </MenuItem>
       {movieStore.providers.map((provider: ProviderInterface) => (
-        <MenuItem key={provider.provider_id} value={provider.provider_id}>
+        <MenuItem
+          key={provider.provider_id}
+          value={provider.provider_id}
+          data-testid={provider.provider_name}
+        >
           <Image
             src={`https://image.tmdb.org/t/p/w45${provider.logo_path}`}
             alt={provider.provider_name}

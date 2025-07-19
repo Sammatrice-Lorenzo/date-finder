@@ -63,7 +63,11 @@ const InfiniteScrollMovies = (): ReactElement => {
           id={`grid-${movie.id}-${index}`}
           className='grid-movies'
           spacing={1}
-          sx={{ marginBottom: 3 }}
+          sx={{
+            marginBottom: 3,
+            display: 'flex',
+            alignItems: 'stretch',
+          }}
           size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
           key={`grid-${movie.id}-${index}`}
         >

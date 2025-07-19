@@ -13,6 +13,7 @@ describe('MovieUrlService', () => {
     language: 'fr-FR',
     page: 1,
     searchName: '',
+    provider: 0,
   }
   const baseUrl: string = process.env.TMDB_API ?? ''
 

@@ -84,6 +84,7 @@ export default class MovieProviderService {
       .filter((movie: ProviderInterface) =>
         this.getDefaultProviders().includes(movie.provider_name)
       )
+      .reverse()
       .reduce((unique: ProviderInterface[], current: ProviderInterface) => {
         const alreadyExists = unique.some(p => p.provider_name === current.provider_name)
         if (!alreadyExists) unique.push(current)
