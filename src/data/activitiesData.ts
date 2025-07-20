@@ -15,7 +15,7 @@ const getActivitiesData = (t: ReturnType<typeof createTranslator>): HomeActiviti
       key: 'restaurant',
       icon: 'restaurant',
       title: t('RESTAURANTS'),
-      color: '#d33252',
+      color: 'var(--primary)',
       route: '/restaurants',
     },
     { key: 'movie', icon: 'movie', title: t('MOVIES'), color: '#0aa4c5', route: '/movies' },

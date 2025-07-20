@@ -8,12 +8,44 @@ export const theme = createTheme({
     primary: {
       main: '#d33252',
       light: '#d33140',
-      // ff560b
     },
     secondary: {
       main: '#40916c',
       light: '#3e6f5c',
-      // dark: ''
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.color === 'primary' && {
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+          }),
+          ...(ownerState.color === 'secondary' && {
+            '&:hover': {
+              backgroundColor: theme.palette.secondary.light,
+            },
+          }),
+        }),
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.color === 'primary' && {
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+          }),
+          ...(ownerState.color === 'secondary' && {
+            '&:hover': {
+              backgroundColor: theme.palette.secondary.light,
+            },
+          }),
+        }),
+      },
     },
   },
 })
