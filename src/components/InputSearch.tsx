@@ -48,7 +48,11 @@ const InputSearch = ({
 
   return (
     <>
-      <IconButton type="button" aria-label="search" sx={{ color: colorIcon === 'primary' ? '#d33252' : 'inherit' }}>
+      <IconButton
+        type='button'
+        aria-label='search'
+        sx={{ color: colorIcon === 'primary' ? 'var(--primary)' : 'inherit' }}
+      >
         <SearchIcon />
       </IconButton>
       <InputBase
@@ -64,9 +68,9 @@ const InputSearch = ({
       />
       <IconButton
         onClick={clearInput}
-        type="button"
-        aria-label="search"
-        sx={{ color: colorIcon === 'primary' ? '#d33252' : 'inherit' }}
+        type='button'
+        aria-label='search'
+        sx={{ color: colorIcon === 'primary' ? 'var(--primary)' : 'inherit' }}
       >
         <BackspaceOutlinedIcon />
       </IconButton>
