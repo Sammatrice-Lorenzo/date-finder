@@ -9,8 +9,7 @@ import useSWR from 'swr'
 
 const useFormattedMovies = (
   moviesResponse: MovieAPIInterface[],
-  genres: MovieGenresInterface[],
-  language: string
+  genres: MovieGenresInterface[]
 ) => {
   const movieStore: MovieStoreInterface = useMovieStore()
 
@@ -22,7 +21,6 @@ const useFormattedMovies = (
   const {} = useSWR(
     swrKey,
     async () => {
-      movieStore.setLanguage(language)
       if (!moviesResponse || genres.length === 0) return []
 
       const movieFormatter: MovieFormatter = new MovieFormatter()

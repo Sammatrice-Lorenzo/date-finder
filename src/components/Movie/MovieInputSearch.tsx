@@ -12,9 +12,8 @@ export default function MovieInputSearch(): React.ReactElement {
   const t = useTranslations('MOVIE')
 
   const handleUpdateSearch = () => {
+    movieStore.resetFilters()
     movieStore.setSearchName(refSearchMovie.current ? refSearchMovie.current.value : '')
-    movieStore.setPage(1)
-    movieStore.setMovies([])
     mutate(`/api/movies?${movieStore.queryParams().toString()}`)
   }
 

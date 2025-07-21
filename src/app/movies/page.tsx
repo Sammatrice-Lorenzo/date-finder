@@ -3,6 +3,7 @@ import Movies from '@/components/Movie/Movies'
 import type MovieGenresInterface from '@/interfaces/genre/MovieGenresInterface'
 import type ResponseMoviesInterface from '@/interfaces/movie/ResponseMoviesInterface'
 import { getLocale } from 'next-intl/server'
+import { ProviderInterface } from '@/interfaces/provider/ProviderInteface'
 
 type ResponseMoviesGenres = {
   genres: MovieGenresInterface[]
@@ -28,6 +29,18 @@ const getMovies = async (
   return data
 }
 
+const getProviders = async (language: string): Promise<ProviderInterface[]> => {
+  const searchParameter: URLSearchParams = new URLSearchParams({
+    language,
+  })
+
+  const baseUrl: string = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const res = await fetch(`${baseUrl}/api/movies/providers?${searchParameter.toString()}`)
+  const data: ProviderInterface[] = await res.json()
+
+  return data
+}
+
 export default async function MoviesPage(): Promise<React.ReactElement> {
   const apiKey: string | undefined = process.env.TMDB_API_KEY
   const apiTmdb: string | undefined = process.env.TMDB_API
@@ -44,6 +57,14 @@ export default async function MoviesPage(): Promise<React.ReactElement> {
 
   const genres: MovieGenresInterface[] = await getGendersMovies(apiTmdb, searchParameter)
   const moviesResponse: ResponseMoviesInterface = await getMovies(apiTmdb, searchParameter)
+  const providersResponse: ProviderInterface[] = await getProviders(language)
 
-  return <Movies initialMovies={moviesResponse} genres={genres} language={language} />
+  return (
+    <Movies
+      initialMovies={moviesResponse}
+      genres={genres}
+      language={language}
+      providers={providersResponse}
+    />
+  )
 }
