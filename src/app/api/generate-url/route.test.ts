@@ -12,6 +12,19 @@ expect.extend(matchers)
 import translate from '@/locales/fr/common.json'
 
 type FormRequest = Omit<FormRequestActivityInterface, 'date'>
+type TranslationType = Record<string, string> & {
+  TITLE_LINK_SHARED: string
+}
+
+jest.mock('next-intl/server', () => ({
+  getTranslations: () =>
+    Promise.resolve((key: string): string => {
+      const translations: TranslationType = {
+        TITLE_LINK_SHARED: translate.ACTIVITY.TITLE_LINK_SHARED,
+      }
+      return translations[key]
+    }),
+}))
 
 it('Test return response with status 200', async () => {
   const formData: FormRequest = data

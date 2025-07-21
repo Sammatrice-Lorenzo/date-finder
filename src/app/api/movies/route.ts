@@ -9,6 +9,7 @@ export async function GET(req: Request) {
     searchName: searchParams.get('searchName') ?? '',
     language: searchParams.get('language') ?? 'fr-FR',
     genre: Number.parseInt(searchParams.get('genre') ?? '0'),
+    provider: Number.parseInt(searchParams.get('provider') ?? '0'),
   }
 
   const movieUrlService: MovieUrlService = new MovieUrlService()

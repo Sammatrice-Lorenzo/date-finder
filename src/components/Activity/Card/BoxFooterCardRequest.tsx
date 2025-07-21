@@ -8,8 +8,8 @@ import { useAlert } from '@/hooks/useAlert'
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 import EventBusyIcon from '@mui/icons-material/EventBusy'
 import ConfirmDialog from '@/components/ConfirmDialog'
-import fr from '../../../locales/fr/common.json'
 import SendEmailService from '@/services/SendEmailService'
+import { useTranslations } from 'next-intl'
 
 type BoxFooterCardRequestProps = {
   activityQuery: ActivityQueryProps
@@ -19,6 +19,8 @@ const BoxFooterCardRequest = ({ activityQuery }: BoxFooterCardRequestProps): Rea
   const [openModal, setOpen] = React.useState(false)
   const [openDialog, setOpenDialog] = React.useState(false)
   const { showAlert } = useAlert()
+  const activityInvationTranslation = useTranslations('ACTIVITY.INVITATION')
+  const confirmTranslation = useTranslations('CONFIRM_DIALOG')
 
   const sendEmailService: SendEmailService = new SendEmailService()
 
@@ -31,17 +33,17 @@ const BoxFooterCardRequest = ({ activityQuery }: BoxFooterCardRequestProps): Rea
         onClick={() => setOpen(true)}
       >
         <EventAvailableIcon fontSize='small' sx={{ marginRight: 1 }} />
-        {fr.ACTIVITY.INVITATION.ACCEPT}
+        {activityInvationTranslation('ACCEPT')}
       </Button>
       <Button variant='outlined' color='error' onClick={() => setOpenDialog(true)}>
         <EventBusyIcon fontSize='small' sx={{ marginRight: 1 }} />
-        {fr.ACTIVITY.INVITATION.REFUSED}
+        {activityInvationTranslation('REFUSED')}
       </Button>
       <ConfirmDialog
         open={openDialog}
         onClose={() => setOpenDialog(false)}
-        title={fr.CONFIRM_DIALOG.TITLE_CONFIRM_DECLINE}
-        message={fr.CONFIRM_DIALOG.DECLINE_INVITATION}
+        title={confirmTranslation('TITLE_CONFIRM_DECLINE')}
+        message={confirmTranslation('DECLINE_INVITATION')}
         onConfirm={() => sendEmailService.handleSendInviteRefused(activityQuery, showAlert)}
       />
       <ModalEmailTarget

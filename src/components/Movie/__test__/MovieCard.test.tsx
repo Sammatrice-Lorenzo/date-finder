@@ -1,5 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
 import MovieCard from '../MovieCard'
+import { NextIntlClientProvider } from 'next-intl'
 import type MovieInterface from '@/interfaces/movie/MovieInterface'
 import { describe, expect, test } from '@jest/globals'
 
@@ -21,8 +22,11 @@ describe('Movie Card', (): void => {
   }
 
   test('Render Movie Card', (): void => {
-    const { getByText, getByAltText } = render(<MovieCard movie={movie} />)
-
+    const { getByText, getByAltText } = render(
+      <NextIntlClientProvider locale='fr' messages={translate}>
+        <MovieCard movie={movie} />
+      </NextIntlClientProvider>
+    )
     expect(getByText(`Sortie : ${date.toLocaleDateString()}`)).toBeTruthy()
     expect(getByText('Inception')).toBeTruthy()
 
@@ -32,7 +36,11 @@ describe('Movie Card', (): void => {
   })
 
   test('Click On movie Card for to show a Modal', () => {
-    const { getByText } = render(<MovieCard movie={movie} />)
+    const { getByText } = render(
+      <NextIntlClientProvider locale='fr' messages={translate}>
+        <MovieCard movie={movie} />
+      </NextIntlClientProvider>
+    )
 
     const card = getByText('Inception')
     fireEvent.click(card)

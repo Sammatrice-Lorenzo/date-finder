@@ -3,17 +3,17 @@ import Paper from '@mui/material/Paper'
 import InputSearch from '../InputSearch'
 import type MovieStoreInterface from '@/interfaces/movie/MovieStoreInterface'
 import { mutate } from 'swr'
-import translate from '@/locales/fr/common.json'
 import useMovieStore from '@/services/store/useMovieStore'
+import { useTranslations } from 'next-intl'
 
 export default function MovieInputSearch(): React.ReactElement {
   const refSearchMovie = React.useRef<HTMLInputElement>(null)
   const movieStore: MovieStoreInterface = useMovieStore()
+  const t = useTranslations('MOVIE')
 
   const handleUpdateSearch = () => {
+    movieStore.resetFilters()
     movieStore.setSearchName(refSearchMovie.current ? refSearchMovie.current.value : '')
-    movieStore.setPage(1)
-    movieStore.setMovies([])
     mutate(`/api/movies?${movieStore.queryParams().toString()}`)
   }
 
@@ -31,7 +31,7 @@ export default function MovieInputSearch(): React.ReactElement {
       >
         <InputSearch
           idInput='input-movie'
-          placeholder={translate.MOVIE.SEARCH_MOVIE}
+          placeholder={t('SEARCH_MOVIE')}
           refSearch={refSearchMovie}
           onUpdateInput={handleUpdateSearch}
         />

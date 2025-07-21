@@ -8,13 +8,16 @@ import PhoneIcon from '@mui/icons-material/Phone'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
 import type PlaceInterface from '@/interfaces/place/PlaceInterface'
 import BoxContentCard, { type BoxContentCardProps } from '../BoxContentCard'
-import translation from '@/locales/fr/common.json'
+import { createTranslator, useTranslations } from 'next-intl'
 
 type PlaceContentCardProps = {
   place: PlaceInterface
 }
 
-const getContentBox = (place: PlaceInterface): BoxContentCardProps[] => {
+const getContentBox = (
+  place: PlaceInterface,
+  t: ReturnType<typeof createTranslator>
+): BoxContentCardProps[] => {
   const location: string = place.location
   const distanceInKm: string = place.distance?.toFixed(2) ?? ''
 
@@ -24,32 +27,36 @@ const getContentBox = (place: PlaceInterface): BoxContentCardProps[] => {
       icon: <LocationOnIcon />,
     },
     {
-      text: `${translation.PLACE.RATING} ${place.rating} / 5`,
+      text: `${t('RATING')} ${place.rating} / 5`,
       icon: <StarIcon />,
     },
     {
-      text: `${translation.PLACE.PRICE} ${place.price || translation.PLACE.NOT_DEFINED}`,
+      text: `${t('PRICE')} ${place.price || t('NOT_DEFINED')}`,
       icon: <AttachMoneyIcon />,
     },
     {
-      text: `${translation.PLACE.PHONE} ${place.display_phone || translation.PLACE.NOT_DEFINED}`,
+      text: `${t('PHONE')} ${place.display_phone || t('NOT_DEFINED')}`,
       icon: <PhoneIcon />,
     },
     {
-      text: `${translation.PLACE.DISTANCE} ${distanceInKm} km`,
+      text: `${t('DISTANCE')} ${distanceInKm} km`,
       icon: <DirectionsWalkIcon />,
     },
   ]
 }
 
-export default function PlaceContentCard({ place }: Readonly<PlaceContentCardProps>): React.ReactElement {
+export default function PlaceContentCard({
+  place,
+}: Readonly<PlaceContentCardProps>): React.ReactElement {
+  const t = useTranslations('PLACE')
+
   return (
     <CardContent sx={{ padding: 2 }}>
-      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+      <Typography variant='h6' gutterBottom sx={{ fontWeight: 'bold' }}>
         {place.name}
       </Typography>
 
-      {getContentBox(place).map((content: BoxContentCardProps) => (
+      {getContentBox(place, t).map((content: BoxContentCardProps) => (
         <BoxContentCard key={content.text} text={content.text} icon={content.icon} />
       ))}
     </CardContent>

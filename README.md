@@ -1,48 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📅 DateFinder — Planifie tes rendez-vous facilement
 
-## Getting Started
+**DateFinder** est une application web moderne développée avec [Next.js](https://nextjs.org) et [React](https://reactjs.org), conçue pour planifier des activités à deux. Elle permet d'envoyer des invitations, d'organiser des sorties (cinéma, parc, restaurant, etc.), et de gérer le suivi des réponses.  
+Le projet est optimisé pour une expérience fluide grâce à la technologie **PWA**, un design responsive, et une compatibilité avec les calendriers via l'e-mail.
 
-First, run the development server:
+---
+
+## 🚀 Démarrage rapide
+
+### 🔧 Installation
+
+Clone le projet et installe les dépendances :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ton-utilisateur/DateFinder.git
+cd DateFinder
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔐 Configuration SSL (localhost HTTPS)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pour utiliser HTTPS localement (optionnel mais utile pour les fonctionnalités comme les PWA) :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+mkcert -install
+mkcert -key-file key.pem -cert-file cert.pem localhost 127.0.0.1
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
+Puis déplace le certificat dans le bon dossier :
 
 ```bash
-  mkcert -install
-  mkcert -key-file key.pem -cert-file cert.pem localhost <ADRESSE_IP>
   cd /usr/local/share/ca-certificates
-  
-  # La commande cp va copier le certificat au du projet il faut vérifier son nom donc d'abord fait un  ls -la et remplacer si jamais le nom du fichier
+  cp mkcert_development_CA_XXXXXXXX.crt /app/
+```
 
-  cp mkcert_development_CA_178928495699523639395873563568737777600.crt /app/
-  ```
-Cela va créer les clés SSL pour que l application puisse tourner en HTTP
+Remplace le nom du certificat par celui généré (ls -la pour le voir).
+
+## 🧩 Fonctions principales
+
+- 📨 Création et partage d'invitations
+
+- 📆 Ajout automatique aux calendriers
+
+- 🌐 Localisation des activités à proximité
+
+- 🎞️ Intégration des films et lieux populaires
+
+- 🛜 Mode PWA (installation possible sur mobile)
+
+- 🌍 Multilingue (Français, Anglais, Espagnol, Portugais)
+
+## 🛠️ Technologies utilisées
+
+- Next.js 15
+
+- React 18+
+
+- TypeScript
+
+- Material UI
+
+- PWA Support
