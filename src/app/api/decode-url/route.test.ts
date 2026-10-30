@@ -11,6 +11,7 @@ expect.extend(matchers)
 import { UrlActivityGeneratorService } from '@/services/UrlActivityGeneratorService'
 import type { NextResponseUrlActivityDecodedType } from '@/types/NextResponseUrlActivityDecodedType'
 import type { ErrorResponseType } from '@/types/ErrorResponseType'
+import type { GenerateUrlRequest } from '@/schema/apiActivitySchema'
 
 type FormRequest = Omit<FormRequestActivityInterface, 'date'>
 
@@ -22,7 +23,7 @@ it('Test return response with status 200', async () => {
   }
 
   const formData: FormRequest = data
-  const form: FormRequestActivityInterface = {
+  const form: GenerateUrlRequest['form'] = {
     date: new Date(),
     'author-name': formData['author-name'],
     'target-name': formData['target-name'],

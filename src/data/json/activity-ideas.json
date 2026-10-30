@@ -1,0 +1,163 @@
+[
+  {
+    "key": "BOARD_GAMES",
+    "category": "HOME",
+    "icon": "boardGames"
+  },
+  {
+    "key": "COOKING",
+    "category": "HOME",
+    "icon": "cooking"
+  },
+  {
+    "key": "MOVIE_NIGHT",
+    "category": "HOME",
+    "icon": "movieNight"
+  },
+  {
+    "key": "PUZZLE",
+    "category": "HOME",
+    "icon": "puzzle"
+  },
+  {
+    "key": "HOMEMADE_BRUNCH",
+    "category": "HOME",
+    "icon": "brunch"
+  },
+  {
+    "key": "KARAOKE",
+    "category": "HOME",
+    "icon": "karaoke"
+  },
+  {
+    "key": "PICNIC",
+    "category": "OUTDOOR",
+    "icon": "picnic",
+    "placeType": "park"
+  },
+  {
+    "key": "WALK",
+    "category": "OUTDOOR",
+    "icon": "walk",
+    "placeType": "park"
+  },
+  {
+    "key": "SUNSET",
+    "category": "OUTDOOR",
+    "icon": "sunset"
+  },
+  {
+    "key": "BIKE_RIDE",
+    "category": "OUTDOOR",
+    "icon": "bike"
+  },
+  {
+    "key": "BEACH",
+    "category": "OUTDOOR",
+    "icon": "beach"
+  },
+  {
+    "key": "STARGAZING",
+    "category": "OUTDOOR",
+    "icon": "stars"
+  },
+  {
+    "key": "EXHIBITION",
+    "category": "CULTURE",
+    "icon": "exhibition",
+    "placeType": "art_gallery"
+  },
+  {
+    "key": "MUSEUM",
+    "category": "CULTURE",
+    "icon": "museum",
+    "placeType": "museum"
+  },
+  {
+    "key": "BOOKSTORE",
+    "category": "CULTURE",
+    "icon": "bookstore",
+    "placeType": "book_store"
+  },
+  {
+    "key": "CONCERT",
+    "category": "CULTURE",
+    "icon": "concert"
+  },
+  {
+    "key": "AQUARIUM",
+    "category": "CULTURE",
+    "icon": "aquarium",
+    "placeType": "aquarium"
+  },
+  {
+    "key": "ZOO",
+    "category": "CULTURE",
+    "icon": "zoo",
+    "placeType": "zoo"
+  },
+  {
+    "key": "ICE_CREAM",
+    "category": "FOOD",
+    "icon": "iceCream"
+  },
+  {
+    "key": "BAKERY",
+    "category": "FOOD",
+    "icon": "bakery",
+    "placeType": "bakery"
+  },
+  {
+    "key": "COCKTAIL",
+    "category": "FOOD",
+    "icon": "cocktail",
+    "placeType": "bar"
+  },
+  {
+    "key": "COFFEE",
+    "category": "FOOD",
+    "icon": "coffee",
+    "placeType": "cafe"
+  },
+  {
+    "key": "WINE_TASTING",
+    "category": "FOOD",
+    "icon": "wine"
+  },
+  {
+    "key": "MARKET",
+    "category": "FOOD",
+    "icon": "market"
+  },
+  {
+    "key": "BOWLING",
+    "category": "SPORT",
+    "icon": "bowling",
+    "placeType": "bowling_alley"
+  },
+  {
+    "key": "ESCAPE_GAME",
+    "category": "SPORT",
+    "icon": "escapeGame"
+  },
+  {
+    "key": "CLIMBING",
+    "category": "SPORT",
+    "icon": "climbing"
+  },
+  {
+    "key": "ICE_SKATING",
+    "category": "SPORT",
+    "icon": "iceSkating"
+  },
+  {
+    "key": "MINI_GOLF",
+    "category": "SPORT",
+    "icon": "miniGolf"
+  },
+  {
+    "key": "SWIMMING",
+    "category": "SPORT",
+    "icon": "swimming"
+  }
+]

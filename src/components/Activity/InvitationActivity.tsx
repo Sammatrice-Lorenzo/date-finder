@@ -7,9 +7,10 @@ import { useTranslations } from 'next-intl'
 
 export type InvitationActivityProps = {
   activity: ActivityQueryProps
+  token: string
 }
 
-export default function InvitationActivity({ activity }: Readonly<InvitationActivityProps>) {
+export default function InvitationActivity({ activity, token }: Readonly<InvitationActivityProps>) {
   const t = useTranslations('ACTIVITY.INVITATION')
 
   return (
@@ -25,7 +26,7 @@ export default function InvitationActivity({ activity }: Readonly<InvitationActi
         <CardRequestActivity key={0} activity={activity} />
         <Divider />
 
-        <BoxFooterCardRequest activityQuery={activity} />
+        <BoxFooterCardRequest token={token} />
       </Paper>
     </Box>
   )

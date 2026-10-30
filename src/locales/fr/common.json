@@ -3,6 +3,8 @@
     "SERVER_ERROR": "Une erreur interne est survenue.",
     "EMAIL_ERROR": "Une erreur est survenue lors de l'envoi d'e-mail.",
     "LIMIT_RATING": "L'application a dépassé son quota de récupération des données.",
+    "INVALID_REQUEST": "La demande est invalide ou l'invitation a expiré.",
+    "TOO_MANY_REQUESTS": "Trop de demandes. Réessayez dans quelques minutes.",
     "FORM_REQUEST_ACTIVITY": {
       "MISSING_DATE": "Le champ date est requis !",
       "INVALID_DATE": "Veuillez saisir une date valide !",
@@ -10,7 +12,12 @@
       "MISSING_AUTHOR_NAME": "Le champ nom est requis",
       "MISSING_TARGET_NAME": "Le champ du nom de la personne invitée est requis",
       "MISSING_EMAIL": "Le champ email est requis",
-      "INVALID_EMAIL": "L'email saisi est invalide"
+      "INVALID_EMAIL": "L'email saisi est invalide",
+      "TOO_LONG": "Le texte est trop long"
+    },
+    "FORM_CUSTOM_ACTIVITY": {
+      "MISSING_NAME": "Le nom de l'activité est requis",
+      "TOO_LONG": "Le texte est trop long"
     }
   },
   "CONFIRM_DIALOG": {
@@ -70,7 +77,68 @@
       "PARKS_ACTRACTIONS": "Parcs et attractions naturelles",
       "RELAX_SPA": "Bien-être / Spa",
       "RESTAURANTS": "Restaurants",
-      "MOVIES": "Films"
+      "MOVIES": "Films",
+      "CUSTOM": "Autre activité"
+    },
+    "CUSTOM": {
+      "TITLE": "Proposer une autre activité",
+      "CONTENT": "Une idée qui n'est pas dans la liste ? Décrivez-la et invitez quelqu'un.",
+      "NAME": "Nom de l'activité",
+      "LOCATION": "Lieu (facultatif)",
+      "LOCATION_DEFAULT": "Lieu à définir",
+      "INVITE": "Inviter"
+    },
+    "IDEAS": {
+      "TITLE": "Besoin d'inspiration ?",
+      "RANDOM": "Au hasard",
+      "CATEGORIES": {
+        "ALL": "Toutes",
+        "HOME": "À la maison",
+        "OUTDOOR": "Plein air",
+        "CULTURE": "Culture",
+        "FOOD": "Gourmand",
+        "SPORT": "Sport & jeux"
+      },
+      "ITEMS": {
+        "BOARD_GAMES": "Soirée jeux de société",
+        "COOKING": "Cuisiner ensemble",
+        "MOVIE_NIGHT": "Soirée film à la maison",
+        "PUZZLE": "Faire un puzzle",
+        "HOMEMADE_BRUNCH": "Brunch maison",
+        "KARAOKE": "Soirée karaoké",
+        "PICNIC": "Pique-nique",
+        "WALK": "Balade",
+        "SUNSET": "Regarder le coucher de soleil",
+        "BIKE_RIDE": "Balade à vélo",
+        "BEACH": "Journée à la plage",
+        "STARGAZING": "Observer les étoiles",
+        "EXHIBITION": "Exposition",
+        "MUSEUM": "Musée",
+        "BOOKSTORE": "Flâner en librairie",
+        "CONCERT": "Concert",
+        "AQUARIUM": "Aquarium",
+        "ZOO": "Zoo",
+        "ICE_CREAM": "Glace",
+        "BAKERY": "Goûter en pâtisserie",
+        "COCKTAIL": "Cocktails",
+        "COFFEE": "Café",
+        "WINE_TASTING": "Dégustation de vin",
+        "MARKET": "Marché",
+        "BOWLING": "Bowling",
+        "ESCAPE_GAME": "Escape game",
+        "CLIMBING": "Escalade",
+        "ICE_SKATING": "Patinoire",
+        "MINI_GOLF": "Mini-golf",
+        "SWIMMING": "Piscine"
+      },
+      "NEARBY": {
+        "TITLE": "Trouver un lieu",
+        "CITY": "Ville (facultatif)",
+        "SEARCH_NEARBY": "Lieux près de moi",
+        "SEARCH_CITY": "Chercher dans cette ville",
+        "HINT": "Autorisez la géolocalisation ou saisissez une ville.",
+        "NOT_FOUND": "Aucun lieu trouvé."
+      }
     }
   },
   "MOVIE": {

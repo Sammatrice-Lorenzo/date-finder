@@ -10,6 +10,7 @@ import CasinoIcon from '@mui/icons-material/Casino'
 import SpaIcon from '@mui/icons-material/Spa'
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies'
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople'
+import EditCalendarIcon from '@mui/icons-material/EditCalendar'
 
 type IconsActivities = {
   bar: React.ReactElement
@@ -20,6 +21,7 @@ type IconsActivities = {
   spa: React.ReactElement
   cinema: React.ReactElement
   parks: React.ReactElement
+  custom: React.ReactElement
 }
 
 const iconsActivities: IconsActivities = {
@@ -31,6 +33,7 @@ const iconsActivities: IconsActivities = {
   spa: <SpaIcon fontSize='large' />,
   cinema: <LocalMoviesIcon fontSize='large' />,
   parks: <NaturePeopleIcon fontSize='large' />,
+  custom: <EditCalendarIcon fontSize='large' />,
 }
 
 export type IconBoxKeys = keyof IconsActivities

@@ -44,10 +44,39 @@ it('Test return response with status 200', async () => {
   const request: Request = {
     json: async () => ({ activity, form, baseUrl: 'http://localhost' }),
   } as Request
-  const response: NextResponse<NextResponseShareDateType> = await POST(request)
+  const response = (await POST(request)) as NextResponse<NextResponseShareDateType>
 
   expect(response.status).toBe(200)
 
   const body: NextResponseShareDateType = await response.json()
   expect(body.response.title).toBe(translate.ACTIVITY.TITLE_LINK_SHARED)
+})
+
+it('Test return status 400 when body is invalid', async () => {
+  const request: Request = {
+    json: async () => ({
+      activity: { id: '1', name: '', location: 'Restaurant' },
+      form: { date: 'not a date', 'author-email': 'invalid' },
+      baseUrl: 'javascript:alert(1)',
+    }),
+  } as Request
+  const response = await POST(request)
+
+  expect(response.status).toBe(400)
+})
+
+it.each([
+  ['null', null],
+  ['in the past', '2020-01-01T10:00:00.000Z'],
+])('Test return status 400 when date is %s', async (_label: string, date: string | null) => {
+  const request: Request = {
+    json: async () => ({
+      activity: { id: '1', name: 'Burger', location: 'Restaurant' },
+      form: { ...data, date },
+      baseUrl: 'http://localhost',
+    }),
+  } as Request
+  const response = await POST(request)
+
+  expect(response.status).toBe(400)
 })
