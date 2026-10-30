@@ -1,6 +1,5 @@
 'use client'
 
-import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import { Box, Button } from '@mui/material'
 import React from 'react'
 import ModalEmailTarget from '../ModalEmailTarget'
@@ -12,10 +11,10 @@ import SendEmailService from '@/services/SendEmailService'
 import { useTranslations } from 'next-intl'
 
 type BoxFooterCardRequestProps = {
-  activityQuery: ActivityQueryProps
+  token: string
 }
 
-const BoxFooterCardRequest = ({ activityQuery }: BoxFooterCardRequestProps): React.ReactElement => {
+const BoxFooterCardRequest = ({ token }: BoxFooterCardRequestProps): React.ReactElement => {
   const [openModal, setOpen] = React.useState(false)
   const [openDialog, setOpenDialog] = React.useState(false)
   const { showAlert } = useAlert()
@@ -44,13 +43,9 @@ const BoxFooterCardRequest = ({ activityQuery }: BoxFooterCardRequestProps): Rea
         onClose={() => setOpenDialog(false)}
         title={confirmTranslation('TITLE_CONFIRM_DECLINE')}
         message={confirmTranslation('DECLINE_INVITATION')}
-        onConfirm={() => sendEmailService.handleSendInviteRefused(activityQuery, showAlert)}
+        onConfirm={() => sendEmailService.handleSendInviteRefused(token, showAlert)}
       />
-      <ModalEmailTarget
-        activityQuery={activityQuery}
-        isOpen={openModal}
-        onClose={() => setOpen(false)}
-      />
+      <ModalEmailTarget token={token} isOpen={openModal} onClose={() => setOpen(false)} />
     </Box>
   )
 }

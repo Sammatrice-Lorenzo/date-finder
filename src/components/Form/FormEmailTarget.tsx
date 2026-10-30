@@ -8,17 +8,16 @@ import { useAlert } from '@/hooks/useAlert'
 import React from 'react'
 import type { InputModalRequestActivity } from '@/interfaces/InputModalRequestActivity'
 import { RequestActivityNameEnum } from '@/enums/RequestActivityNameEnum'
-import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import SendEmailService from '@/services/SendEmailService'
 import { useTranslations } from 'next-intl'
 import createFormTargetEmailSchema from '@/schema/formTargetEmail'
 
 export type FormEmailTargetProps = {
-  activityQuery: ActivityQueryProps
+  token: string
   handleClose: () => void
 }
 
-export const FormEmailTarget = ({ activityQuery, handleClose }: FormEmailTargetProps) => {
+export const FormEmailTarget = ({ token, handleClose }: FormEmailTargetProps) => {
   const { showAlert } = useAlert()
   const t = useTranslations('ACTIVITY.FORM')
   const errorFormTranslate = useTranslations('ERROR.FORM_REQUEST_ACTIVITY')
@@ -35,11 +34,7 @@ export const FormEmailTarget = ({ activityQuery, handleClose }: FormEmailTargetP
   const onSubmit = async (data: FormTargetSendEmailInterface): Promise<void> => {
     if (Object.keys(form.formState.errors).length === 0) {
       handleClose()
-      await new SendEmailService().handleSendInviteAccepted(
-        data['target-email'],
-        activityQuery,
-        showAlert
-      )
+      await new SendEmailService().handleSendInviteAccepted(data['target-email'], token, showAlert)
     }
   }
 

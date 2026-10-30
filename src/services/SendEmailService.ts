@@ -1,34 +1,22 @@
 import { AlertEnum } from '@/enums/AlertEnum'
-import DateFormatter from '@/formatters/DateFormatter'
-import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
-import { v1 as uuidv1 } from 'uuid'
 
 export default class SendEmailService {
-  private _dateFormatter: DateFormatter
-
-  public constructor() {
-    this._dateFormatter = new DateFormatter()
+  /** Fuseau du navigateur : le serveur s'en sert pour afficher la date de l'activité dans l'email */
+  private getTimeZone(): string {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone
   }
 
   public async handleSendInviteAccepted(
     targetEmail: string,
-    activityQuery: ActivityQueryProps,
+    token: string,
     showAlert: CallableFunction
   ): Promise<void> {
-    const start: Date = new Date(activityQuery.date)
-    const end: Date = new Date(new Date(start).getTime() + 60 * 60 * 1000)
-    const startDateTimeStamp: string = this._dateFormatter.getTimeStampOnDate(start)
-    const endDateTimeStamp: string = this._dateFormatter.getTimeStampOnDate(end)
-
     const response = await fetch('/api/event/', {
       method: 'POST',
       body: JSON.stringify({
-        uid: uuidv1(),
-        activity: activityQuery,
+        token,
         targetEmail: targetEmail,
-        eventDate: this._dateFormatter.getDateEuropeanFormat(start),
-        startDateTimeStamp,
-        endDateTimeStamp,
+        timeZone: this.getTimeZone(),
       }),
     })
 
@@ -37,17 +25,12 @@ export default class SendEmailService {
     showAlert(data.message, alertType)
   }
 
-  public async handleSendInviteRefused(
-    activityQuery: ActivityQueryProps,
-    showAlert: CallableFunction
-  ): Promise<void> {
-    const start: Date = new Date(activityQuery.date)
-
+  public async handleSendInviteRefused(token: string, showAlert: CallableFunction): Promise<void> {
     const response: Response = await fetch('/api/invite-refused', {
       method: 'POST',
       body: JSON.stringify({
-        activity: activityQuery,
-        eventDate: this._dateFormatter.getDateEuropeanFormat(start),
+        token,
+        timeZone: this.getTimeZone(),
       }),
     })
 
