@@ -28,11 +28,11 @@ const Search = (): React.ReactElement => {
   const dataResponse = data as NextResponseUrlActivityDecodedType | null
   const activity = dataResponse?.response as ActivityQueryProps | null
 
-  if (activity === null) {
+  if (activity === null || !token) {
     return notFound()
   }
 
-  return isLoading ? (
+  return isLoading || !activity ? (
     <SpinnerLoader
       sx={{
         marginTop: '10%',
@@ -40,7 +40,7 @@ const Search = (): React.ReactElement => {
       }}
     />
   ) : (
-    <InvitationActivity key={0} activity={activity} />
+    <InvitationActivity key={0} activity={activity} token={token} />
   )
 }
 

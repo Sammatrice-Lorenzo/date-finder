@@ -42,3 +42,23 @@ describe('getTimeStampOnDate function', () => {
     expect(service.getTimeStampOnDate(date)).toBe(expectedOutput)
   })
 })
+
+describe('getDateEuropeanFormatInTimeZone function', () => {
+  it('should format the date in the given time zone', () => {
+    const date: Date = new Date('2030-01-01T19:00:00Z')
+    const service: DateFormatter = new DateFormatter()
+
+    expect(service.getDateEuropeanFormatInTimeZone(date, 'Europe/Paris')).toBe('01/01/2030 20:00')
+    expect(service.getDateEuropeanFormatInTimeZone(date, 'America/New_York')).toBe(
+      '01/01/2030 14:00'
+    )
+  })
+})
+
+describe('getUtcTimeStamp function', () => {
+  it('should return an ICS UTC timestamp', () => {
+    const date: Date = new Date('2022-01-01T10:15:30.123Z')
+
+    expect(new DateFormatter().getUtcTimeStamp(date)).toBe('20220101T101530Z')
+  })
+})

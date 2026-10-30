@@ -2,7 +2,7 @@ import type ActivityInterface from '@/interfaces/activity/ActivityInterface'
 import JWTService from './JWTServices'
 import type { ActivityQueryProps } from '@/types/ActivityQueryProps'
 import type { Payload } from '@/types/Payload'
-import type { FormRequestActivityInterface } from '@/interfaces/activity/FormRequestActivityInterface'
+import type { GenerateUrlRequest } from '@/schema/apiActivitySchema'
 
 export class UrlActivityGeneratorService {
   private _jwtService: JWTService
@@ -13,10 +13,9 @@ export class UrlActivityGeneratorService {
 
   public generateParametersActivityForShare(
     activity: ActivityInterface,
-    formJson: FormRequestActivityInterface
+    formJson: GenerateUrlRequest['form']
   ): string {
-    const date: Date = new Date(formJson.date ?? new Date())
-    const dateFormatted: string = date.toUTCString()
+    const dateFormatted: string = formJson.date.toUTCString()
 
     const route: ActivityQueryProps = {
       activity: activity.name,

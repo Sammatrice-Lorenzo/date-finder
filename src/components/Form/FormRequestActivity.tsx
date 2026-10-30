@@ -10,6 +10,7 @@ import type { FormRequestActivityInterface } from '@/interfaces/activity/FormReq
 import valuesInputsModalRequestActivity from '@/data/valuesInputsModalRequestData'
 import { useTranslations } from 'next-intl'
 import createFormActivitySchema from '@/schema/formRequestActivitySchema'
+import { useAlert } from '@/hooks/useAlert'
 
 export type FormRequestActivityProps = {
   activity: ActivityInterface
@@ -20,6 +21,7 @@ export const FormRequestActivity = ({ activity, handleClose }: FormRequestActivi
   const t = useTranslations('ACTIVITY')
   const formErrorTranslation = useTranslations('ERROR.FORM_REQUEST_ACTIVITY')
   const formTranslation = useTranslations('ACTIVITY.FORM')
+  const { showAlert } = useAlert()
 
   const form: UseFormReturn<FormRequestActivityInterface> = useForm({
     resolver: zodResolver(createFormActivitySchema(formErrorTranslation)),
@@ -35,7 +37,7 @@ export const FormRequestActivity = ({ activity, handleClose }: FormRequestActivi
 
   const onSubmit = (data: FormRequestActivityInterface): void => {
     if (Object.keys(form.formState.errors).length === 0) {
-      new ShareActivityService().handleShare(activity, data, t)
+      new ShareActivityService().handleShare(activity, data, t, showAlert)
       handleClose()
     }
   }

@@ -25,6 +25,7 @@ const getActivitiesData = (t: ReturnType<typeof createTranslator>): HomeActiviti
     { key: 'parks', icon: 'parks', title: t('PARKS'), color: '#02cc93', route: '/parks' },
     { key: 'games', icon: 'games', title: t('GAMES'), color: '#9c277b', route: '/games' },
     { key: 'relax', icon: 'spa', title: t('RELAX_SPA'), color: '#e93f67', route: '/relax' },
+    { key: 'custom', icon: 'custom', title: t('CUSTOM'), color: '#5c6bc0', route: '/custom' },
   ]
 }
 
